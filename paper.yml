@@ -67,6 +67,15 @@ world-settings:
       disable-mesa-additional-gold: false
     prevent-moving-into-unloaded-chunks: false
     use-vanilla-world-scoreboard-name-coloring: false
+    portal-search-radius: 128
+    queue-light-updates: false
+    optimize-explosions: false
+    use-chunk-inhabited-timer: true
+    delay-chunk-unloads-by: 10s
+    max-auto-save-chunks-per-tick: 24
+    save-queue-limit-for-auto-save: 50
+    max-chunk-sends-per-tick: 81
+    max-chunk-gens-per-tick: 10
     game-mechanics:
       allow-permanent-chunk-loaders: false
       scan-for-legacy-ender-dragon: true
@@ -95,7 +104,6 @@ world-settings:
     lava-flow-speed:
       normal: 30
       nether: 10
-    queue-light-updates: false
     lootables:
       auto-replenish: false
       restrict-player-reloot: true
@@ -112,14 +120,6 @@ world-settings:
       push-based: false
     duplicate-uuid-resolver: saferegen
     duplicate-uuid-saferegen-delete-range: 32
-    portal-search-radius: 128
-    optimize-explosions: false
-    use-chunk-inhabited-timer: true
-    delay-chunk-unloads-by: 10s
-    max-auto-save-chunks-per-tick: 24
-    save-queue-limit-for-auto-save: 50
-    max-chunk-sends-per-tick: 81
-    max-chunk-gens-per-tick: 10
     remove-corrupt-tile-entities: false
     keep-spawn-loaded-range: 6
     auto-save-interval: -1
@@ -139,6 +139,7 @@ world-settings:
     bed-search-radius: 1
     prevent-tnt-from-moving-in-water: false
     non-player-arrow-despawn-rate: -1
+    mob-spawner-tick-rate: 1
     armor-stands-tick: true
     keep-spawn-loaded: true
     anti-xray:
@@ -175,7 +176,6 @@ world-settings:
     spawner-nerfed-mobs-should-jump: false
     allow-leashing-undead-horse: false
     all-chunks-are-slime-chunks: false
-    mob-spawner-tick-rate: 1
     squid-spawn-height:
       maximum: 0.0
     disable-teleportation-suffocation-check: false
