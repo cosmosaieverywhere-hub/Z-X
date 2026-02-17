@@ -10,15 +10,6 @@
 # REMEMBER TO KEEP PERIODICAL BACKUPS.
 #
 regions:
-    arten:
-        min: {x: 1.9177024E7, y: 90.0, z: -2.3329472E7}
-        max: {x: 1.9177151E7, y: 90.0, z: -2.3329343E7}
-        members: {}
-        flags: {block-break: allow, block-place: allow}
-        owners:
-            unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]
-        type: cuboid
-        priority: 0
     shopent:
         min: {x: -65.0, y: 66.0, z: 234.0}
         max: {x: -63.0, y: 69.0, z: 246.0}
@@ -26,6 +17,15 @@ regions:
         flags:
             teleport: {world: world, x: -64.69999998807907, y: 60.0, z: 244.13670731565398,
                 pitch: 26.849918, yaw: 266.2508}
+        owners:
+            unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]
+        type: cuboid
+        priority: 0
+    arten:
+        min: {x: 1.9177024E7, y: 90.0, z: -2.3329472E7}
+        max: {x: 1.9177151E7, y: 90.0, z: -2.3329343E7}
+        members: {}
+        flags: {block-break: allow, block-place: allow}
         owners:
             unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]
         type: cuboid
@@ -53,15 +53,6 @@ regions:
             unique-ids: [5b008f2f-6cd6-3ac3-96cb-b6bf51cd3ff5]
         type: cuboid
         priority: 0
-    pv:
-        min: {x: 1.9176714E7, y: 0.0, z: -2.3329605E7}
-        max: {x: 1.9176752E7, y: 255.0, z: -2.3329577E7}
-        members: {}
-        flags: {pvp: allow, mob-spawning: deny}
-        owners:
-            unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]
-        type: cuboid
-        priority: 0
     p3rcy:
         min: {x: 59.0, y: 26.0, z: 10.0}
         max: {x: 86.0, y: 42.0, z: 38.0}
@@ -69,6 +60,15 @@ regions:
         flags: {pvp: deny}
         owners:
             unique-ids: [4e06aeab-332a-3434-a740-148b7bb78100]
+        type: cuboid
+        priority: 0
+    pv:
+        min: {x: 1.9176714E7, y: 0.0, z: -2.3329605E7}
+        max: {x: 1.9176752E7, y: 255.0, z: -2.3329577E7}
+        members: {}
+        flags: {pvp: allow, mob-spawning: deny}
+        owners:
+            unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]
         type: cuboid
         priority: 0
     pvptp:
@@ -237,6 +237,15 @@ regions:
             unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]
         type: cuboid
         priority: 0
+    villager:
+        min: {x: 759.0, y: 61.0, z: 357.0}
+        max: {x: 771.0, y: 111.0, z: 372.0}
+        members: {}
+        flags: {}
+        owners:
+            unique-ids: [40b8ead5-1f5c-3bac-b4d6-049af67dee61]
+        type: cuboid
+        priority: 0
     sprg2:
         min: {x: 28.0, y: 0.0, z: 240.0}
         max: {x: 64.0, y: 255.0, z: 273.0}
@@ -338,8 +347,8 @@ regions:
         min: {x: -129.0, y: 0.0, z: 107.0}
         max: {x: 69.0, y: 255.0, z: 360.0}
         members: {}
-        flags: {wither-damage: deny, creeper-explosion: deny, use: allow, feed-amount: 20,
-            feed-delay: 1, pvp: deny, tnt: deny, mob-spawning: deny, farewell: You
+        flags: {wither-damage: deny, creeper-explosion: deny, use: allow, feed-delay: 1,
+            feed-amount: 20, tnt: deny, pvp: deny, mob-spawning: deny, farewell: You
                 have left spawn.Build and Enjoy}
         owners:
             unique-ids: [b5584e1b-4b62-3c2f-a050-06703efbcf83]

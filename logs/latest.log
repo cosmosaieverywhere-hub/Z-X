@@ -1,173 +1,173 @@
-[10:14:19] [Server thread/INFO]: Starting minecraft server version 1.12.2
-[10:14:19] [Server thread/INFO]: Loading properties
-[10:14:19] [Server thread/WARN]: You have used the Spigot command line EULA agreement flag.
-[10:14:19] [Server thread/WARN]: By using this setting you are indicating your agreement to Mojang's EULA (https://account.mojang.com/documents/minecraft_eula).
-[10:14:19] [Server thread/WARN]: If you do not agree to the above EULA please stop your server and remove this flag immediately.
-[10:14:19] [Server thread/INFO]: Default game type: SURVIVAL
-[10:14:19] [Server thread/INFO]: This server is running Paper version git-Paper-1620 (MC: 1.12.2) (Implementing API version 1.12.2-R0.1-SNAPSHOT)
-[10:14:19] [Server thread/INFO]: Debug logging is disabled
-[10:14:19] [Server thread/INFO]: Server Ping Player Sample Count: 12
-[10:14:19] [Server thread/INFO]: Using 4 threads for Netty based IO
-[10:14:19] [Server thread/INFO]: Generating keypair
-[10:14:19] [Server thread/INFO]: Starting Minecraft server on *:25565
-[10:14:19] [Server thread/INFO]: Using epoll channel type
-[10:14:20] [Server thread/INFO]: Set PluginClassLoader as parallel capable
-[10:14:20] [Server thread/INFO]: [WorldEdit] Loading WorldEdit v6.1.9;caf0ad9
-[10:14:20] [Server thread/INFO]: [ImageMaps] Loading ImageMaps v1.0.10
-[10:14:20] [Server thread/INFO]: [PlaceholderAPI] Loading PlaceholderAPI v2.11.7
-[10:14:20] [Server thread/INFO]: [ClearLag] Loading ClearLag v3.2.2
-[10:14:20] [Server thread/INFO]: [AutoMessage] Loading AutoMessage v1.0
-[10:14:20] [Server thread/INFO]: [ViaVersion] Loading ViaVersion v5.3.3-SNAPSHOT
-[10:14:20] [Server thread/INFO]: [ViaVersion] ViaVersion 5.3.3-SNAPSHOT is now loaded. Registering protocol transformers and injecting...
-[10:14:20] [Via-Mappingloader-0/INFO]: [ViaVersion] Loading block connection mappings ...
-[10:14:20] [Via-Mappingloader-0/INFO]: [ViaVersion] Using FastUtil Long2ObjectOpenHashMap for block connections
-[10:14:21] [Server thread/INFO]: [ViaBackwards] Loading translations...
-[10:14:21] [Server thread/INFO]: [ViaBackwards] Registering protocols...
-[10:14:21] [Server thread/INFO]: [ViaRewind] Registering protocols...
-[10:14:21] [Server thread/INFO]: [DuelMe] Loading DuelMe v0.18.3
-[10:14:21] [Server thread/INFO]: [HolographicDisplays] Loading HolographicDisplays v3.0.4
-[10:14:21] [Server thread/INFO]: [ViaBackwards] Loading ViaBackwards v5.3.2
-[10:14:21] [Server thread/INFO]: [WorldGuard] Loading WorldGuard v6.2.2-SNAPSHOT;8eeab68
-[10:14:21] [Server thread/INFO]: [ViaRewind] Loading ViaRewind v4.0.7
-[10:14:21] [Server thread/INFO]: [LuckPerms] Loading LuckPerms v5.5.0
-[10:14:21] [Server thread/INFO]: [SkinsRestorer] Loading SkinsRestorer v15.10.0
-[10:14:21] [Server thread/INFO]: [EaglerXServer] Loading EaglercraftXServer v1.0.7
-[10:14:21] [Server thread/INFO]: [EaglerXServer] (Platform: Bukkit)
-[10:14:21] [Server thread/WARN]: [EaglerXServer] Note: Its highly recommended to install EaglerXServer on BungeeCord or Velocity instead, you will have a much better experience
-[10:14:21] [Server thread/WARN]: [EaglerXServer] Note: If you are not using Spigot (or a derivative like Paper) or a version above 1.12.2, things probably won't work right
-[10:14:21] [Server thread/INFO]: [EaglerXServer] Server Name: "Z X Server"
-[10:14:21] [Server thread/INFO]: [ViaRewind-Legacy-Support] Loading ViaRewind-Legacy-Support v1.5.2
-[10:14:21] [Server thread/INFO]: [Vault] Loading Vault v1.7.3-b131
-[10:14:21] [Server thread/INFO]: [EaglerXRewind-1.5] Loading EaglercraftXRewind-1-5 v1.0.2
-[10:14:21] [Server thread/INFO]: [Citizens] Loading Citizens v2.0.22-SNAPSHOT (build 1487)
-[10:14:21] [Server thread/INFO]: [Essentials] Loading Essentials v2.22.0-dev+39-adf77dc
-[10:14:21] [Server thread/INFO]: [EssentialsChat] Loading EssentialsChat v2.22.0-dev+39-adf77dc
-[10:14:21] [Server thread/INFO]: [ServerSigns] Loading ServerSigns v4.10.1
-[10:14:21] [Server thread/INFO]: [EssentialsSpawn] Loading EssentialsSpawn v2.22.0-dev+39-adf77dc
-[10:14:21] [Server thread/INFO]: [EssentialsDiscord] Loading EssentialsDiscord v2.21.2
-[10:14:21] [Server thread/INFO]: [AuthMe] Loading AuthMe v5.6.0-bCUSTOM
-[10:14:21] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
-[10:14:21] [Server thread/INFO]: [ViaRewind] Enabling ViaRewind v4.0.7
-[10:14:21] [Server thread/INFO]: [LuckPerms] Enabling LuckPerms v5.5.0
-[10:14:22] [Server thread/INFO]:         __    
-[10:14:22] [Server thread/INFO]:   |    |__)   LuckPerms v5.5.0
-[10:14:22] [Server thread/INFO]:   |___ |      Running on Bukkit - Paper
-[10:14:22] [Server thread/INFO]: 
-[10:14:22] [Server thread/INFO]: [LuckPerms] Loading configuration...
-[10:14:22] [Server thread/INFO]: [LuckPerms] Loading storage provider... [H2]
-[10:14:22] [Server thread/INFO]: [LuckPerms] Loading internal permission managers...
-[10:14:22] [Server thread/INFO]: [LuckPerms] Performing initial data load...
-[10:14:23] [Server thread/INFO]: [LuckPerms] Successfully enabled. (took 1307ms)
-[10:14:23] [Server thread/INFO]: [SkinsRestorer] Enabling SkinsRestorer v15.10.0
-[10:14:23] [Server thread/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1mRunning on Minecraft [33;1m1.12.2[32;1m.[0;39m
-[10:14:24] [Server thread/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39mUsing paper join listener![0;39m
-[10:14:24] [Server thread/INFO]: [PlaceholderAPI] Successfully registered internal expansion: skinsrestorer [15.10.0]
-[10:14:24] [Server thread/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39mPlaceholderAPI expansion registered![0;39m
-[10:14:24] [Server thread/WARN]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[33;1m[33;1mPlease update your Java runtime to at least Java 21 (your version is 17).[0;39m
-[10:14:24] [Server thread/WARN]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[33;1m[33;1mAt some point in the future, SkinsRestorer will no longer be compatible with this version of Java.[0;39m
-[10:14:24] [Server thread/INFO]: [Vault] Enabling Vault v1.7.3-b131
-[10:14:24] [Server thread/INFO]: [Vault] [Economy] Essentials Economy found: Waiting
-[10:14:24] [Server thread/INFO]: [Vault] [Permission] SuperPermissions loaded as backup permission system.
-[10:14:24] [Server thread/INFO]: [Vault] Enabled Version 1.7.3-b131
-[10:14:24] [Server thread/INFO]: [LuckPerms] Registered Vault permission & chat hook.
-[10:14:24] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
-[10:14:24] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
-[10:14:24] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
-[10:14:24] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
-[10:14:24] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
-[10:14:24] [Server thread/INFO]: Preparing level "world"
-[10:14:24] [Server thread/INFO]: -------- World Settings For [world] --------
-[10:14:24] [Server thread/INFO]: Mob Spawn Range: 4
-[10:14:24] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
-[10:14:24] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[10:14:24] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
-[10:14:24] [Server thread/INFO]: Random Lighting Updates: false
-[10:14:24] [Server thread/INFO]: Structure Info Saving: true
-[10:14:24] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
-[10:14:24] [Server thread/INFO]: Max TNT Explosions: 100
-[10:14:24] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[10:14:24] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Cane Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Melon Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Vine Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Cocoa Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Item Despawn Rate: 6000
-[10:14:24] [Server thread/INFO]: Item Merge Radius: 2.5
-[10:14:24] [Server thread/INFO]: View Distance: 6
-[10:14:24] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[10:14:24] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[10:14:24] [Server thread/INFO]: Experience Merge Radius: 3.0
-[10:14:24] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[10:14:24] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[10:14:24] [Server thread/INFO]: -------- World Settings For [world_nether] --------
-[10:14:24] [Server thread/INFO]: Mob Spawn Range: 4
-[10:14:24] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
-[10:14:24] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[10:14:24] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
-[10:14:24] [Server thread/INFO]: Random Lighting Updates: false
-[10:14:24] [Server thread/INFO]: Structure Info Saving: true
-[10:14:24] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
-[10:14:24] [Server thread/INFO]: Max TNT Explosions: 100
-[10:14:24] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[10:14:24] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Cane Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Melon Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Vine Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Cocoa Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Item Despawn Rate: 6000
-[10:14:24] [Server thread/INFO]: Item Merge Radius: 2.5
-[10:14:24] [Server thread/INFO]: View Distance: 6
-[10:14:24] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[10:14:24] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[10:14:24] [Server thread/INFO]: Experience Merge Radius: 3.0
-[10:14:24] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[10:14:24] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[10:14:24] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
-[10:14:24] [Server thread/INFO]: Mob Spawn Range: 4
-[10:14:24] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
-[10:14:24] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
-[10:14:24] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
-[10:14:24] [Server thread/INFO]: Random Lighting Updates: false
-[10:14:24] [Server thread/INFO]: Structure Info Saving: true
-[10:14:24] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
-[10:14:24] [Server thread/INFO]: Max TNT Explosions: 100
-[10:14:24] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
-[10:14:24] [Server thread/INFO]: Cactus Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Cane Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Melon Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Mushroom Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Sapling Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Wheat Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: NetherWart Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Vine Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Cocoa Growth Modifier: 100%
-[10:14:24] [Server thread/INFO]: Item Despawn Rate: 6000
-[10:14:24] [Server thread/INFO]: Item Merge Radius: 2.5
-[10:14:24] [Server thread/INFO]: View Distance: 6
-[10:14:24] [Server thread/INFO]: Arrow Despawn Rate: 1200
-[10:14:24] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
-[10:14:24] [Server thread/INFO]: Experience Merge Radius: 3.0
-[10:14:24] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
-[10:14:24] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
-[10:14:24] [Server thread/INFO]: Preparing start region for level 0 (Seed: 7868718580419906769)
-[10:14:25] [Server thread/INFO]: Preparing start region for level 1 (Seed: -6924948886385984839)
-[10:14:25] [Server thread/INFO]: Preparing start region for level 2 (Seed: -6924948886385984839)
-[10:14:25] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v6.1.9;caf0ad9
-[10:14:25] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
-[10:14:25] [Server thread/INFO]: [WorldEdit] Using com.sk89q.worldedit.bukkit.adapter.impl.Spigot_v1_12_R2 as the Bukkit adapter
-[10:14:25] [Server thread/INFO]: [ImageMaps] Enabling ImageMaps v1.0.10
-[10:14:25] [Server thread/ERROR]: Error occurred while enabling ImageMaps v1.0.10 (Is it up to date?)
+[10:10:36] [Server thread/INFO]: Starting minecraft server version 1.12.2
+[10:10:36] [Server thread/INFO]: Loading properties
+[10:10:36] [Server thread/WARN]: You have used the Spigot command line EULA agreement flag.
+[10:10:36] [Server thread/WARN]: By using this setting you are indicating your agreement to Mojang's EULA (https://account.mojang.com/documents/minecraft_eula).
+[10:10:36] [Server thread/WARN]: If you do not agree to the above EULA please stop your server and remove this flag immediately.
+[10:10:36] [Server thread/INFO]: Default game type: SURVIVAL
+[10:10:36] [Server thread/INFO]: This server is running Paper version git-Paper-1620 (MC: 1.12.2) (Implementing API version 1.12.2-R0.1-SNAPSHOT)
+[10:10:37] [Server thread/INFO]: Debug logging is disabled
+[10:10:37] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[10:10:37] [Server thread/INFO]: Using 4 threads for Netty based IO
+[10:10:37] [Server thread/INFO]: Generating keypair
+[10:10:37] [Server thread/INFO]: Starting Minecraft server on *:25565
+[10:10:37] [Server thread/INFO]: Using epoll channel type
+[10:10:37] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[10:10:38] [Server thread/INFO]: [WorldEdit] Loading WorldEdit v6.1.9;caf0ad9
+[10:10:38] [Server thread/INFO]: [ImageMaps] Loading ImageMaps v1.0.10
+[10:10:38] [Server thread/INFO]: [PlaceholderAPI] Loading PlaceholderAPI v2.11.7
+[10:10:38] [Server thread/INFO]: [ClearLag] Loading ClearLag v3.2.2
+[10:10:38] [Server thread/INFO]: [AutoMessage] Loading AutoMessage v1.0
+[10:10:38] [Server thread/INFO]: [ViaVersion] Loading ViaVersion v5.3.3-SNAPSHOT
+[10:10:38] [Server thread/INFO]: [ViaVersion] ViaVersion 5.3.3-SNAPSHOT is now loaded. Registering protocol transformers and injecting...
+[10:10:38] [Via-Mappingloader-0/INFO]: [ViaVersion] Loading block connection mappings ...
+[10:10:38] [Via-Mappingloader-0/INFO]: [ViaVersion] Using FastUtil Long2ObjectOpenHashMap for block connections
+[10:10:38] [Server thread/INFO]: [ViaBackwards] Loading translations...
+[10:10:38] [Server thread/INFO]: [ViaBackwards] Registering protocols...
+[10:10:39] [Server thread/INFO]: [ViaRewind] Registering protocols...
+[10:10:39] [Server thread/INFO]: [DuelMe] Loading DuelMe v0.18.3
+[10:10:39] [Server thread/INFO]: [HolographicDisplays] Loading HolographicDisplays v3.0.4
+[10:10:39] [Server thread/INFO]: [ViaBackwards] Loading ViaBackwards v5.3.2
+[10:10:39] [Server thread/INFO]: [WorldGuard] Loading WorldGuard v6.2.2-SNAPSHOT;8eeab68
+[10:10:39] [Server thread/INFO]: [ViaRewind] Loading ViaRewind v4.0.7
+[10:10:39] [Server thread/INFO]: [LuckPerms] Loading LuckPerms v5.5.0
+[10:10:39] [Server thread/INFO]: [SkinsRestorer] Loading SkinsRestorer v15.10.0
+[10:10:39] [Server thread/INFO]: [EaglerXServer] Loading EaglercraftXServer v1.0.7
+[10:10:39] [Server thread/INFO]: [EaglerXServer] (Platform: Bukkit)
+[10:10:39] [Server thread/WARN]: [EaglerXServer] Note: Its highly recommended to install EaglerXServer on BungeeCord or Velocity instead, you will have a much better experience
+[10:10:39] [Server thread/WARN]: [EaglerXServer] Note: If you are not using Spigot (or a derivative like Paper) or a version above 1.12.2, things probably won't work right
+[10:10:39] [Server thread/INFO]: [EaglerXServer] Server Name: "Z X Server"
+[10:10:39] [Server thread/INFO]: [ViaRewind-Legacy-Support] Loading ViaRewind-Legacy-Support v1.5.2
+[10:10:39] [Server thread/INFO]: [Vault] Loading Vault v1.7.3-b131
+[10:10:39] [Server thread/INFO]: [EaglerXRewind-1.5] Loading EaglercraftXRewind-1-5 v1.0.2
+[10:10:39] [Server thread/INFO]: [Citizens] Loading Citizens v2.0.22-SNAPSHOT (build 1487)
+[10:10:39] [Server thread/INFO]: [Essentials] Loading Essentials v2.22.0-dev+39-adf77dc
+[10:10:39] [Server thread/INFO]: [EssentialsChat] Loading EssentialsChat v2.22.0-dev+39-adf77dc
+[10:10:39] [Server thread/INFO]: [ServerSigns] Loading ServerSigns v4.10.1
+[10:10:39] [Server thread/INFO]: [EssentialsSpawn] Loading EssentialsSpawn v2.22.0-dev+39-adf77dc
+[10:10:39] [Server thread/INFO]: [EssentialsDiscord] Loading EssentialsDiscord v2.21.2
+[10:10:39] [Server thread/INFO]: [AuthMe] Loading AuthMe v5.6.0-bCUSTOM
+[10:10:39] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[10:10:39] [Server thread/INFO]: [ViaRewind] Enabling ViaRewind v4.0.7
+[10:10:39] [Server thread/INFO]: [LuckPerms] Enabling LuckPerms v5.5.0
+[10:10:39] [Server thread/INFO]:         __    
+[10:10:39] [Server thread/INFO]:   |    |__)   LuckPerms v5.5.0
+[10:10:39] [Server thread/INFO]:   |___ |      Running on Bukkit - Paper
+[10:10:39] [Server thread/INFO]: 
+[10:10:39] [Server thread/INFO]: [LuckPerms] Loading configuration...
+[10:10:40] [Server thread/INFO]: [LuckPerms] Loading storage provider... [H2]
+[10:10:40] [Server thread/INFO]: [LuckPerms] Loading internal permission managers...
+[10:10:40] [Server thread/INFO]: [LuckPerms] Performing initial data load...
+[10:10:40] [Server thread/INFO]: [LuckPerms] Successfully enabled. (took 1412ms)
+[10:10:40] [Server thread/INFO]: [SkinsRestorer] Enabling SkinsRestorer v15.10.0
+[10:10:41] [Server thread/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1mRunning on Minecraft [33;1m1.12.2[32;1m.[0;39m
+[10:10:41] [Server thread/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39mUsing paper join listener![0;39m
+[10:10:41] [Server thread/INFO]: [PlaceholderAPI] Successfully registered internal expansion: skinsrestorer [15.10.0]
+[10:10:41] [Server thread/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39mPlaceholderAPI expansion registered![0;39m
+[10:10:41] [Server thread/WARN]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[33;1m[33;1mPlease update your Java runtime to at least Java 21 (your version is 17).[0;39m
+[10:10:41] [Server thread/WARN]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[33;1m[33;1mAt some point in the future, SkinsRestorer will no longer be compatible with this version of Java.[0;39m
+[10:10:41] [Server thread/INFO]: [Vault] Enabling Vault v1.7.3-b131
+[10:10:41] [Server thread/INFO]: [Vault] [Economy] Essentials Economy found: Waiting
+[10:10:41] [Server thread/INFO]: [Vault] [Permission] SuperPermissions loaded as backup permission system.
+[10:10:41] [Server thread/INFO]: [Vault] Enabled Version 1.7.3-b131
+[10:10:41] [Server thread/INFO]: [LuckPerms] Registered Vault permission & chat hook.
+[10:10:41] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[10:10:41] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[10:10:41] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[10:10:41] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[10:10:41] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[10:10:41] [Server thread/INFO]: Preparing level "world"
+[10:10:41] [Server thread/INFO]: -------- World Settings For [world] --------
+[10:10:41] [Server thread/INFO]: Mob Spawn Range: 4
+[10:10:41] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[10:10:41] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[10:10:41] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[10:10:41] [Server thread/INFO]: Random Lighting Updates: false
+[10:10:41] [Server thread/INFO]: Structure Info Saving: true
+[10:10:41] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[10:10:41] [Server thread/INFO]: Max TNT Explosions: 100
+[10:10:41] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[10:10:41] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Cane Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Melon Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Vine Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[10:10:41] [Server thread/INFO]: Item Despawn Rate: 6000
+[10:10:41] [Server thread/INFO]: Item Merge Radius: 2.5
+[10:10:41] [Server thread/INFO]: View Distance: 6
+[10:10:41] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[10:10:41] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[10:10:41] [Server thread/INFO]: Experience Merge Radius: 3.0
+[10:10:41] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[10:10:41] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[10:10:42] [Server thread/INFO]: -------- World Settings For [world_nether] --------
+[10:10:42] [Server thread/INFO]: Mob Spawn Range: 4
+[10:10:42] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[10:10:42] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[10:10:42] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[10:10:42] [Server thread/INFO]: Random Lighting Updates: false
+[10:10:42] [Server thread/INFO]: Structure Info Saving: true
+[10:10:42] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[10:10:42] [Server thread/INFO]: Max TNT Explosions: 100
+[10:10:42] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[10:10:42] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Cane Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Melon Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Vine Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Item Despawn Rate: 6000
+[10:10:42] [Server thread/INFO]: Item Merge Radius: 2.5
+[10:10:42] [Server thread/INFO]: View Distance: 6
+[10:10:42] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[10:10:42] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[10:10:42] [Server thread/INFO]: Experience Merge Radius: 3.0
+[10:10:42] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[10:10:42] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[10:10:42] [Server thread/INFO]: -------- World Settings For [world_the_end] --------
+[10:10:42] [Server thread/INFO]: Mob Spawn Range: 4
+[10:10:42] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[10:10:42] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[10:10:42] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[10:10:42] [Server thread/INFO]: Random Lighting Updates: false
+[10:10:42] [Server thread/INFO]: Structure Info Saving: true
+[10:10:42] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[10:10:42] [Server thread/INFO]: Max TNT Explosions: 100
+[10:10:42] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[10:10:42] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Cane Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Melon Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Vine Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[10:10:42] [Server thread/INFO]: Item Despawn Rate: 6000
+[10:10:42] [Server thread/INFO]: Item Merge Radius: 2.5
+[10:10:42] [Server thread/INFO]: View Distance: 6
+[10:10:42] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[10:10:42] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[10:10:42] [Server thread/INFO]: Experience Merge Radius: 3.0
+[10:10:42] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[10:10:42] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[10:10:42] [Server thread/INFO]: Preparing start region for level 0 (Seed: 7868718580419906769)
+[10:10:42] [Server thread/INFO]: Preparing start region for level 1 (Seed: -6924948886385984839)
+[10:10:43] [Server thread/INFO]: Preparing start region for level 2 (Seed: -6924948886385984839)
+[10:10:43] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v6.1.9;caf0ad9
+[10:10:43] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[10:10:43] [Server thread/INFO]: [WorldEdit] Using com.sk89q.worldedit.bukkit.adapter.impl.Spigot_v1_12_R2 as the Bukkit adapter
+[10:10:43] [Server thread/INFO]: [ImageMaps] Enabling ImageMaps v1.0.10
+[10:10:43] [Server thread/ERROR]: Error occurred while enabling ImageMaps v1.0.10 (Is it up to date?)
 java.lang.NoSuchFieldError: WOODEN_HOE
 	at net.craftcitizen.imagemaps.ImageMaps.onEnable(ImageMaps.java:81) ~[?:?]
 	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:264) ~[patched_1.12.2.jar:git-Paper-1620]
@@ -181,450 +181,441 @@ java.lang.NoSuchFieldError: WOODEN_HOE
 	at net.minecraft.server.v1_12_R1.DedicatedServer.init(DedicatedServer.java:289) ~[patched_1.12.2.jar:git-Paper-1620]
 	at net.minecraft.server.v1_12_R1.MinecraftServer.run(MinecraftServer.java:616) ~[patched_1.12.2.jar:git-Paper-1620]
 	at java.lang.Thread.run(Thread.java:840) [?:?]
-[10:14:25] [Server thread/INFO]: [ImageMaps] Disabling ImageMaps v1.0.10
-[10:14:25] [Server thread/INFO]: [PlaceholderAPI] Enabling PlaceholderAPI v2.11.7
-[10:14:25] [Server thread/INFO]: [PlaceholderAPI] Fetching available expansion information...
-[10:14:25] [Server thread/INFO]: [ClearLag] Enabling ClearLag v3.2.2
-[10:14:25] [Server thread/INFO]: [ClearLag] Using version-adapter: LegacyVersionAdapter
-[10:14:25] [Server thread/INFO]: [ClearLag] Loading modules...
-[10:14:25] [Server thread/INFO]: [ClearLag] Modules enabed, loading config values
-[10:14:25] [Server thread/INFO]: [ClearLag] Modules have been loaded!
-[10:14:25] [Thread-8/INFO]: [ClearLag] Checking for updates compatible with your bukkit version [1.12]...
-[10:14:25] [Server thread/INFO]: [ClearLag] Clearlag is now enabled!
-[10:14:25] [Server thread/INFO]: [AutoMessage] Enabling AutoMessage v1.0
-[10:14:25] [Server thread/INFO]: [ViaVersion] Enabling ViaVersion v5.3.3-SNAPSHOT
-[10:14:25] [Server thread/INFO]: [DuelMe] Enabling DuelMe v0.18.3
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] Enabling.
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] WorldEdit found!
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] Successfully loaded 1 Duel Arena(s).
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] Server NMS Version: v1_12_R1
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] Loading support for v1_12_R1
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] NMS Version setup complete
-[10:14:25] [Server thread/INFO]: [DuelMe] [Info] Successfully Enabled!
-[10:14:25] [Server thread/INFO]: [HolographicDisplays] Enabling HolographicDisplays v3.0.4
-[10:14:25] [Thread-8/INFO]: [ClearLag] No updates found!
-[10:14:25] [Server thread/INFO]: [ViaBackwards] Enabling ViaBackwards v5.3.2
-[10:14:25] [Server thread/INFO]: [WorldGuard] Enabling WorldGuard v6.2.2-SNAPSHOT;8eeab68
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world) TNT ignition is PERMITTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world) Lighters are PERMITTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world) Lava fire is blocked.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world) Fire spread is UNRESTRICTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] Loaded configuration for world 'world'
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_nether) TNT ignition is PERMITTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_nether) Lighters are PERMITTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_nether) Lava fire is blocked.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_nether) Fire spread is UNRESTRICTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] Loaded configuration for world 'world_nether'
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_the_end) TNT ignition is PERMITTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_the_end) Lighters are PERMITTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_the_end) Lava fire is blocked.
-[10:14:25] [Server thread/INFO]: [WorldGuard] (world_the_end) Fire spread is UNRESTRICTED.
-[10:14:25] [Server thread/INFO]: [WorldGuard] Loaded configuration for world 'world_the_end'
-[10:14:25] [Server thread/INFO]: [WorldGuard] Loading region data...
-[10:14:25] [Server thread/INFO]: [EaglerXServer] Enabling EaglercraftXServer v1.0.7
-[10:14:25] [Server thread/INFO]: [EaglerXServer] Connecting to skin cache database "jdbc:sqlite:eagler_skins_cache.db"...
-[10:14:25] [Netty Epoll Server IO #0/INFO]: [EaglerXServer] Listener "default" injected into channel [id: 0x808d29e8, L:/[0:0:0:0:0:0:0:0%0]:25565] successfully (Generic Netty method)
-[10:14:25] [Server thread/INFO]: [EaglerXServer] Connected to skin cache database successfully!
-[10:14:25] [Server thread/ERROR]: [EaglerXServer] Plugin EaglercraftXServer v1.0.7 has failed to register events for class net.skinsrestorer.bukkit.listener.ForceAliveListener because org/bukkit/event/server/ServerLoadEvent does not exist.
-[10:14:25] [Server thread/INFO]: [EaglerXServer] Listening for SkinsRestorer skin apply event on vanilla players
-[10:14:25] [Server thread/INFO]: [ViaRewind-Legacy-Support] Enabling ViaRewind-Legacy-Support v1.5.2
-[10:14:25] [Server thread/INFO]: [EaglerXRewind-1.5] Enabling EaglercraftXRewind-1-5 v1.0.2
-[10:14:25] [Server thread/INFO]: [EaglerXRewind-1.5] EaglerXRewind protocol for Eaglercraft 1.5.2 has been registered
-[10:14:26] [Server thread/INFO]: [Citizens] Enabling Citizens v2.0.22-SNAPSHOT (build 1487)
-[10:14:26] [Server thread/INFO]: [Citizens] Could not fetch NMS field modifiers: [[modifiers.
-[10:14:26] [Server thread/INFO]: [Citizens] Could not fetch entity id mapping fields: Cannot invoke "java.lang.reflect.Field.setInt(Object, int)" because "modifiersField" is null.
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  Updates are available for EaglerXServer
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  ---------------------------------------
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]    :< Active: 1.0.7
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]    :> Latest: 1.0.8
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  https://lax1dude.net/eaglerxserver/
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  -----------------------------------
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
-[10:14:26] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
-[10:14:26] [Server thread/INFO]: [Essentials] Enabling Essentials v2.22.0-dev+39-adf77dc
-[10:14:26] [Server thread/WARN]: [Essentials] Version mismatch! Please update EssentialsDiscord to the same version.
-[10:14:26] [Server thread/INFO]: [Essentials] Attempting to convert old kits in config.yml to new kits.yml
-[10:14:26] [Server thread/INFO]: [Essentials] No kits found to migrate.
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Legacy Damage Event Provider as the provider for DamageEventProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected 1.11+ Item Unbreakable Provider as the provider for ItemUnbreakableProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Fixed Height World Info Provider as the provider for WorldInfoProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected 1.9-1.20.4 Potion Meta Provider as the provider for PotionMetaProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected 1.9-1.12.2 Spawn Egg Provider as the provider for SpawnEggProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Legacy InventoryView Abstract Class ABI Provider as the provider for InventoryViewProvider
-[10:14:26] [Server thread/INFO]: [Essentials] No provider found for ContainerProvider, but it is nullable
-[10:14:26] [Server thread/INFO]: [Essentials] No provider found for BiomeKeyProvider, but it is nullable
-[10:14:26] [Server thread/INFO]: [Essentials] No provider found for SerializationProvider, but it is nullable
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Legacy Banner Meta Provider as the provider for BannerDataProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Reflection Online Mode Provider as the provider for OnlineModeProvider
-[10:14:26] [Server thread/INFO]: [Essentials] No provider found for SignDataProvider, but it is nullable
-[10:14:26] [Server thread/INFO]: [Essentials] Selected 1.8.3+ Spawner Item Provider as the provider for SpawnerItemProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected 1.12+ Spawner Block Provider as the provider for SpawnerBlockProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Paper Known Commands Provider as the provider for KnownCommandsProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Reflection Server State Provider as the provider for ServerStateProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected 1.12.2+ Player Locale Provider as the provider for PlayerLocaleProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Reflection Persistent Data Container Provider as the provider for PersistentDataProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Legacy Biome Name Provider as the provider for BiomeNameProvider
-[10:14:26] [Server thread/INFO]: [Essentials] No provider found for MaterialTagProvider, but it is nullable
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Reflection Formatted Command Alias Provider as the provider for FormattedCommandAliasProvider
-[10:14:26] [Server thread/INFO]: [Essentials] Selected Reflection Sync Commands Provider as the provider for SyncCommandsProvider
-[10:14:26] [Server thread/INFO]: [Essentials] No provider found for TickCountProvider, but it is nullable
-[10:14:26] [Server thread/INFO]: [Essentials] Loaded 853 items from items.csv.
-[10:14:26] [Server thread/INFO]: [Essentials] Using locale en
-[10:14:26] [Server thread/INFO]: [Essentials] ServerListPingEvent: Spigot iterator API
-[10:14:27] [Server thread/INFO]: [Essentials] Starting Metrics. Opt-out using the global bStats config.
-[10:14:27] [Server thread/INFO]: [Vault] [Economy] Essentials Economy hooked.
-[10:14:27] [Server thread/INFO]: [Essentials] Using Vault based permissions (LuckPerms)
-[10:14:27] [Server thread/INFO]: [EssentialsChat] Enabling EssentialsChat v2.22.0-dev+39-adf77dc
-[10:14:27] [Server thread/INFO]: [EssentialsChat] Starting Metrics. Opt-out using the global bStats config.
-[10:14:27] [Server thread/INFO]: [ServerSigns] Enabling ServerSigns v4.10.1
-[10:14:27] [Server thread/INFO]: [ServerSigns] Version 4.10.1 is now enabled.
-[10:14:27] [Server thread/INFO]: [EssentialsSpawn] Enabling EssentialsSpawn v2.22.0-dev+39-adf77dc
-[10:14:27] [Server thread/INFO]: [EssentialsSpawn] Starting Metrics. Opt-out using the global bStats config.
-[10:14:27] [Server thread/INFO]: [EssentialsDiscord] Enabling EssentialsDiscord v2.21.2
-[10:14:27] [Server thread/WARN]: [EssentialsDiscord] Version mismatch! Please update all Essentials jars to the same version.
-[10:14:27] [Server thread/INFO]: [EssentialsDiscord] Starting Metrics. Opt-out using the global bStats config.
-[10:14:27] [Server thread/INFO]: [EssentialsDiscord] Attempting to login to Discord...
-[10:14:28] [Server thread/INFO]: [EssentialsDiscord] Successfully logged in as Survival#7641
-[10:14:28] [Server thread/INFO]: [AuthMe] Enabling AuthMe v5.6.0-bCUSTOM
-[10:14:28] [Server thread/INFO]: [AuthMe] SQLite Setup finished
-[10:14:28] [Server thread/INFO]: [AuthMe] Hooked into Vault!
-[10:14:28] [Server thread/INFO]: [AuthMe] Hooked successfully into Essentials
-[10:14:28] [Server thread/WARN]: [AuthMe] WARNING! The protectInventory feature requires ProtocolLib! Disabling it...
-[10:14:28] [Server thread/INFO]: [AuthMe] AuthMe 5.6.0 build n.CUSTOM successfully enabled!
-[10:14:28] [Server thread/INFO]: Done (4.904s)! For help, type "help" or "?"
-[10:14:28] [Server thread/INFO]: Timings Reset
-[10:14:28] [Craft Scheduler Thread - 6/INFO]: [Essentials] Fetching version information...
-[10:14:28] [Craft Scheduler Thread - 9/INFO]: [AuthMe] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
-[10:14:28] [Craft Scheduler Thread - 3/INFO]: [EaglerXServer] Reloaded certificate: /home/runner/work/Z-X/Z-X/plugins/EaglercraftXServer/eagcert/$dl.34268c6e7b2a2336a2821b0171d290d6dd455cba.cert
-[10:14:28] [Craft Scheduler Thread - 3/WARN]: [EaglerXServer] Update certificate was loaded: $dl.34268c6e7b2a2336a2821b0171d290d6dd455cba.cert
-[10:14:28] [Craft Scheduler Thread - 9/WARN]: [AuthMe] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
-[10:14:28] [Craft Scheduler Thread - 9/INFO]: [AuthMe] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
-[10:14:28] [Craft Scheduler Thread - 9/WARN]: [AuthMe] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (No such file or directory)
-[10:14:28] [Craft Scheduler Thread - 8/INFO]: [Vault] Checking for Updates ... 
-[10:14:28] [Server thread/INFO]: [ViaVersion] ViaVersion detected server version: 1.12.2 (340)
-[10:14:29] [Server thread/WARN]: [ViaVersion] This version of Minecraft is extremely outdated and support for it has reached its end of life. You will still be able to run Via on this Minecraft version, but we will prioritize issues with legacy Minecraft versions less. Please consider updating to give your players a better experience and to avoid issues that have long been fixed.
-[10:14:29] [Server thread/WARN]: [ViaVersion] Please update your Java runtime to at least Java 21 (your version is 17.0.18).
-[10:14:29] [Server thread/WARN]: [ViaVersion] At some point in the future, ViaVersion will no longer be compatible with this version of Java.
-[10:14:29] [Craft Scheduler Thread - 8/INFO]: [Vault] No new version available
-[10:14:29] [Craft Scheduler Thread - 7/INFO]: [Metrics] Connection refused
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m----------------------------------------------[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    +==================+[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    |   SkinsRestorer  |[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    |------------------|[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    |  [34;1m[4m[21mStandalone Mode[0;39m[32;1m |[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    +==================+[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m----------------------------------------------[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[36;1m    Version: [32;1m15.10.0[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[36;1m    Commit: [32;1mfcb9320[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    This is the latest version![0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m----------------------------------------------[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[34;1mDo you have issues? Read our troubleshooting guide: [33;1mhttps://skinsrestorer.net/docs/troubleshooting[0;39m
-[10:14:29] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[34;1mWant to support SkinsRestorer? Consider donating: [33;1mhttps://skinsrestorer.net/donate[0;39m
-[10:14:29] [Server thread/INFO]: [DuelMe] [Info] plugin is up to date!
-[10:14:29] [Server thread/INFO]: [Essentials] Essentials found a compatible payment resolution method: Vault Compatibility Layer (v1.7.3-b131)!
-[10:14:29] [Craft Scheduler Thread - 6/WARN]: [Essentials] You're 21 EssentialsX dev build(s) out of date!
-[10:14:29] [Craft Scheduler Thread - 6/WARN]: [Essentials] Download it here: https://essentialsx.net/downloads.html
-[10:14:29] [Server thread/INFO]: [PlaceholderAPI] Placeholder expansion registration initializing...
-[10:14:29] [Server thread/INFO]: [Citizens] Loaded 3 NPCs.
-[10:14:29] [Server thread/INFO]: [PlaceholderAPI] An update for PlaceholderAPI (v2.12.2) is available at:
-[10:14:29] [Server thread/INFO]: [PlaceholderAPI] https://www.spigotmc.org/resources/placeholderapi.6245/
-[10:14:29] [Server thread/INFO]: [PlaceholderAPI] Successfully registered external expansion: string [1.0.7]
-[10:14:29] [Server thread/INFO]: [PlaceholderAPI] Successfully registered external expansion: essentials [1.5.2]
-[10:14:29] [Server thread/INFO]: [PlaceholderAPI] Successfully registered external expansion: vault [1.8.3]
-[10:14:29] [Server thread/INFO]: 3 placeholder hook(s) registered!
-[10:14:29] [Craft Scheduler Thread - 6/INFO]: [ViaVersion] Finished mapping loading, shutting down loader executor.
-[10:14:29] [Server thread/WARN]: [ViaVersion] There is a newer plugin version available: 5.7.1, you're on: 5.3.3-SNAPSHOT
-[10:14:33] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[10:17:53] [Server thread/INFO]: :) 
-[10:21:13] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[10:24:29] [Craft Scheduler Thread - 50/INFO]: [Metrics] Connection refused
-[10:24:33] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[10:27:53] [Server thread/INFO]: Check out new tags in /warp tags
-[10:31:13] [Server thread/INFO]: XXX
-[10:34:29] [Craft Scheduler Thread - 90/INFO]: [Metrics] Connection refused
-[10:34:33] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[10:37:53] [Server thread/INFO]: :)
-[10:41:13] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[10:44:29] [Craft Scheduler Thread - 129/INFO]: [Metrics] Connection refused
-[10:44:33] [Server thread/INFO]: :) 
-[10:47:53] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[10:51:13] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[10:54:29] [Craft Scheduler Thread - 170/INFO]: [Metrics] Connection refused
-[10:54:33] [Server thread/INFO]: Check out new tags in /warp tags
-[10:57:53] [Server thread/INFO]: XXX
-[11:01:13] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[11:04:29] [Craft Scheduler Thread - 209/INFO]: [Metrics] Connection refused
-[11:04:33] [Server thread/INFO]: :)
-[11:07:53] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[11:11:13] [Server thread/INFO]: :) 
-[11:14:29] [Craft Scheduler Thread - 250/INFO]: [Metrics] Connection refused
-[11:14:33] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[11:17:53] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[11:21:13] [Server thread/INFO]: Check out new tags in /warp tags
-[11:24:29] [Craft Scheduler Thread - 286/INFO]: [Metrics] Connection refused
-[11:24:33] [Server thread/INFO]: XXX
-[11:27:53] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[11:31:13] [Server thread/INFO]: :)
-[11:34:29] [Craft Scheduler Thread - 330/INFO]: [Metrics] Connection refused
-[11:34:33] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[11:37:53] [Server thread/INFO]: :) 
-[11:41:13] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[11:44:29] [Craft Scheduler Thread - 369/INFO]: [Metrics] Connection refused
-[11:44:33] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[11:47:53] [Server thread/INFO]: Check out new tags in /warp tags
-[11:51:13] [Server thread/INFO]: XXX
-[11:54:29] [Craft Scheduler Thread - 411/INFO]: [Metrics] Connection refused
-[11:54:33] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[11:57:53] [Server thread/INFO]: :)
-[12:01:13] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[12:04:29] [Craft Scheduler Thread - 447/INFO]: [Metrics] Connection refused
-[12:04:33] [Server thread/INFO]: :) 
-[12:07:53] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[12:11:13] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[12:14:29] [Craft Scheduler Thread - 491/INFO]: [Metrics] Connection refused
-[12:14:33] [Server thread/INFO]: Check out new tags in /warp tags
-[12:17:53] [Server thread/INFO]: XXX
-[12:21:13] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[12:24:29] [Craft Scheduler Thread - 531/INFO]: [Metrics] Connection refused
-[12:24:33] [Server thread/INFO]: :)
-[12:27:53] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[12:31:13] [Server thread/INFO]: :) 
-[12:34:29] [Craft Scheduler Thread - 571/INFO]: [Metrics] Connection refused
-[12:34:33] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[12:37:53] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[12:41:13] [Server thread/INFO]: Check out new tags in /warp tags
-[12:44:29] [Craft Scheduler Thread - 611/INFO]: [Metrics] Connection refused
-[12:44:33] [Server thread/INFO]: XXX
-[12:47:53] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[12:51:13] [Server thread/INFO]: :)
-[12:54:29] [Craft Scheduler Thread - 648/INFO]: [Metrics] Connection refused
-[12:54:33] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[12:57:53] [Server thread/INFO]: :) 
-[13:01:13] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[13:04:29] [Craft Scheduler Thread - 689/INFO]: [Metrics] Connection refused
-[13:04:33] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[13:07:53] [Server thread/INFO]: Check out new tags in /warp tags
-[13:11:13] [Server thread/INFO]: XXX
-[13:14:29] [Craft Scheduler Thread - 731/INFO]: [Metrics] Connection refused
-[13:14:33] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[13:17:53] [Server thread/INFO]: :)
-[13:21:13] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[13:24:29] [Craft Scheduler Thread - 766/INFO]: [Metrics] Connection refused
-[13:24:33] [Server thread/INFO]: :) 
-[13:27:53] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[13:31:13] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[13:34:29] [Craft Scheduler Thread - 810/INFO]: [Metrics] Connection refused
-[13:34:33] [Server thread/INFO]: Check out new tags in /warp tags
-[13:37:53] [Server thread/INFO]: XXX
-[13:41:13] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[13:44:29] [Craft Scheduler Thread - 847/INFO]: [Metrics] Connection refused
-[13:44:33] [Server thread/INFO]: :)
-[13:47:53] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
-[13:51:13] [Server thread/INFO]: :) 
-[13:54:29] [Craft Scheduler Thread - 890/INFO]: [Metrics] Connection refused
-[13:54:33] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
-[13:56:04] [User Authenticator #1/INFO]: UUID of player XxVaibhavxX is 3419062b-4667-3e72-87a2-30dcc9a2db3a
-[13:56:05] [Server thread/INFO]: XxVaibhavxX[/[0:0:0:0:0:0:0:1%0]:57742] logged in with entity id 177 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
-[13:56:18] [Craft Scheduler Thread - 896/INFO]: [AuthMe] XxVaibhavxX logged in 0:0:0:0:0:0:0:1%0
-[13:56:30] [Async Chat Thread - #0/INFO]: <[Youtuber]XxVaibhavxX> laude aaya
-[13:56:36] [Async Chat Thread - #0/INFO]: <[Youtuber]XxVaibhavxX> laude aaya
-[13:57:30] [Server thread/INFO]: XxVaibhavxX issued server command: /bal
-[13:57:41] [User Authenticator #2/INFO]: UUID of player system_2345_ is 72fd8d76-61ff-343c-b786-86bb62d9e749
-[13:57:42] [Server thread/INFO]: system_2345_[/[0:0:0:0:0:0:0:1%0]:38834] logged in with entity id 428 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
-[13:57:47] [Async Chat Thread - #1/INFO]: <[Youtuber]XxVaibhavxX> yoo
-[13:57:54] [Server thread/INFO]: Bored ? Try out /warp pvp1
-[13:57:55] [Craft Scheduler Thread - 907/INFO]: [AuthMe] system_2345_ logged in 0:0:0:0:0:0:0:1%0
-[13:57:59] [Async Chat Thread - #1/INFO]: <[God]system_2345_> hemlo
-[13:58:10] [Server thread/INFO]: system_2345_ issued server command: /bal
-[13:58:19] [Async Chat Thread - #1/INFO]: <[Youtuber]XxVaibhavxX> sabse mehenga tag GOD dilwaya h
-[13:58:29] [Server thread/INFO]: XxVaibhavxX issued server command: /home
-[13:58:33] [Async Chat Thread - #1/INFO]: <[God]system_2345_> thnmku bhai
-[13:58:42] [Server thread/INFO]: XxVaibhavxX issued server command: /warl tags
-[13:58:46] [Server thread/INFO]: system_2345_ issued server command: /tpa xxv
-[13:58:46] [Server thread/INFO]: XxVaibhavxX issued server command: /warp tags
-[13:59:09] [Server thread/INFO]: system_2345_ issued server command: /bal XxVaibhavxX
-[13:59:10] [Server thread/INFO]: system_2345_ has made the advancement [Cover Me With Diamonds]
-[13:59:55] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> mujhe bal kr
-[14:00:03] [Async Chat Thread - #2/INFO]: <[God]system_2345_> 10300
-[14:00:10] [Server thread/INFO]: system_2345_ issued server command: /topbal
-[14:00:14] [Server thread/INFO]: system_2345_ issued server command: /help
-[14:00:15] [Server thread/INFO]: XxVaibhavxX issued server command: /pay system_2345_ 5000
-[14:00:20] [Async Chat Thread - #2/INFO]: <[God]system_2345_> abee yaar
-[14:00:25] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> ./spawn kr
-[14:00:30] [Server thread/INFO]: system_2345_ issued server command: /spawn
-[14:00:31] [Server thread/INFO]: XxVaibhavxX issued server command: /spawn
-[14:00:57] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> idhar click kr
-[14:01:14] [Server thread/INFO]: Check out new tags in /warp tags
-[14:01:18] [Server thread/INFO]: XxVaibhavxX issued server command: /pay system_2345_ 150
-[14:01:22] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> ab kr
-[14:01:50] [Server thread/INFO]: system_2345_ issued server command: /balancetop2
-[14:01:50] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> leave krke kr
-[14:01:54] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> .
-[14:02:00] [Server thread/INFO]: [Essentials] Created a User for Server (731e3dac-8651-219e-b88b-5a2416073c33) for non Bukkit type: net.citizensnpcs.nms.v1_12_R1.entity.EntityHumanNPC$PlayerNPC
-[14:02:01] [Server thread/INFO]: system_2345_ has made the advancement [Take Aim]
-[14:02:05] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> leave krke join kr
-[14:02:09] [Server thread/INFO]: system_2345_ lost connection: Disconnected
-[14:02:09] [Server thread/INFO]: system_2345_ left the game
-[14:02:18] [User Authenticator #3/INFO]: UUID of player system_2345_ is 72fd8d76-61ff-343c-b786-86bb62d9e749
-[14:02:18] [Server thread/INFO]: system_2345_[/[0:0:0:0:0:0:0:1%0]:55536] logged in with entity id 9561 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
-[14:02:23] [Server thread/INFO]: XxVaibhavxX lost connection: Disconnected
-[14:02:23] [Server thread/INFO]: XxVaibhavxX left the game
-[14:02:30] [User Authenticator #3/INFO]: UUID of player XxVaibhavxX is 3419062b-4667-3e72-87a2-30dcc9a2db3a
-[14:02:31] [Server thread/INFO]: XxVaibhavxX[/[0:0:0:0:0:0:0:1%0]:59824] logged in with entity id 10318 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
-[14:02:38] [Craft Scheduler Thread - 923/INFO]: [AuthMe] system_2345_ logged in 0:0:0:0:0:0:0:1%0
-[14:02:41] [Craft Scheduler Thread - 923/INFO]: [AuthMe] XxVaibhavxX logged in 0:0:0:0:0:0:0:1%0
-[14:02:52] [Server thread/INFO]: system_2345_ issued server command: /bal
-[14:03:06] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> kal dikhayega tujhe
-[14:03:10] [Server thread/INFO]: XxVaibhavxX issued server command: /bal
-[14:03:14] [Async Chat Thread - #3/INFO]: <[God]system_2345_> koi ni
-[14:03:16] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> abhi reset nhi hua j
-[14:03:20] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> *
-[14:03:23] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> h*
-[14:03:27] [Async Chat Thread - #3/INFO]: <[God]system_2345_> naam ka colour kaise change karu
-[14:03:32] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> ./nick
-[14:03:42] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> color codes nhi dikhte h
-[14:03:45] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> yaha
-[14:03:52] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> wo add krna baaki h
-[14:03:57] [Async Chat Thread - #3/INFO]: <[God]system_2345_> koi ni
-[14:04:09] [Async Chat Thread - #3/INFO]: <[God]system_2345_> main ek sath 2 server me khel sakta hu
-[14:04:19] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> dekh le fir
-[14:04:29] [Craft Scheduler Thread - 927/INFO]: [Metrics] Connection refused
-[14:04:32] [Async Chat Thread - #3/INFO]: <[Youtuber]XxVaibhavxX> mess jesa krle
-[14:04:34] [Server thread/INFO]: XXX
-[14:04:42] [Async Chat Thread - #3/INFO]: <[God]system_2345_> ha
-[14:06:34] [Server thread/INFO]: system_2345_ issued server command: /nick &b&m&nsystem&8_2345_
-[14:06:39] [Async Chat Thread - #4/INFO]: <[God]system_2345_> hello
-[14:06:39] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> oye aagya tu
-[14:06:52] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> ye vlick kr
-[14:07:08] [Server thread/INFO]: system_2345_ issued server command: /nick &l&b&m&nsystem&8_2345_
-[14:07:13] [Async Chat Thread - #4/INFO]: <[God]system_2345_> hello
-[14:07:34] [Server thread/INFO]: system_2345_ issued server command: /nick &b&m&n&lsystem&8_2345_
-[14:07:41] [Async Chat Thread - #4/INFO]: <[God]system_2345_> ?
-[14:07:42] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> grey ka color bta
-[14:07:51] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> code
-[14:07:54] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
-[14:07:57] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> grey ka code
-[14:08:04] [Async Chat Thread - #4/INFO]: <[God]system_2345_>  hello
-[14:08:13] [Async Chat Thread - #4/INFO]: <[God]system_2345_> ,hello & 8
-[14:08:19] [Async Chat Thread - #4/INFO]: <[God]system_2345_> & 8
-[14:08:40] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> &usystem_&u2345_
-[14:08:51] [Async Chat Thread - #4/INFO]: <[God]system_2345_> ha
-[14:08:56] [Async Chat Thread - #4/INFO]: <[God]system_2345_> kaise kiya
-[14:09:44] [Server thread/INFO]: system_2345_ issued server command: /afk
-[14:09:44] [Server thread/INFO]: [Essentials] system_2345_ was denied access to command.
-[14:09:49] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> &.3&.m&.n&.lsystem&.7&.l_&.7&.m&.n&.l2345&.7&.l_
-[14:10:01] [Async Chat Thread - #4/INFO]: <[God]system_2345_> . bhi likhna h
-[14:10:06] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> nhi
-[14:10:20] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> wothout .
-[14:10:25] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> without*
-[14:10:47] [Async Chat Thread - #4/INFO]: <[God]system_2345_> system
-[14:10:52] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> abe
-[14:10:55] [Async Chat Thread - #4/INFO]: <[God]system_2345_> system
-[14:10:59] [Async Chat Thread - #4/INFO]: <[God]system_2345_> sorry
-[14:11:01] [Async Chat Thread - #4/INFO]: <[Youtuber]XxVaibhavxX> ./nick krke likh
-[14:11:14] [Server thread/INFO]: :)
-[14:12:32] [Async Chat Thread - #5/INFO]: <[God]system_2345_> system_2345_
-[14:12:44] [Server thread/INFO]: system_2345_ issued server command: /nick &3&m&n&lsystem&7&l_&7&m&n&l2345&7&l_
-[14:12:49] [Async Chat Thread - #5/INFO]: <[God]system_2345_> huehue
-[14:12:53] [Async Chat Thread - #5/INFO]: <[Youtuber]XxVaibhavxX> &.3&.m&.nsystem&.7&.l_&.7&.m&.n&.l2345&.7&.l_
-[14:13:05] [Async Chat Thread - #5/INFO]: <[Youtuber]XxVaibhavxX> hogya
-[14:13:10] [Async Chat Thread - #5/INFO]: <[God]system_2345_> ha
-[14:13:15] [Async Chat Thread - #5/INFO]: <[Youtuber]XxVaibhavxX> yaha click kr
-[14:13:26] [Async Chat Thread - #5/INFO]: <[God]system_2345_> ho gyaaaaaaaa
-[14:13:38] [Async Chat Thread - #5/INFO]: <[God]system_2345_> hehe boy
-[14:13:44] [Server thread/INFO]: [Server] [System] Server closing in 30 seconds! Saving world...
-[14:13:45] [Server thread/INFO]: [Server] [System] Server closing in 29 seconds! Saving world...
-[14:13:46] [Server thread/INFO]: [Server] [System] Server closing in 28 seconds! Saving world...
-[14:13:47] [Server thread/INFO]: [Server] [System] Server closing in 27 seconds! Saving world...
-[14:13:48] [Server thread/INFO]: [Server] [System] Server closing in 26 seconds! Saving world...
-[14:13:49] [Server thread/INFO]: [Server] [System] Server closing in 25 seconds! Saving world...
-[14:13:50] [Server thread/INFO]: [Server] [System] Server closing in 24 seconds! Saving world...
-[14:13:51] [Async Chat Thread - #5/INFO]: <[Youtuber]XxVaibhavxX> ./warp pvp1 kr saman deta m
-[14:13:51] [Server thread/INFO]: [Server] [System] Server closing in 23 seconds! Saving world...
-[14:13:52] [Server thread/INFO]: [Server] [System] Server closing in 22 seconds! Saving world...
-[14:13:53] [Async Chat Thread - #5/INFO]: <[God]system_2345_> mera naam
-[14:13:53] [Server thread/INFO]: [Server] [System] Server closing in 21 seconds! Saving world...
-[14:13:54] [Server thread/INFO]: [Server] [System] Server closing in 20 seconds! Saving world...
-[14:13:55] [Server thread/INFO]: [Server] [System] Server closing in 19 seconds! Saving world...
-[14:13:56] [Server thread/INFO]: [Server] [System] Server closing in 18 seconds! Saving world...
-[14:13:57] [Server thread/INFO]: [Server] [System] Server closing in 17 seconds! Saving world...
-[14:13:58] [Server thread/INFO]: [Server] [System] Server closing in 16 seconds! Saving world...
-[14:13:59] [Server thread/INFO]: [Server] [System] Server closing in 15 seconds! Saving world...
-[14:14:00] [Server thread/INFO]: [Server] [System] Server closing in 14 seconds! Saving world...
-[14:14:01] [Server thread/INFO]: [Server] [System] Server closing in 13 seconds! Saving world...
-[14:14:02] [Async Chat Thread - #5/INFO]: <[Youtuber]XxVaibhavxX> server band hone wala h
-[14:14:02] [Server thread/INFO]: [Server] [System] Server closing in 12 seconds! Saving world...
-[14:14:03] [Server thread/INFO]: system_2345_ issued server command: /warp pvp1
-[14:14:03] [Server thread/INFO]: [Server] [System] Server closing in 11 seconds! Saving world...
-[14:14:04] [Server thread/INFO]: [Server] [System] Server closing in 10 seconds! Saving world...
-[14:14:05] [Server thread/INFO]: [Server] [System] Server closing in 9 seconds! Saving world...
-[14:14:06] [Server thread/INFO]: [Server] [System] Server closing in 8 seconds! Saving world...
-[14:14:07] [Server thread/INFO]: [Server] [System] Server closing in 7 seconds! Saving world...
-[14:14:08] [Server thread/INFO]: [Server] [System] Server closing in 6 seconds! Saving world...
-[14:14:09] [Async Chat Thread - #5/INFO]: <[God]system_2345_> nhiiiiiiiiiiiiii
-[14:14:09] [Server thread/INFO]: [Server] [System] Server closing in 5 seconds! Saving world...
-[14:14:10] [Server thread/INFO]: [Server] [System] Server closing in 4 seconds! Saving world...
-[14:14:11] [Server thread/INFO]: system_2345_ issued server command: /spawn
-[14:14:11] [Server thread/INFO]: [Server] [System] Server closing in 3 seconds! Saving world...
-[14:14:12] [Server thread/INFO]: [Server] [System] Server closing in 2 seconds! Saving world...
-[14:14:13] [Server thread/INFO]: [Server] [System] Server closing in 1 seconds! Saving world...
-[14:14:14] [Server thread/INFO]: Stopping the server
-[14:14:14] [Server thread/INFO]: Stopping server
-[14:14:14] [Server thread/INFO]: [AuthMe] Disabling AuthMe v5.6.0-bCUSTOM
-[14:14:14] [Server thread/INFO]: [AuthMe] Waiting for 0 tasks to finish
-[14:14:14] [Server thread/INFO]: [AuthMe] AuthMe 5.6.0-bCUSTOM disabled!
-[14:14:14] [Server thread/INFO]: [EssentialsDiscord] Disabling EssentialsDiscord v2.21.2
-[14:14:15] [Server thread/INFO]: [EssentialsSpawn] Disabling EssentialsSpawn v2.22.0-dev+39-adf77dc
-[14:14:15] [Server thread/INFO]: [ServerSigns] Disabling ServerSigns v4.10.1
-[14:14:15] [Server thread/INFO]: [ServerSigns] ServerSigns is now disabled.
-[14:14:15] [Server thread/INFO]: [EssentialsChat] Disabling EssentialsChat v2.22.0-dev+39-adf77dc
-[14:14:15] [Server thread/INFO]: [Essentials] Disabling Essentials v2.22.0-dev+39-adf77dc
-[14:14:15] [Server thread/INFO]: [Vault] [Economy] Essentials Economy unhooked.
-[14:14:15] [Server thread/INFO]: [Citizens] Disabling Citizens v2.0.22-SNAPSHOT (build 1487)
-[14:14:15] [Server thread/INFO]: [EaglerXRewind-1.5] Disabling EaglercraftXRewind-1-5 v1.0.2
-[14:14:15] [Server thread/INFO]: [EaglerXRewind-1.5] EaglerXRewind protocol for Eaglercraft 1.5.2 has been unregistered
-[14:14:15] [Server thread/INFO]: [Vault] Disabling Vault v1.7.3-b131
-[14:14:15] [Server thread/INFO]: [PlaceholderAPI] Unregistered placeholder expansion vault
-[14:14:15] [Server thread/INFO]: [PlaceholderAPI] Reason: required plugin Vault was disabled.
-[14:14:15] [Server thread/INFO]: [ViaRewind-Legacy-Support] Disabling ViaRewind-Legacy-Support v1.5.2
-[14:14:15] [Server thread/INFO]: [EaglerXServer] Disabling EaglercraftXServer v1.0.7
-[14:14:15] [Server thread/INFO]: [EaglerXServer] Disconnecting from skin cache database "jdbc:sqlite:eagler_skins_cache.db"...
-[14:14:15] [Server thread/INFO]: [EaglerXServer] Disconnected from skin cache database successfully!
-[14:14:15] [Server thread/INFO]: [SkinsRestorer] Disabling SkinsRestorer v15.10.0
-[14:14:15] [Server thread/INFO]: [LuckPerms] Disabling LuckPerms v5.5.0
-[14:14:15] [Server thread/INFO]: [LuckPerms] Starting shutdown process...
-[14:14:15] [Server thread/INFO]: [LuckPerms] Closing storage...
-[14:14:15] [Server thread/INFO]: [LuckPerms] Goodbye!
-[14:14:15] [Server thread/INFO]: [ViaRewind] Disabling ViaRewind v4.0.7
-[14:14:15] [Server thread/INFO]: [WorldGuard] Disabling WorldGuard v6.2.2-SNAPSHOT;8eeab68
-[14:14:15] [Server thread/INFO]: [WorldGuard] Shutting down executor and waiting for any pending tasks...
-[14:14:15] [Server thread/INFO]: [ViaBackwards] Disabling ViaBackwards v5.3.2
-[14:14:15] [Server thread/INFO]: [HolographicDisplays] Disabling HolographicDisplays v3.0.4
-[14:14:15] [Server thread/INFO]: [DuelMe] Disabling DuelMe v0.18.3
-[14:14:15] [Server thread/INFO]: [DuelMe] [Info] Disabling.
-[14:14:15] [Server thread/INFO]: [DuelMe] [Info] Successfully saved 1 Duel Arena(s).
-[14:14:15] [Server thread/INFO]: [ViaVersion] Disabling ViaVersion v5.3.3-SNAPSHOT
-[14:14:15] [Server thread/INFO]: [ViaVersion] ViaVersion is disabling. If this is a reload and you experience issues, please reboot instead.
-[14:14:15] [Server thread/WARN]: [ViaVersion] Could not get handler DefaultChannelPipeline$TailContext#0
-[14:14:15] [Server thread/INFO]: [ViaVersion] ViaVersion has been disabled; uninjected the platform and shut down the scheduler.
-[14:14:15] [Server thread/INFO]: [AutoMessage] Disabling AutoMessage v1.0
-[14:14:15] [Server thread/INFO]: [ClearLag] Disabling ClearLag v3.2.2
-[14:14:15] [Server thread/INFO]: [ClearLag] Clearlag is now disabled!
-[14:14:15] [Server thread/INFO]: [PlaceholderAPI] Disabling PlaceholderAPI v2.11.7
-[14:14:15] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v6.1.9;caf0ad9
-[14:14:15] [Server thread/INFO]: Saving players
-[14:14:15] [Server thread/INFO]: system_2345_ lost connection: Server closed
-[14:14:15] [Server thread/INFO]: system_2345_ left the game
-[14:14:15] [Server thread/INFO]: XxVaibhavxX lost connection: Server closed
-[14:14:15] [Server thread/INFO]: XxVaibhavxX left the game
-[14:14:15] [Server thread/INFO]: Saving worlds
-[14:14:15] [Server thread/INFO]: Saving chunks for level 'world'/overworld
-[14:14:15] [Server thread/INFO]: Saving chunks for level 'world_nether'/the_nether
-[14:14:15] [Server thread/INFO]: Saving chunks for level 'world_the_end'/the_end
+[10:10:43] [Server thread/INFO]: [ImageMaps] Disabling ImageMaps v1.0.10
+[10:10:43] [Server thread/INFO]: [PlaceholderAPI] Enabling PlaceholderAPI v2.11.7
+[10:10:43] [Server thread/INFO]: [PlaceholderAPI] Fetching available expansion information...
+[10:10:43] [Server thread/INFO]: [ClearLag] Enabling ClearLag v3.2.2
+[10:10:43] [Server thread/INFO]: [ClearLag] Using version-adapter: LegacyVersionAdapter
+[10:10:43] [Server thread/INFO]: [ClearLag] Loading modules...
+[10:10:43] [Server thread/INFO]: [ClearLag] Modules enabed, loading config values
+[10:10:43] [Server thread/INFO]: [ClearLag] Modules have been loaded!
+[10:10:43] [Server thread/INFO]: [ClearLag] Clearlag is now enabled!
+[10:10:43] [Thread-8/INFO]: [ClearLag] Checking for updates compatible with your bukkit version [1.12]...
+[10:10:43] [Server thread/INFO]: [AutoMessage] Enabling AutoMessage v1.0
+[10:10:43] [Server thread/INFO]: [ViaVersion] Enabling ViaVersion v5.3.3-SNAPSHOT
+[10:10:43] [Server thread/INFO]: [DuelMe] Enabling DuelMe v0.18.3
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] Enabling.
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] WorldEdit found!
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] Successfully loaded 1 Duel Arena(s).
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] Server NMS Version: v1_12_R1
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] Loading support for v1_12_R1
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] NMS Version setup complete
+[10:10:43] [Server thread/INFO]: [DuelMe] [Info] Successfully Enabled!
+[10:10:43] [Server thread/INFO]: [HolographicDisplays] Enabling HolographicDisplays v3.0.4
+[10:10:43] [Server thread/INFO]: [ViaBackwards] Enabling ViaBackwards v5.3.2
+[10:10:43] [Server thread/INFO]: [WorldGuard] Enabling WorldGuard v6.2.2-SNAPSHOT;8eeab68
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world) TNT ignition is PERMITTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world) Lighters are PERMITTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world) Lava fire is blocked.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world) Fire spread is UNRESTRICTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] Loaded configuration for world 'world'
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_nether) TNT ignition is PERMITTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_nether) Lighters are PERMITTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_nether) Lava fire is blocked.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_nether) Fire spread is UNRESTRICTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] Loaded configuration for world 'world_nether'
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_the_end) TNT ignition is PERMITTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_the_end) Lighters are PERMITTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_the_end) Lava fire is blocked.
+[10:10:43] [Server thread/INFO]: [WorldGuard] (world_the_end) Fire spread is UNRESTRICTED.
+[10:10:43] [Server thread/INFO]: [WorldGuard] Loaded configuration for world 'world_the_end'
+[10:10:43] [Server thread/INFO]: [WorldGuard] Loading region data...
+[10:10:43] [Thread-8/INFO]: [ClearLag] No updates found!
+[10:10:43] [Server thread/INFO]: [EaglerXServer] Enabling EaglercraftXServer v1.0.7
+[10:10:43] [Server thread/INFO]: [EaglerXServer] Connecting to skin cache database "jdbc:sqlite:eagler_skins_cache.db"...
+[10:10:43] [Netty Epoll Server IO #0/INFO]: [EaglerXServer] Listener "default" injected into channel [id: 0x841d2560, L:/[0:0:0:0:0:0:0:0%0]:25565] successfully (Generic Netty method)
+[10:10:43] [Server thread/INFO]: [EaglerXServer] Connected to skin cache database successfully!
+[10:10:43] [Server thread/ERROR]: [EaglerXServer] Plugin EaglercraftXServer v1.0.7 has failed to register events for class net.skinsrestorer.bukkit.listener.ForceAliveListener because org/bukkit/event/server/ServerLoadEvent does not exist.
+[10:10:43] [Server thread/INFO]: [EaglerXServer] Listening for SkinsRestorer skin apply event on vanilla players
+[10:10:43] [Server thread/INFO]: [ViaRewind-Legacy-Support] Enabling ViaRewind-Legacy-Support v1.5.2
+[10:10:43] [Server thread/INFO]: [EaglerXRewind-1.5] Enabling EaglercraftXRewind-1-5 v1.0.2
+[10:10:43] [Server thread/INFO]: [EaglerXRewind-1.5] EaglerXRewind protocol for Eaglercraft 1.5.2 has been registered
+[10:10:43] [Server thread/INFO]: [Citizens] Enabling Citizens v2.0.22-SNAPSHOT (build 1487)
+[10:10:44] [Server thread/INFO]: [Citizens] Could not fetch NMS field modifiers: [[modifiers.
+[10:10:44] [Server thread/INFO]: [Citizens] Could not fetch entity id mapping fields: Cannot invoke "java.lang.reflect.Field.setInt(Object, int)" because "modifiersField" is null.
+[10:10:44] [Server thread/INFO]: [Essentials] Enabling Essentials v2.22.0-dev+39-adf77dc
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  Updates are available for EaglerXServer
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  ---------------------------------------
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]    :< Active: 1.0.7
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]    :> Latest: 1.0.8
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  https://lax1dude.net/eaglerxserver/
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer]  -----------------------------------
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] 
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
+[10:10:44] [Netty Epoll Server IO #1/WARN]: [EaglerXServer] =============================================
+[10:10:44] [Server thread/WARN]: [Essentials] Version mismatch! Please update EssentialsDiscord to the same version.
+[10:10:44] [Server thread/INFO]: [Essentials] Attempting to convert old kits in config.yml to new kits.yml
+[10:10:44] [Server thread/INFO]: [Essentials] No kits found to migrate.
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Legacy Damage Event Provider as the provider for DamageEventProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected 1.11+ Item Unbreakable Provider as the provider for ItemUnbreakableProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Fixed Height World Info Provider as the provider for WorldInfoProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected 1.9-1.20.4 Potion Meta Provider as the provider for PotionMetaProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected 1.9-1.12.2 Spawn Egg Provider as the provider for SpawnEggProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Legacy InventoryView Abstract Class ABI Provider as the provider for InventoryViewProvider
+[10:10:44] [Server thread/INFO]: [Essentials] No provider found for ContainerProvider, but it is nullable
+[10:10:44] [Server thread/INFO]: [Essentials] No provider found for BiomeKeyProvider, but it is nullable
+[10:10:44] [Server thread/INFO]: [Essentials] No provider found for SerializationProvider, but it is nullable
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Legacy Banner Meta Provider as the provider for BannerDataProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Reflection Online Mode Provider as the provider for OnlineModeProvider
+[10:10:44] [Server thread/INFO]: [Essentials] No provider found for SignDataProvider, but it is nullable
+[10:10:44] [Server thread/INFO]: [Essentials] Selected 1.8.3+ Spawner Item Provider as the provider for SpawnerItemProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected 1.12+ Spawner Block Provider as the provider for SpawnerBlockProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Paper Known Commands Provider as the provider for KnownCommandsProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Reflection Server State Provider as the provider for ServerStateProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected 1.12.2+ Player Locale Provider as the provider for PlayerLocaleProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Reflection Persistent Data Container Provider as the provider for PersistentDataProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Legacy Biome Name Provider as the provider for BiomeNameProvider
+[10:10:44] [Server thread/INFO]: [Essentials] No provider found for MaterialTagProvider, but it is nullable
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Reflection Formatted Command Alias Provider as the provider for FormattedCommandAliasProvider
+[10:10:44] [Server thread/INFO]: [Essentials] Selected Reflection Sync Commands Provider as the provider for SyncCommandsProvider
+[10:10:44] [Server thread/INFO]: [Essentials] No provider found for TickCountProvider, but it is nullable
+[10:10:44] [Server thread/INFO]: [Essentials] Loaded 853 items from items.csv.
+[10:10:44] [Server thread/INFO]: [Essentials] Using locale en
+[10:10:44] [Server thread/INFO]: [Essentials] ServerListPingEvent: Spigot iterator API
+[10:10:44] [Server thread/INFO]: [Essentials] Starting Metrics. Opt-out using the global bStats config.
+[10:10:44] [Server thread/INFO]: [Vault] [Economy] Essentials Economy hooked.
+[10:10:44] [Server thread/INFO]: [Essentials] Using Vault based permissions (LuckPerms)
+[10:10:44] [Server thread/INFO]: [EssentialsChat] Enabling EssentialsChat v2.22.0-dev+39-adf77dc
+[10:10:44] [Server thread/INFO]: [EssentialsChat] Starting Metrics. Opt-out using the global bStats config.
+[10:10:44] [Server thread/INFO]: [ServerSigns] Enabling ServerSigns v4.10.1
+[10:10:44] [Server thread/INFO]: [ServerSigns] Version 4.10.1 is now enabled.
+[10:10:44] [Server thread/INFO]: [EssentialsSpawn] Enabling EssentialsSpawn v2.22.0-dev+39-adf77dc
+[10:10:44] [Server thread/INFO]: [EssentialsSpawn] Starting Metrics. Opt-out using the global bStats config.
+[10:10:44] [Server thread/INFO]: [EssentialsDiscord] Enabling EssentialsDiscord v2.21.2
+[10:10:44] [Server thread/WARN]: [EssentialsDiscord] Version mismatch! Please update all Essentials jars to the same version.
+[10:10:44] [Server thread/INFO]: [EssentialsDiscord] Starting Metrics. Opt-out using the global bStats config.
+[10:10:44] [Server thread/INFO]: [EssentialsDiscord] Attempting to login to Discord...
+[10:10:46] [Server thread/INFO]: [EssentialsDiscord] Successfully logged in as Survival#7641
+[10:10:46] [Server thread/INFO]: [AuthMe] Enabling AuthMe v5.6.0-bCUSTOM
+[10:10:46] [Server thread/INFO]: [AuthMe] SQLite Setup finished
+[10:10:46] [Server thread/INFO]: [AuthMe] Hooked into Vault!
+[10:10:46] [Server thread/INFO]: [AuthMe] Hooked successfully into Essentials
+[10:10:46] [Server thread/WARN]: [AuthMe] WARNING! The protectInventory feature requires ProtocolLib! Disabling it...
+[10:10:46] [Server thread/INFO]: [AuthMe] AuthMe 5.6.0 build n.CUSTOM successfully enabled!
+[10:10:46] [Server thread/INFO]: Done (4.709s)! For help, type "help" or "?"
+[10:10:46] [Server thread/INFO]: Timings Reset
+[10:10:46] [Craft Scheduler Thread - 6/INFO]: [Essentials] Fetching version information...
+[10:10:46] [Craft Scheduler Thread - 5/INFO]: [EaglerXServer] Reloaded certificate: /home/runner/work/Z-X/Z-X/plugins/EaglercraftXServer/eagcert/$dl.34268c6e7b2a2336a2821b0171d290d6dd455cba.cert
+[10:10:46] [Craft Scheduler Thread - 5/WARN]: [EaglerXServer] Update certificate was loaded: $dl.34268c6e7b2a2336a2821b0171d290d6dd455cba.cert
+[10:10:46] [Server thread/INFO]: [ViaVersion] ViaVersion detected server version: 1.12.2 (340)
+[10:10:46] [Craft Scheduler Thread - 9/INFO]: [AuthMe] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[10:10:46] [Craft Scheduler Thread - 9/WARN]: [AuthMe] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[10:10:46] [Craft Scheduler Thread - 9/INFO]: [AuthMe] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[10:10:46] [Server thread/WARN]: [ViaVersion] This version of Minecraft is extremely outdated and support for it has reached its end of life. You will still be able to run Via on this Minecraft version, but we will prioritize issues with legacy Minecraft versions less. Please consider updating to give your players a better experience and to avoid issues that have long been fixed.
+[10:10:46] [Server thread/WARN]: [ViaVersion] Please update your Java runtime to at least Java 21 (your version is 17.0.18).
+[10:10:46] [Server thread/WARN]: [ViaVersion] At some point in the future, ViaVersion will no longer be compatible with this version of Java.
+[10:10:46] [Craft Scheduler Thread - 10/INFO]: [Vault] Checking for Updates ... 
+[10:10:46] [Craft Scheduler Thread - 9/WARN]: [AuthMe] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (No such file or directory)
+[10:10:46] [Craft Scheduler Thread - 7/INFO]: [Metrics] Connection refused
+[10:10:46] [Craft Scheduler Thread - 10/INFO]: [Vault] No new version available
+[10:10:46] [Server thread/INFO]: [DuelMe] [Info] plugin is up to date!
+[10:10:46] [Server thread/INFO]: [Essentials] Essentials found a compatible payment resolution method: Vault Compatibility Layer (v1.7.3-b131)!
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m----------------------------------------------[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    +==================+[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    |   SkinsRestorer  |[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    |------------------|[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    |  [34;1m[4m[21mStandalone Mode[0;39m[32;1m |[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    +==================+[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m----------------------------------------------[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[36;1m    Version: [32;1m15.10.0[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[36;1m    Commit: [32;1mfcb9320[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m    This is the latest version![0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[32;1m----------------------------------------------[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[34;1mDo you have issues? Read our troubleshooting guide: [33;1mhttps://skinsrestorer.net/docs/troubleshooting[0;39m
+[10:10:46] [Craft Scheduler Thread - 2/INFO]: [33;1m[[32;22mSkinsRestorer[33;1m] [0;39m[34;1mWant to support SkinsRestorer? Consider donating: [33;1mhttps://skinsrestorer.net/donate[0;39m
+[10:10:46] [Server thread/INFO]: [PlaceholderAPI] Placeholder expansion registration initializing...
+[10:10:46] [Craft Scheduler Thread - 6/WARN]: [Essentials] You're 21 EssentialsX dev build(s) out of date!
+[10:10:46] [Craft Scheduler Thread - 6/WARN]: [Essentials] Download it here: https://essentialsx.net/downloads.html
+[10:10:46] [Server thread/INFO]: [Citizens] Loaded 3 NPCs.
+[10:10:46] [Server thread/WARN]: [ViaVersion] There is a newer plugin version available: 5.7.1, you're on: 5.3.3-SNAPSHOT
+[10:10:46] [Server thread/INFO]: [PlaceholderAPI] An update for PlaceholderAPI (v2.12.2) is available at:
+[10:10:46] [Server thread/INFO]: [PlaceholderAPI] https://www.spigotmc.org/resources/placeholderapi.6245/
+[10:10:46] [Server thread/INFO]: [PlaceholderAPI] Successfully registered external expansion: string [1.0.7]
+[10:10:46] [Server thread/INFO]: [PlaceholderAPI] Successfully registered external expansion: essentials [1.5.2]
+[10:10:46] [Server thread/INFO]: [PlaceholderAPI] Successfully registered external expansion: vault [1.8.3]
+[10:10:46] [Server thread/INFO]: 3 placeholder hook(s) registered!
+[10:10:46] [Craft Scheduler Thread - 6/INFO]: [ViaVersion] Finished mapping loading, shutting down loader executor.
+[10:10:51] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[10:14:11] [Server thread/INFO]: :) 
+[10:17:31] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[10:20:46] [Craft Scheduler Thread - 47/INFO]: [Metrics] Connection refused
+[10:20:51] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[10:24:11] [Server thread/INFO]: Check out new tags in /warp tags
+[10:27:31] [Server thread/INFO]: XXX
+[10:30:46] [Craft Scheduler Thread - 91/INFO]: [Metrics] Connection refused
+[10:30:51] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[10:34:11] [Server thread/INFO]: :)
+[10:34:54] [User Authenticator #1/INFO]: UUID of player aruj_gamer is 40b8ead5-1f5c-3bac-b4d6-049af67dee61
+[10:34:55] [Server thread/INFO]: aruj_gamer[/[0:0:0:0:0:0:0:1%0]:54476] logged in with entity id 177 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[10:35:25] [Server thread/INFO]: aruj_gamer lost connection: Login timeout exceeded, you have been kicked from the server, please try again!
+[10:35:25] [Server thread/INFO]: aruj_gamer left the game
+[10:35:25] [Server thread/WARN]: handleDisconnection() called twice
+[10:35:31] [User Authenticator #1/INFO]: UUID of player aruj_gamer is 40b8ead5-1f5c-3bac-b4d6-049af67dee61
+[10:35:32] [Server thread/INFO]: aruj_gamer[/[0:0:0:0:0:0:0:1%0]:46434] logged in with entity id 282 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[10:35:54] [Craft Scheduler Thread - 113/INFO]: [AuthMe] aruj_gamer logged in 0:0:0:0:0:0:0:1%0
+[10:36:17] [Async Chat Thread - #0/INFO]: <[Noob] aruj_gamer> hii
+[10:37:31] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[10:39:14] [Server thread/INFO]: aruj_gamer issued server command: /spawn
+[10:40:46] [Craft Scheduler Thread - 130/INFO]: [Metrics] Connection refused
+[10:40:51] [Server thread/INFO]: :) 
+[10:44:11] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[10:45:13] [Server thread/INFO]: aruj_gamer lost connection: Disconnected
+[10:45:13] [Server thread/INFO]: aruj_gamer left the game
+[10:45:43] [User Authenticator #2/INFO]: UUID of player aruj_gamer is 40b8ead5-1f5c-3bac-b4d6-049af67dee61
+[10:45:44] [Server thread/INFO]: aruj_gamer[/[0:0:0:0:0:0:0:1%0]:33574] logged in with entity id 9166 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[10:45:51] [Craft Scheduler Thread - 154/INFO]: [AuthMe] aruj_gamer logged in 0:0:0:0:0:0:0:1%0
+[10:47:31] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[10:50:35] [Server thread/INFO]: aruj_gamer issued server command: /sethome home2
+[10:50:37] [Server thread/INFO]: aruj_gamer issued server command: /home
+[10:50:47] [Craft Scheduler Thread - 171/INFO]: [Metrics] Connection refused
+[10:50:51] [Server thread/INFO]: Check out new tags in /warp tags
+[10:52:44] [Server thread/INFO]: aruj_gamer issued server command: /warp shop
+[10:53:08] [Server thread/INFO]: aruj_gamer issued server command: /home home2
+[10:53:46] [Server thread/INFO]: aruj_gamer issued server command: /wb
+[10:54:11] [Server thread/INFO]: XXX
+[10:54:29] [Server thread/INFO]: aruj_gamer has made the advancement [Sweet dreams]
+[10:56:17] [Server thread/INFO]: aruj_gamer issued server command: //wand
+[10:57:31] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[10:57:42] [Server thread/INFO]: aruj_gamer lost connection: Timed out
+[10:57:42] [Server thread/INFO]: aruj_gamer left the game
+[10:57:43] [User Authenticator #3/INFO]: UUID of player aruj_gamer is 40b8ead5-1f5c-3bac-b4d6-049af67dee61
+[10:57:44] [Server thread/INFO]: aruj_gamer[/[0:0:0:0:0:0:0:1%0]:40400] logged in with entity id 13019 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[10:57:49] [Craft Scheduler Thread - 202/INFO]: [AuthMe] aruj_gamer logged in 0:0:0:0:0:0:0:1%0
+[10:58:22] [Server thread/INFO]: aruj_gamer issued server command: //expand 50 up
+[10:58:42] [Server thread/INFO]: aruj_gamer issued server command: /rg claim villager
+[10:58:43] [Timer-3/INFO]: [WorldGuard] Region data changes made in 'world' have been background saved
+[11:00:47] [Craft Scheduler Thread - 212/INFO]: [Metrics] Connection refused
+[11:00:51] [Server thread/INFO]: :)
+[11:04:11] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[11:04:44] [Server thread/INFO]: aruj_gamer lost connection: Disconnected
+[11:04:44] [Server thread/INFO]: aruj_gamer left the game
+[11:07:31] [Server thread/INFO]: :) 
+[11:10:47] [Craft Scheduler Thread - 249/INFO]: [Metrics] Connection refused
+[11:10:51] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[11:14:11] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[11:17:31] [Server thread/INFO]: Check out new tags in /warp tags
+[11:20:47] [Craft Scheduler Thread - 292/INFO]: [Metrics] Connection refused
+[11:20:51] [Server thread/INFO]: XXX
+[11:24:11] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[11:27:31] [Server thread/INFO]: :)
+[11:30:47] [Craft Scheduler Thread - 331/INFO]: [Metrics] Connection refused
+[11:30:51] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[11:34:11] [Server thread/INFO]: :) 
+[11:37:31] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[11:40:47] [Craft Scheduler Thread - 371/INFO]: [Metrics] Connection refused
+[11:40:51] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[11:44:11] [Server thread/INFO]: Check out new tags in /warp tags
+[11:47:31] [Server thread/INFO]: XXX
+[11:50:47] [Craft Scheduler Thread - 411/INFO]: [Metrics] Connection refused
+[11:50:51] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[11:54:11] [Server thread/INFO]: :)
+[11:57:31] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[12:00:47] [Craft Scheduler Thread - 453/INFO]: [Metrics] Connection refused
+[12:00:51] [Server thread/INFO]: :) 
+[12:04:11] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[12:07:31] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[12:10:47] [Craft Scheduler Thread - 492/INFO]: [Metrics] Connection refused
+[12:10:51] [Server thread/INFO]: Check out new tags in /warp tags
+[12:14:11] [Server thread/INFO]: XXX
+[12:17:31] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[12:20:47] [Craft Scheduler Thread - 534/INFO]: [Metrics] Connection refused
+[12:20:51] [Server thread/INFO]: :)
+[12:24:11] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[12:27:31] [Server thread/INFO]: :) 
+[12:30:47] [Craft Scheduler Thread - 574/INFO]: [Metrics] Connection refused
+[12:30:51] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[12:34:11] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[12:37:21] [User Authenticator #4/INFO]: UUID of player XxVaibhavxX is 3419062b-4667-3e72-87a2-30dcc9a2db3a
+[12:37:22] [Server thread/INFO]: XxVaibhavxX[/[0:0:0:0:0:0:0:1%0]:56434] logged in with entity id 13385 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[12:37:31] [Server thread/INFO]: Check out new tags in /warp tags
+[12:37:38] [Craft Scheduler Thread - 603/INFO]: [AuthMe] XxVaibhavxX logged in 0:0:0:0:0:0:0:1%0
+[12:38:25] [Server thread/INFO]: XxVaibhavxX issued server command: /balancetop 2
+[12:39:01] [Server thread/INFO]: XxVaibhavxX issued server command: /warp pvp1
+[12:39:38] [User Authenticator #5/INFO]: UUID of player system_2345_ is 72fd8d76-61ff-343c-b786-86bb62d9e749
+[12:39:40] [Server thread/INFO]: system_2345_[/[0:0:0:0:0:0:0:1%0]:33604] logged in with entity id 19427 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[12:39:54] [Craft Scheduler Thread - 608/INFO]: [AuthMe] system_2345_ logged in 0:0:0:0:0:0:0:1%0
+[12:39:57] [Async Chat Thread - #1/INFO]: <[God]system_2345_> huehuehue
+[12:39:57] [Async Chat Thread - #1/INFO]: <[Youtuber]XxVaibhavxX> ooo
+[12:40:00] [Async Chat Thread - #1/INFO]: <[Youtuber]XxVaibhavxX> ypo
+[12:40:12] [Async Chat Thread - #1/INFO]: <[God]system_2345_> yoo
+[12:40:13] [Async Chat Thread - #1/INFO]: <[Youtuber]XxVaibhavxX> warp pvp1 aa
+[12:40:17] [Server thread/INFO]: system_2345_ issued server command: /warp pvp1
+[12:40:35] [Server thread/INFO]: system_2345_ issued server command: /
+[12:40:40] [Server thread/INFO]: system_2345_ has made the advancement [Stone Age]
+[12:40:47] [Craft Scheduler Thread - 614/INFO]: [Metrics] Connection refused
+[12:40:48] [Server thread/INFO]: system_2345_ issued server command: /kit dtools
+[12:40:48] [Server thread/INFO]: [Essentials] CONSOLE issued server command: /broadcast system_2345_ just got some fancy tools!
+[12:40:51] [Server thread/INFO]: XXX
+[12:40:57] [Server thread/INFO]: XxVaibhavxX issued server command: /kit
+[12:41:04] [Server thread/INFO]: [Essentials] Created a User for Dream (b7ed8f40-b0a8-2fd5-86e2-b58dd50366ad) for non Bukkit type: net.citizensnpcs.nms.v1_12_R1.entity.EntityHumanNPC$PlayerNPC
+[12:41:10] [Server thread/INFO]: XxVaibhavxX issued server command: /kit Dtools
+[12:41:10] [Server thread/INFO]: [Essentials] CONSOLE issued server command: /broadcast XxVaibhavxX just got some fancy tools!
+[12:41:43] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> kya kre
+[12:41:51] [Async Chat Thread - #2/INFO]: <[God]system_2345_> bakchodi huehuehuehue
+[12:42:04] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> ghar bnayega?
+[12:42:09] [Async Chat Thread - #2/INFO]: <[God]system_2345_> chal
+[12:42:17] [Async Chat Thread - #2/INFO]: <[Youtuber]XxVaibhavxX> spawn chal
+[12:42:20] [Server thread/INFO]: XxVaibhavxX issued server command: /spawn
+[12:42:22] [Server thread/INFO]: system_2345_ issued server command: /spawn
+[12:42:34] [Server thread/INFO]: system_2345_ issued server command: /
+[12:42:54] [Async Chat Thread - #2/INFO]: <[God]system_2345_> aaaaaaaa
+[12:42:54] [Server thread/INFO]: system_2345_ issued server command: /
+[12:42:55] [Server thread/WARN]: system_2345_ was kicked due to keepalive timeout!
+[12:42:55] [Server thread/INFO]: system_2345_ lost connection: Timed out
+[12:42:55] [Server thread/INFO]: system_2345_ left the game
+[12:42:55] [Server thread/WARN]: handleDisconnection() called twice
+[12:43:57] [Server thread/INFO]: [Essentials] Created a User for Server (731e3dac-8651-219e-b88b-5a2416073c33) for non Bukkit type: net.citizensnpcs.nms.v1_12_R1.entity.EntityHumanNPC$PlayerNPC
+[12:44:11] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[12:44:44] [Server thread/INFO]: [Essentials] CommandBlock at -64,65,237 issued server command: /warp shop XxVaibhavxX
+[12:44:58] [Server thread/INFO]: [ServerSigns] Executing command: lp user XxVaibhavxX parent addtemp VIP 3mo
+[12:44:58] [luckperms-command-executor/INFO]: [LP] xxvaibhavxx already temporarily inherits from vip in context global.
+[12:45:06] [Server thread/INFO]: XxVaibhavxX issued server command: /bal
+[12:45:42] [Server thread/INFO]: XxVaibhavxX lost connection: Disconnected
+[12:45:42] [Server thread/INFO]: XxVaibhavxX left the game
+[12:47:32] [Server thread/INFO]: :)
+[12:48:06] [User Authenticator #6/INFO]: UUID of player system_2345_ is 72fd8d76-61ff-343c-b786-86bb62d9e749
+[12:48:07] [Server thread/INFO]: system_2345_[/[0:0:0:0:0:0:0:1%0]:44978] logged in with entity id 37048 at ([world]1.9176827501113847E7, 65.0, -2.332972764773674E7)
+[12:48:17] [Craft Scheduler Thread - 642/INFO]: [AuthMe] system_2345_ logged in 0:0:0:0:0:0:0:1%0
+[12:49:46] [Server thread/WARN]: system_2345_ moved too quickly! -15.112632794460815,-1.2478510996325411,-14.089511978742564
+[12:50:47] [Craft Scheduler Thread - 652/INFO]: [Metrics] Connection refused
+[12:50:52] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[12:51:46] [Async Chat Thread - #3/INFO]: <[God]system_2345_> i dont have something for u to eat Y^Y
+[12:52:17] [Async Chat Thread - #3/INFO]: <[God]system_2345_> i dont have something for u to eat Y^Y
+[12:53:49] [Server thread/INFO]: system_2345_ issued server command: /rg info
+[12:54:12] [Server thread/INFO]: :) 
+[12:54:18] [Async Chat Thread - #4/INFO]: <[God]system_2345_> :(
+[12:54:35] [Server thread/INFO]: system_2345_ issued server command: /rg info
+[12:55:01] [Server thread/INFO]: system_2345_ has made the advancement [Monster Hunter]
+[12:55:27] [Server thread/INFO]: system_2345_ issued server command: /repair
+[12:55:27] [Server thread/INFO]: [Essentials] system_2345_ was denied access to command.
+[12:55:40] [Server thread/INFO]: system_2345_ issued server command: /tpr
+[12:55:40] [Server thread/INFO]: [Essentials] system_2345_ was denied access to command.
+[12:57:32] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[13:00:47] [Craft Scheduler Thread - 693/INFO]: [Metrics] Connection refused
+[13:00:52] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[13:04:12] [Server thread/INFO]: Check out new tags in /warp tags
+[13:07:32] [Server thread/INFO]: XXX
+[13:08:03] [Server thread/INFO]: system_2345_ issued server command: /afk
+[13:08:03] [Server thread/INFO]: [Essentials] system_2345_ was denied access to command.
+[13:10:47] [Craft Scheduler Thread - 732/INFO]: [Metrics] Connection refused
+[13:10:52] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[13:11:10] [Async Chat Thread - #5/INFO]: <[God]system_2345_> kon h be madher
+[13:11:25] [Async Chat Thread - #5/INFO]: <[God]system_2345_> bhosdke
+[13:11:30] [Async Chat Thread - #5/INFO]: <[God]system_2345_> akele hu
+[13:11:33] [Async Chat Thread - #5/INFO]: <[God]system_2345_> koi nhi h
+[13:11:48] [Async Chat Thread - #5/INFO]: <[God]system_2345_> ek looted temple dekh rha hu
+[13:14:12] [Server thread/INFO]: :)
+[13:14:17] [Async Chat Thread - #6/INFO]: <[God]system_2345_> :(
+[13:17:32] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[13:18:12] [Server thread/INFO]: system_2345_ has made the advancement [Acquire Hardware]
+[13:20:44] [Async Chat Thread - #7/INFO]: <[God]system_2345_> mast loot
+[13:20:47] [Craft Scheduler Thread - 773/INFO]: [Metrics] Connection refused
+[13:20:52] [Server thread/INFO]: :) 
+[13:20:59] [Async Chat Thread - #7/INFO]: <[God]system_2345_> :>
+[13:23:38] [Async Chat Thread - #8/INFO]: <[God]system_2345_> t
+[13:24:12] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[13:27:32] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[13:28:13] [Async Chat Thread - #9/INFO]: <[God]system_2345_> fuck
+[13:30:02] [Server thread/INFO]: system_2345_ lost connection: Disconnected
+[13:30:02] [Server thread/INFO]: system_2345_ left the game
+[13:30:47] [Craft Scheduler Thread - 811/INFO]: [Metrics] Connection refused
+[13:30:52] [Server thread/INFO]: Check out new tags in /warp tags
+[13:34:12] [Server thread/INFO]: XXX
+[13:37:32] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[13:40:47] [Craft Scheduler Thread - 851/INFO]: [Metrics] Connection refused
+[13:40:52] [Server thread/INFO]: :)
+[13:44:12] [Server thread/INFO]: Wanna be VIP.Check out in /warp shop
+[13:47:32] [Server thread/INFO]: :) 
+[13:50:47] [Craft Scheduler Thread - 886/INFO]: [Metrics] Connection refused
+[13:50:52] [Server thread/INFO]: Join our discord server:https://discord.gg/QUfNxTDvk9
+[13:54:12] [Server thread/INFO]: Bored ? Try out /warp pvp1
+[13:57:32] [Server thread/INFO]: Check out new tags in /warp tags
+[14:00:47] [Craft Scheduler Thread - 932/INFO]: [Metrics] Connection refused
+[14:00:52] [Server thread/INFO]: XXX
+[14:04:12] [Server thread/INFO]: Wanna play with your friends.Join them in our discord server:https://discord.gg/QUfNxTDvk9
+[14:07:32] [Server thread/INFO]: :)
+[14:10:01] [Server thread/INFO]: [Server] [System] Server closing in 30 seconds! Saving world...
+[14:10:02] [Server thread/INFO]: [Server] [System] Server closing in 29 seconds! Saving world...
+[14:10:03] [Server thread/INFO]: [Server] [System] Server closing in 28 seconds! Saving world...
+[14:10:04] [Server thread/INFO]: [Server] [System] Server closing in 27 seconds! Saving world...
+[14:10:05] [Server thread/INFO]: [Server] [System] Server closing in 26 seconds! Saving world...
+[14:10:06] [Server thread/INFO]: [Server] [System] Server closing in 25 seconds! Saving world...
+[14:10:07] [Server thread/INFO]: [Server] [System] Server closing in 24 seconds! Saving world...
+[14:10:08] [Server thread/INFO]: [Server] [System] Server closing in 23 seconds! Saving world...
+[14:10:09] [Server thread/INFO]: [Server] [System] Server closing in 22 seconds! Saving world...
+[14:10:10] [Server thread/INFO]: [Server] [System] Server closing in 21 seconds! Saving world...
+[14:10:12] [Server thread/INFO]: [Server] [System] Server closing in 20 seconds! Saving world...
+[14:10:13] [Server thread/INFO]: [Server] [System] Server closing in 19 seconds! Saving world...
+[14:10:14] [Server thread/INFO]: [Server] [System] Server closing in 18 seconds! Saving world...
+[14:10:15] [Server thread/INFO]: [Server] [System] Server closing in 17 seconds! Saving world...
+[14:10:16] [Server thread/INFO]: [Server] [System] Server closing in 16 seconds! Saving world...
+[14:10:17] [Server thread/INFO]: [Server] [System] Server closing in 15 seconds! Saving world...
+[14:10:18] [Server thread/INFO]: [Server] [System] Server closing in 14 seconds! Saving world...
+[14:10:19] [Server thread/INFO]: [Server] [System] Server closing in 13 seconds! Saving world...
+[14:10:20] [Server thread/INFO]: [Server] [System] Server closing in 12 seconds! Saving world...
+[14:10:21] [Server thread/INFO]: [Server] [System] Server closing in 11 seconds! Saving world...
+[14:10:22] [Server thread/INFO]: [Server] [System] Server closing in 10 seconds! Saving world...
+[14:10:23] [Server thread/INFO]: [Server] [System] Server closing in 9 seconds! Saving world...
+[14:10:24] [Server thread/INFO]: [Server] [System] Server closing in 8 seconds! Saving world...
+[14:10:25] [Server thread/INFO]: [Server] [System] Server closing in 7 seconds! Saving world...
+[14:10:26] [Server thread/INFO]: [Server] [System] Server closing in 6 seconds! Saving world...
+[14:10:27] [Server thread/INFO]: [Server] [System] Server closing in 5 seconds! Saving world...
+[14:10:28] [Server thread/INFO]: [Server] [System] Server closing in 4 seconds! Saving world...
+[14:10:29] [Server thread/INFO]: [Server] [System] Server closing in 3 seconds! Saving world...
+[14:10:30] [Server thread/INFO]: [Server] [System] Server closing in 2 seconds! Saving world...
+[14:10:31] [Server thread/INFO]: [Server] [System] Server closing in 1 seconds! Saving world...
+[14:10:32] [Server thread/INFO]: Stopping the server
+[14:10:32] [Server thread/INFO]: Stopping server
+[14:10:32] [Server thread/INFO]: [AuthMe] Disabling AuthMe v5.6.0-bCUSTOM
+[14:10:32] [Server thread/INFO]: [AuthMe] Waiting for 0 tasks to finish
+[14:10:32] [Server thread/INFO]: [AuthMe] AuthMe 5.6.0-bCUSTOM disabled!
+[14:10:32] [Server thread/INFO]: [EssentialsDiscord] Disabling EssentialsDiscord v2.21.2
+[14:10:32] [Server thread/INFO]: [EssentialsSpawn] Disabling EssentialsSpawn v2.22.0-dev+39-adf77dc
+[14:10:32] [Server thread/INFO]: [ServerSigns] Disabling ServerSigns v4.10.1
+[14:10:32] [Server thread/INFO]: [ServerSigns] ServerSigns is now disabled.
+[14:10:32] [Server thread/INFO]: [EssentialsChat] Disabling EssentialsChat v2.22.0-dev+39-adf77dc
+[14:10:32] [Server thread/INFO]: [Essentials] Disabling Essentials v2.22.0-dev+39-adf77dc
+[14:10:32] [Server thread/INFO]: [Vault] [Economy] Essentials Economy unhooked.
+[14:10:32] [Server thread/INFO]: [Citizens] Disabling Citizens v2.0.22-SNAPSHOT (build 1487)
+[14:10:32] [Server thread/INFO]: [EaglerXRewind-1.5] Disabling EaglercraftXRewind-1-5 v1.0.2
+[14:10:32] [Server thread/INFO]: [EaglerXRewind-1.5] EaglerXRewind protocol for Eaglercraft 1.5.2 has been unregistered
+[14:10:32] [Server thread/INFO]: [Vault] Disabling Vault v1.7.3-b131
+[14:10:32] [Server thread/INFO]: [PlaceholderAPI] Unregistered placeholder expansion vault
+[14:10:32] [Server thread/INFO]: [PlaceholderAPI] Reason: required plugin Vault was disabled.
+[14:10:32] [Server thread/INFO]: [ViaRewind-Legacy-Support] Disabling ViaRewind-Legacy-Support v1.5.2
+[14:10:32] [Server thread/INFO]: [EaglerXServer] Disabling EaglercraftXServer v1.0.7
+[14:10:32] [Server thread/INFO]: [EaglerXServer] Disconnecting from skin cache database "jdbc:sqlite:eagler_skins_cache.db"...
+[14:10:32] [Server thread/INFO]: [EaglerXServer] Disconnected from skin cache database successfully!
+[14:10:32] [Server thread/INFO]: [SkinsRestorer] Disabling SkinsRestorer v15.10.0
+[14:10:32] [Server thread/INFO]: [LuckPerms] Disabling LuckPerms v5.5.0
+[14:10:32] [Server thread/INFO]: [LuckPerms] Starting shutdown process...
+[14:10:32] [Server thread/INFO]: [LuckPerms] Closing storage...
+[14:10:32] [Server thread/INFO]: [LuckPerms] Goodbye!
+[14:10:32] [Server thread/INFO]: [ViaRewind] Disabling ViaRewind v4.0.7
+[14:10:32] [Server thread/INFO]: [WorldGuard] Disabling WorldGuard v6.2.2-SNAPSHOT;8eeab68
+[14:10:32] [Server thread/INFO]: [WorldGuard] Shutting down executor and waiting for any pending tasks...
+[14:10:32] [Server thread/INFO]: [ViaBackwards] Disabling ViaBackwards v5.3.2
+[14:10:32] [Server thread/INFO]: [HolographicDisplays] Disabling HolographicDisplays v3.0.4
+[14:10:32] [Server thread/INFO]: [DuelMe] Disabling DuelMe v0.18.3
+[14:10:32] [Server thread/INFO]: [DuelMe] [Info] Disabling.
+[14:10:32] [Server thread/INFO]: [DuelMe] [Info] Successfully saved 1 Duel Arena(s).
+[14:10:32] [Server thread/INFO]: [ViaVersion] Disabling ViaVersion v5.3.3-SNAPSHOT
+[14:10:32] [Server thread/INFO]: [ViaVersion] ViaVersion is disabling. If this is a reload and you experience issues, please reboot instead.
+[14:10:32] [Server thread/WARN]: [ViaVersion] Could not get handler DefaultChannelPipeline$TailContext#0
+[14:10:32] [Server thread/INFO]: [ViaVersion] ViaVersion has been disabled; uninjected the platform and shut down the scheduler.
+[14:10:32] [Server thread/INFO]: [AutoMessage] Disabling AutoMessage v1.0
+[14:10:32] [Server thread/INFO]: [ClearLag] Disabling ClearLag v3.2.2
+[14:10:32] [Server thread/INFO]: [ClearLag] Clearlag is now disabled!
+[14:10:32] [Server thread/INFO]: [PlaceholderAPI] Disabling PlaceholderAPI v2.11.7
+[14:10:32] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v6.1.9;caf0ad9
+[14:10:32] [Server thread/INFO]: Saving players
+[14:10:32] [Server thread/INFO]: Saving worlds
+[14:10:32] [Server thread/INFO]: Saving chunks for level 'world'/overworld
+[14:10:32] [Server thread/INFO]: Saving chunks for level 'world_nether'/the_nether
+[14:10:32] [Server thread/INFO]: Saving chunks for level 'world_the_end'/the_end
