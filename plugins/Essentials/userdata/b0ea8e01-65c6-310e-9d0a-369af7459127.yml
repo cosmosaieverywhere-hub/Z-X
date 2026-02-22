@@ -1,0 +1,41 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 0:0:0:0:0:0:0:1%0
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1771757697136
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1771757999300
+  login: 1771757635736
+  kits:
+    bow: 1771754834854
+    artmap: 1771754853203
+money: '0'
+last-account-name: xXSEAVXx
+lastlocation:
+  world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+  world-name: world
+  x: -33.42519059578772
+  y: 67.0
+  z: 216.47821550893636
+  yaw: -217.35003662109375
+  pitch: 8.999992370605469
+logoutlocation:
+  world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+  world-name: world
+  x: 1.9176495652720265E7
+  y: 73.0
+  z: -2.3329539162941586E7
+  yaw: -6.70973539352417
+  pitch: 14.099977493286133

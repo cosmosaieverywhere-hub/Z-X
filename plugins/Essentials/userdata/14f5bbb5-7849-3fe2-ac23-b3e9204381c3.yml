@@ -11,37 +11,37 @@ powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1771681405649
+  lastteleport: 1771771808840
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1771681839169
-  login: 1771679644106
+  logout: 1771771935815
+  login: 1771769648564
   kits:
-    dtools: 1771681530251
-    starter: 1771680735382
+    dtools: 1771770883933
+    starter: 1771768103140
     bow: 1771681185682
     tools: 1771681200532
     artmap: 1771681216382
-money: '385.0'
+money: '1422.76'
 last-account-name: dev_765_________
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.9176510565208375E7
-  y: 69.0
-  z: -2.3329533455209088E7
-  yaw: 233.59024047851562
-  pitch: -28.104677200317383
+  x: 51.28648107567621
+  y: 67.0
+  z: 355.9584291552015
+  yaw: -354.449462890625
+  pitch: -25.04999542236328
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 239.64076799030042
-  y: 64.0
-  z: 308.91273557829317
-  yaw: 234.4432373046875
-  pitch: 27.14990997314453
+  x: -32.234034988043824
+  y: 59.0
+  z: 254.21626768699946
+  yaw: 348.9000244140625
+  pitch: 24.150001525878906
 homes:
   bal:
     world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
@@ -51,3 +51,20 @@ homes:
     z: 357.4566311656693
     yaw: 88.6435546875
     pitch: -58.349979400634766
+  bruh:
+    world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+    world-name: world
+    x: 121.30000001192093
+    y: 6.0
+    z: 373.30000001192093
+    yaw: 92.84393310546875
+    pitch: 9.600091934204102
+  base:
+    world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+    world-name: world
+    x: 54.601889969186004
+    y: 66.0
+    z: 362.9055248200161
+    yaw: 30.450775146484375
+    pitch: 21.749963760375977
+nickname: §7dev§8_§0765§f_________

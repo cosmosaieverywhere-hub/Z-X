@@ -121,7 +121,7 @@ settings:
     # typical communication with the database to happen synchronously, set this to false
     useAsyncTasks: true
     # The name of the server, used in some placeholders.
-    serverName: Z X 
+    serverName: Z X
     restrictions:
         # Can not authenticated players chat?
         # Keep in mind that this feature also blocks all commands not
@@ -210,7 +210,6 @@ settings:
         # You can test your regex with https://regex101.com
         allowedPasswordCharacters: '[!-~]*'
     GameMode:
-
         # Force survival gamemode when player joins?
         ForceSurvivalMode: true
     unrestrictions:
@@ -315,7 +314,7 @@ settings:
     # Should we remove leave messages altogether?
     removeLeaveMessage: false
     # Do we need to add potion effect Blinding before login/register?
-    applyBlindEffect: flase
+    applyBlindEffect: false
     # Do we need to prevent people to login with another case?
     # If Xephi is registered, then Xephi can login, but not XEPHI/xephi/XePhI
     preventOtherCase: true
@@ -567,4 +566,3 @@ Converter:
             user: ''
             # LoginSecurity MySQL: password for database user
             password: ''
-

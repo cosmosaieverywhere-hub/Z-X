@@ -1,0 +1,53 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 0:0:0:0:0:0:0:1%0
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 1771764993834
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1771765259897
+  login: 1771764150607
+  kits:
+    artmap: 1771763000209
+    bow: 1771763008109
+    tools: 1771763015859
+    starter: 1771764569525
+money: '100'
+last-account-name: TotLand
+lastlocation:
+  world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+  world-name: world
+  x: -28.853086500277477
+  y: 67.0
+  z: 210.88031127173073
+  yaw: -81.74996948242188
+  pitch: 14.099993705749512
+nickname: §6§o§lT§e§m§o§lo§6§m§o§lt§5§o§lL§d§m§o§la§3§m§o§ln§b§m§o§ld
+homes:
+  home:
+    world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+    world-name: world
+    x: 13.531485407986667
+    y: 10.0
+    z: 467.27505794746037
+    yaw: 2.8500008583068848
+    pitch: 15.749993324279785
+logoutlocation:
+  world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+  world-name: world
+  x: 1.917649986854061E7
+  y: 63.0
+  z: -2.3329550998143774E7
+  yaw: -113.51007080078125
+  pitch: 29.099994659423828
