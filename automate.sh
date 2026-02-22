@@ -47,7 +47,7 @@ fi
 (
   sleep 18000  # Wait until 6:59:30 PM IST   14370
   for i in {30..1}; do
-    echo "say [System] Server closing in $i seconds! Saving world..." > server_input
+    echo "say [System] Server closing in $i seconds! Thank you for joining the server :)" > server_input
     sleep 1
   done
   echo "stop" > server_input
