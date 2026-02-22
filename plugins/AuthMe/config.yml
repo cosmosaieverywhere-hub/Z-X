@@ -126,7 +126,7 @@ settings:
         # Can not authenticated players chat?
         # Keep in mind that this feature also blocks all commands not
         # listed in the list below.
-        allowChat: true
+        allowChat: false
         # Hide the chat log from players who are not authenticated?
         hideChat: false
         # Allowed commands for unauthenticated players
@@ -181,10 +181,10 @@ settings:
         # their normal position.
         teleportUnAuthedToSpawn: true
         # Can unregistered players walk around?
-        allowMovement: false
+        allowMovement: true
         # After how many seconds should players who fail to login or register
         # be kicked? Set to 0 to disable.
-        timeout: 30
+        timeout: 300
         # Regex pattern of allowed characters in the player name.
         allowedNicknameCharacters: '[a-zA-Z0-9_]*'
         # How far can unregistered players walk?
@@ -193,7 +193,7 @@ settings:
         # Should we protect the player inventory before logging in? Requires ProtocolLib.
         ProtectInventoryBeforeLogIn: true
         # Should we deny the tabcomplete feature before logging in? Requires ProtocolLib.
-        DenyTabCompleteBeforeLogin: false
+        DenyTabCompleteBeforeLogin: true
         # Should we display all other accounts from a player when he joins?
         # permission: /authme.admin.accounts
         displayOtherAccounts: false
@@ -315,7 +315,7 @@ settings:
     # Should we remove leave messages altogether?
     removeLeaveMessage: false
     # Do we need to add potion effect Blinding before login/register?
-    applyBlindEffect: false
+    applyBlindEffect: flase
     # Do we need to prevent people to login with another case?
     # If Xephi is registered, then Xephi can login, but not XEPHI/xephi/XePhI
     preventOtherCase: true
