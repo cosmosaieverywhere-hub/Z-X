@@ -65,8 +65,8 @@ world-settings:
       disable-extreme-hills-emeralds: false
       disable-extreme-hills-monster-eggs: false
       disable-mesa-additional-gold: false
-    use-vanilla-world-scoreboard-name-coloring: false
     prevent-moving-into-unloaded-chunks: false
+    use-vanilla-world-scoreboard-name-coloring: false
     portal-search-radius: 128
     queue-light-updates: false
     optimize-explosions: false
@@ -123,7 +123,6 @@ world-settings:
     remove-corrupt-tile-entities: false
     keep-spawn-loaded-range: 6
     auto-save-interval: -1
-    non-player-arrow-despawn-rate: -1
     parrots-are-unaffected-by-player-movement: false
     nether-ceiling-void-damage: false
     allow-non-player-entities-on-scoreboards: false
@@ -139,6 +138,7 @@ world-settings:
     use-alternate-fallingblock-onGround-detection: false
     bed-search-radius: 1
     prevent-tnt-from-moving-in-water: false
+    non-player-arrow-despawn-rate: -1
     armor-stands-tick: true
     keep-spawn-loaded: true
     anti-xray:
