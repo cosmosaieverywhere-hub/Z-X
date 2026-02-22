@@ -45,7 +45,7 @@ else
 fi
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
-  sleep 14370  # Wait until 6:59:30 PM IST   14370
+  sleep 18000  # Wait until 6:59:30 PM IST   14370
   for i in {30..1}; do
     echo "say [System] Server closing in $i seconds! Saving world..." > server_input
     sleep 1
