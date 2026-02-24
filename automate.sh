@@ -32,8 +32,6 @@ echo "⏳ Waiting for Localtunnel to stabilize..."
 sleep 8
 IP="wss://$SUBDOMAIN.loca.lt"
 
-echo "✅ Server Live at: $IP"
-curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online (Localtunnel)!**\\n🔗 **IP:** \`$IP\`\\n⚠️ *Note: If it won't connect, visit the link in your browser first to click 'Continue'.*\"}" "$DISCORD_WEBHOOK"
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
   sleep 18000  # Wait until 6:59:30 PM IST   14370
