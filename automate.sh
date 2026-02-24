@@ -56,5 +56,6 @@ git add .
 git reset "$CONFIG_PATH"
 
 # 3. Commit and push the rest
-git commit -m "Automated Save: $(date)" || echo "No changes to save"
+git pull --rebase origin main
+
 git push origin main
