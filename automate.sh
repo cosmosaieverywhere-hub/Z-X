@@ -15,34 +15,25 @@ else
 fi
 
 
-# --- 2. INSTALL CLOUDFLARE ---
-echo "📥 Installing Cloudflared..."
-wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
-chmod +x cloudflared
+# --- 2. INSTALL LOCALTUNNEL ---
+echo "📥 Installing Localtunnel..."
+# GitHub Actions already has Node.js/npm installed
+npm install -g localtunnel
 
-# --- 3. START TUNNEL (AUTO-RESTARTING) ---
-echo "🌐 Starting Cloudflare Quick Tunnel..."
-(
-    while true; do
-        ./cloudflared tunnel --url http://localhost:25565 >> tunnel.log 2>&1
-        sleep 5 # If it crashes, wait 5 seconds and restart
-    done
-) &
+# --- 3. START TUNNEL WITH FIXED SUBDOMAIN ---
+# CHANGE THIS NAME to something unique to you!
+SUBDOMAIN="zx-survival" 
 
-# --- 4. WAIT FOR URL & SEND TO DISCORD ---
-echo "⏳ Waiting for Cloudflare to generate link..."
-sleep 10
-ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.trycloudflare\.com" tunnel.log | head -n 1)
+echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
+lt --port 25565 --subdomain "$SUBDOMAIN" > tunnel.log 2>&1 &
 
-if [ -n "$ADDRESS" ]; then
-    # Convert https:// to wss:// for Eaglercraft
-    IP=${ADDRESS/https/wss}
-    echo "✅ Server Live at: $IP"
-    curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online (Cloudflare)!**\\n🔗 **IP:** \`$IP\`\\n⏰ **Status:** Online for 4 hours.\"}" "$DISCORD_WEBHOOK"
-else
-    echo "❌ Failed to get Cloudflare URL. Printing logs:"
-    cat tunnel.log
-fi
+# --- 4. WAIT & SEND TO DISCORD ---
+echo "⏳ Waiting for Localtunnel to stabilize..."
+sleep 8
+IP="wss://$SUBDOMAIN.loca.lt"
+
+echo "✅ Server Live at: $IP"
+curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online (Localtunnel)!**\\n🔗 **IP:** \`$IP\`\\n⚠️ *Note: If it won't connect, visit the link in your browser first to click 'Continue'.*\"}" "$DISCORD_WEBHOOK"
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
   sleep 18000  # Wait until 6:59:30 PM IST   14370
