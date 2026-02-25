@@ -30,7 +30,7 @@ echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
 (
     while true; do
         # Update this line in your main script:
-        lt --port 25565 --subdomain "$SUBDOMAIN" --local-host localhost --print-requests >> tunnel.log 2>&1 &
+        lt --port 25565 --subdomain "$SUBDOMAIN" --local-host 127.0.0.1 --print-requests >> tunnel.log 2>&1 &
         TUNNEL_PID=$!
         
         # 2. Watchdog: Monitor the tunnel for the next 20 minutes before a hard refresh
