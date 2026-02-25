@@ -8,48 +8,59 @@ CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
 
 if [ -f "$CONFIG_PATH" ]; then
     echo "🔐 Injecting Discord Token..."
-    # Replace any existing token value with the secret from GitHub
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
 else
     echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
 
-# --- 3. START BOOSTED LOCALTUNNEL ---
+# --- 2. START BOOSTED LOCALTUNNEL ---
 SUBDOMAIN="zx-survival"
 
-echo "📥 Installing/Updating Localtunnel..."
-npm install -g localtunnel
+echo "📥 Creating High-Concurrency Tunnel Booster..."
+npm install localtunnel --silent
 
-# Function to start the tunnel with high-performance flags
-start_tunnel() {
-    # --local-host 127.0.0.1 forces LT to use a direct loopback, reducing lag
-    # We use a custom host if the main one is full (optional)
-    lt --port 25565 --subdomain "$SUBDOMAIN" --local-host 127.0.0.1 >> tunnel.log 2>&1 &
+# Create the JS Booster file
+cat <<EOF > lt-booster.js
+const localtunnel = require('localtunnel');
+(async () => {
+    const tunnel = await localtunnel({ 
+        port: 8081, 
+        subdomain: '$SUBDOMAIN',
+        local_host: '127.0.0.1',
+        maxSockets: 100 
+    });
+    console.log('✅ Tunnel Live: ' + tunnel.url.replace('https', 'wss'));
+    tunnel.on('close', () => { process.exit(1); });
+})();
+EOF
+
+# Function to start the tunnel
+start_booster() {
+    node lt-booster.js >> tunnel.log 2>&1 &
     LT_PID=$!
 }
 
-start_tunnel
+start_booster
 
-# --- WATCHDOG (Now with 'Life Check') ---
+# --- 3. WATCHDOG ---
 (
     while true; do
         sleep 45
-        # If the process is dead OR the URL isn't responding, restart it
-        if ! ps -p $LT_PID > /dev/null || ! curl -s "https://$SUBDOMAIN.loca.lt" > /dev/null; then
-            echo "⚠️ Tunnel crashed or blocked. Force restarting..."
-            pkill -f localtunnel
-            sleep 2
-            start_tunnel
+        # Check if the process ID exists
+        if ! ps -p $LT_PID > /dev/null; then
+            echo "⚠️ Tunnel process died. Restarting..."
+            start_booster
         fi
     done
 ) &
 
 echo "✅ Join Link: wss://$SUBDOMAIN.loca.lt"
-# --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
+
+# --- 4. 4-HOUR TIMER ---
 (
-  sleep 18000   # Wait until 6:59:30 PM IST   14370 18000 
+  sleep 18000
   for i in {30..1}; do
-    echo "say [System] Server closing in $i seconds! Thank you for joining the server :)" > server_input
+    echo "say [System] Server closing in $i seconds!" > server_input
     sleep 1
   done
   echo "stop" > server_input
@@ -57,31 +68,19 @@ echo "✅ Join Link: wss://$SUBDOMAIN.loca.lt"
 
 # --- 5. START SERVER ---
 echo "🚀 Server is starting..."
-# Running tail in the background tied to the server process
-# This allows the script to continue once bash ./run.sh finishes
 ( tail -f server_input & ) | bash ./run.sh
 
 # --- 6. CLEANUP & SAVE ---
-echo "🔕 Server stopped. Cleaning up processes..."
-# Kill the background tunnel, watchdog, and tail processes
+echo "🔕 Server stopped. Cleaning up..."
 pkill -P $$ 
 
 echo "💾 Saving world to GitHub..."
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-# 1. Stage changes
 git add .
-
-# 2. Hide the Discord token
 git reset "$CONFIG_PATH"
-
-# 3. Commit with a timestamp
 git commit -m "Automated Save: $(date)" || echo "No changes to save"
-
-# 4. Pull latest changes (to avoid the 'rejected' error)
 git pull --rebase origin main
-
-# 5. Final Push
 git push origin main
 echo "✅ World saved successfully!"
