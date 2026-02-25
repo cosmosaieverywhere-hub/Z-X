@@ -24,7 +24,7 @@ cat <<EOF > lt-booster.js
 const localtunnel = require('localtunnel');
 (async () => {
     const tunnel = await localtunnel({ 
-        port: 8081, 
+        port: 25565, 
         subdomain: '$SUBDOMAIN',
         local_host: '127.0.0.1',
         maxSockets: 100 
