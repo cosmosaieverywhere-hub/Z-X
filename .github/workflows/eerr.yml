@@ -1,5 +1,5 @@
 name: Get Playit Secret
-on: workflow_dispatch # This lets you run it manually
+on: workflow_dispatch
 
 jobs:
   get-key:
@@ -13,7 +13,8 @@ jobs:
       
       - name: Generate Claim Link
         run: |
-          # This starts playit, gives you the link, then waits 5 minutes
-          # so you have time to click it.
-          playit setup --no-auth & 
-          sleep 300
+          echo "⏳ Starting Playit Setup..."
+          echo "LOOK BELOW FOR THE CLAIM LINK!"
+          # Just running 'playit setup' will generate the link and wait for you
+          # We'll run it for 5 minutes then stop.
+          timeout 300s playit setup || echo "Time is up!"
