@@ -3,7 +3,7 @@ teleportauto: false
 godmode: false
 muted: false
 jailed: false
-ip-address: 0:0:0:0:0:0:0:1%0
+ip-address: 127.0.0.1
 afk: false
 socialspy: false
 npc: false
@@ -11,13 +11,13 @@ powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1771777315522
+  lastteleport: 1772006075434
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1771777406427
-  login: 1771777258169
+  logout: 1772006161147
+  login: 1772005089459
   kits:
     bow: 1771765385295
     artmap: 1768472897361
@@ -29,19 +29,19 @@ last-account-name: XxVaibhavxX
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.917650012938038E7
-  y: 72.89154457388916
-  z: -2.3329538266297396E7
-  yaw: 26.662567138671875
-  pitch: 0.3168209195137024
+  x: 1.9176514692284875E7
+  y: 88.0
+  z: -2.3329581465569396E7
+  yaw: 186.34352111816406
+  pitch: 68.94927978515625
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 246.86176371635852
-  y: 18.0
-  z: 291.02674333962443
-  yaw: 124.3702392578125
-  pitch: 19.9583797454834
+  x: 1.917649838943484E7
+  y: 69.0
+  z: -2.332953432858731E7
+  yaw: 30.93963623046875
+  pitch: 31.446626663208008
 mail:
 - legacy: false
   read: false

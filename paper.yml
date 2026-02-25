@@ -68,9 +68,7 @@ world-settings:
     prevent-moving-into-unloaded-chunks: false
     use-vanilla-world-scoreboard-name-coloring: false
     portal-search-radius: 128
-    queue-light-updates: false
     optimize-explosions: false
-    use-chunk-inhabited-timer: true
     delay-chunk-unloads-by: 10s
     max-auto-save-chunks-per-tick: 24
     save-queue-limit-for-auto-save: 50
@@ -121,6 +119,8 @@ world-settings:
     duplicate-uuid-resolver: saferegen
     duplicate-uuid-saferegen-delete-range: 32
     remove-corrupt-tile-entities: false
+    use-chunk-inhabited-timer: true
+    queue-light-updates: false
     keep-spawn-loaded-range: 6
     auto-save-interval: -1
     parrots-are-unaffected-by-player-movement: false
@@ -132,6 +132,7 @@ world-settings:
         min: 20
         max: 40
     container-update-tick-rate: 1
+    mob-spawner-tick-rate: 1
     disable-explosion-knockback: false
     elytra-hit-wall-damage: true
     grass-spread-tick-rate: 1
@@ -174,7 +175,6 @@ world-settings:
     baby-zombie-movement-speed: 0.5
     spawner-nerfed-mobs-should-jump: false
     allow-leashing-undead-horse: false
-    mob-spawner-tick-rate: 1
     all-chunks-are-slime-chunks: false
     squid-spawn-height:
       maximum: 0.0
