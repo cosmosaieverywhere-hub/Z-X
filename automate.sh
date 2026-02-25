@@ -25,7 +25,7 @@ echo "🌐 Requesting Permanent IP: $SUBDOMAIN.play.minekube.net"
 # We start it in the background. 
 # The --name flag sets your permanent subdomain.
 # The --port 8081 points to your EaglerProxy port.
-./minekube-connect --name "$SUBDOMAIN" --port 8081 > tunnel.log 2>&1 &
+./minekube-connect --name "$SUBDOMAIN" --port 25565 > tunnel.log 2>&1 &
 TUNNEL_PID=$!
 
 # Extract the final URL (usually wss:// if your proxy handles SSL)
