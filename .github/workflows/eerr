@@ -1,0 +1,19 @@
+name: Get Playit Secret
+on: workflow_dispatch # This lets you run it manually
+
+jobs:
+  get-key:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Playit
+        run: |
+          curl -SsL https://playit-cloud.github.io/ppa/key.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/playit.gpg
+          echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.github.io/ppa/data ./" | sudo tee /etc/apt/sources.list.d/playit-cloud.list
+          sudo apt update && sudo apt install playit -y
+      
+      - name: Generate Claim Link
+        run: |
+          # This starts playit, gives you the link, then waits 5 minutes
+          # so you have time to click it.
+          playit setup --no-auth & 
+          sleep 300
