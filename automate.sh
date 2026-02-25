@@ -62,7 +62,7 @@ IP="wss://$SUBDOMAIN.loca.lt"
 
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
-  sleep 18000  # Wait until 6:59:30 PM IST   14370
+  sleep 3600  # Wait until 6:59:30 PM IST   14370 18000 
   for i in {30..1}; do
     echo "say [System] Server closing in $i seconds! Thank you for joining the server :)" > server_input
     sleep 1
@@ -71,17 +71,32 @@ IP="wss://$SUBDOMAIN.loca.lt"
 ) &
 
 # --- 5. START SERVER ---
-tail -f server_input | bash ./run.sh
+echo "🚀 Server is starting..."
+# Running tail in the background tied to the server process
+# This allows the script to continue once bash ./run.sh finishes
+( tail -f server_input & ) | bash ./run.sh
 
-# --- 6. PUSH BACK TO GITHUB ---
+# --- 6. CLEANUP & SAVE ---
+echo "🔕 Server stopped. Cleaning up processes..."
+# Kill the background tunnel, watchdog, and tail processes
+pkill -P $$ 
+
+echo "💾 Saving world to GitHub..."
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+# 1. Stage changes
 git add .
 
-# 2. Specifically unstage the config file so it won't be committed
+# 2. Hide the Discord token
 git reset "$CONFIG_PATH"
 
-# 3. Commit and push the rest
+# 3. Commit with a timestamp
+git commit -m "Automated Save: $(date)" || echo "No changes to save"
+
+# 4. Pull latest changes (to avoid the 'rejected' error)
 git pull --rebase origin main
 
+# 5. Final Push
 git push origin main
+echo "✅ World saved successfully!"
