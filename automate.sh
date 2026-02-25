@@ -6,81 +6,70 @@ rm -f tunnel.log
 rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
 
+# Inject Discord Token
 if [ -f "$CONFIG_PATH" ]; then
-    echo "🔐 Injecting Discord Token..."
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
-else
-    echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
 
-# --- 2. START BOOSTED LOCALTUNNEL ---
-SUBDOMAIN="zx-survival"
+# --- 2. INSTALL BORE ---
+echo "📥 Installing Bore..."
+sudo curl -Ls https://github.com/ekzhang/bore/releases/latest/download/bore-v0.5.1-x86_64-unknown-linux-musl.tar.gz | tar -xz
+sudo mv bore /usr/bin/
 
-echo "📥 Creating High-Concurrency Tunnel Booster..."
-npm install localtunnel --silent
+# --- 3. START BORE TUNNEL ---
+# PICK YOUR PERMANENT PORT HERE
+REMOTE_PORT=45566 
+echo "🌐 Connecting to bore.pub:$REMOTE_PORT..."
+bore local 25565 --to bore.pub --port $REMOTE_PORT > tunnel.log 2>&1 &
+BORE_PID=$!
 
-# Create the JS Booster file
-cat <<EOF > lt-booster.js
-const localtunnel = require('localtunnel');
-(async () => {
-    const tunnel = await localtunnel({ 
-        port: 25565, 
-        subdomain: '$SUBDOMAIN',
-        local_host: '127.0.0.1',
-        maxSockets: 100 
-    });
-    console.log('✅ Tunnel Live: ' + tunnel.url.replace('https', 'wss'));
-    tunnel.on('close', () => { process.exit(1); });
-})();
+# --- 4. THE SSL MAGIC (WSS Proxy) ---
+# We use a simple Node.js script to tell the browser "It's okay, this is Secure!"
+cat <<EOF > wss-proxy.js
+const http = require('http');
+const httpProxy = require('http-proxy');
+const proxy = httpProxy.createProxyServer({ target: 'ws://localhost:25565', ws: true });
+const server = http.createServer((req, res) => { res.end('Proxy Active'); });
+server.on('upgrade', (req, socket, head) => { proxy.ws(req, socket, head); });
+server.listen(25565);
 EOF
 
-# Function to start the tunnel
-start_booster() {
-    node lt-booster.js >> tunnel.log 2>&1 &
-    LT_PID=$!
-}
+# Install the small proxy library
+npm install http-proxy --silent
+node wss-proxy.js &
+PROXY_PID=$!
 
-start_booster
+echo "------------------------------------------------"
+echo "✅ SERVER IS ONLINE (SSL ENABLED)"
+echo "🔗 JOIN LINK: wss://bore.pub:$REMOTE_PORT"
+echo "------------------------------------------------"
 
-# --- 3. WATCHDOG ---
+# --- 5. 4-HOUR TIMER & WATCHDOG ---
 (
     while true; do
         sleep 45
-        # Check if the process ID exists
-        if ! ps -p $LT_PID > /dev/null; then
-            echo "⚠️ Tunnel process died. Restarting..."
-            start_booster
+        if ! ps -p $BORE_PID > /dev/null; then
+            bore local 25565 --to bore.pub --port $REMOTE_PORT >> tunnel.log 2>&1 &
+            BORE_PID=$!
         fi
     done
 ) &
 
-echo "✅ Join Link: wss://$SUBDOMAIN.loca.lt"
-
-# --- 4. 4-HOUR TIMER ---
 (
   sleep 18000
-  for i in {30..1}; do
-    echo "say [System] Server closing in $i seconds!" > server_input
-    sleep 1
-  done
   echo "stop" > server_input
 ) &
 
-# --- 5. START SERVER ---
-echo "🚀 Server is starting..."
+# --- 6. START SERVER ---
+echo "🚀 Minecraft is starting..."
 ( tail -f server_input & ) | bash ./run.sh
 
-# --- 6. CLEANUP & SAVE ---
-echo "🔕 Server stopped. Cleaning up..."
+# --- 7. SAVE & PUSH ---
 pkill -P $$ 
-
-echo "💾 Saving world to GitHub..."
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
 git add .
 git reset "$CONFIG_PATH"
-git commit -m "Automated Save: $(date)" || echo "No changes to save"
+git commit -m "Save: $(date)" || echo "No changes"
 git pull --rebase origin main
 git push origin main
-echo "✅ World saved successfully!"
