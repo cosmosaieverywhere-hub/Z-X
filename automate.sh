@@ -14,41 +14,22 @@ else
     echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
 
+# --- 3. START MINEKUBE (Permanent IP + No Login) ---
+SUBDOMAIN="zx-survival" # This will be your permanent name
 
-# --- 3. START SERVEO WITH PERMANENT SUBDOMAIN ---
-# CHANGE THIS to something unique like 'zx-survival-2026'
-SUBDOMAIN="zx-survival" 
+echo "📥 Installing Minekube Connect..."
+curl -fsSL https://mgate.io/install.sh | bash
 
-echo "🌐 Requesting Permanent IP: $SUBDOMAIN.serveo.net"
+echo "🌐 Requesting Permanent IP: $SUBDOMAIN.play.minekube.net"
 
-start_serveo() {
-    # -o ServerAliveInterval=60 keeps the connection from idling
-    # -R $SUBDOMAIN:80:localhost:25565 maps your server to the subdomain
-    ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R "$SUBDOMAIN":80:localhost:25565 serveo.net >> serveo.log 2>&1 &
-    SERVEO_PID=$!
-}
+# We start it in the background. 
+# The --name flag sets your permanent subdomain.
+# The --port 8081 points to your EaglerProxy port.
+./minekube-connect --name "$SUBDOMAIN" --port 8081 > tunnel.log 2>&1 &
+TUNNEL_PID=$!
 
-start_serveo
-
-# --- WATCHDOG ---
-(
-    while true; do
-        sleep 30
-        # If the tunnel dies, restart it immediately
-        if ! ps -p $SERVEO_PID > /dev/null; then
-            echo "⚠️ Tunnel disconnected. Reconnecting..."
-            start_serveo
-        fi
-    done
-) &
-
-echo "✅ Server IP: wss://$SUBDOMAIN.serveo.net"
-
-# --- 4. WAIT & ANNOUNCE ---
-echo "⏳ Waiting for Localtunnel to stabilize..."
-sleep 10
-IP="wss://$SUBDOMAIN.loca.lt"
-
+# Extract the final URL (usually wss:// if your proxy handles SSL)
+echo "✅ Server IP: wss://$SUBDOMAIN.play.minekube.net"
 
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
