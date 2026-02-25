@@ -11,9 +11,13 @@ jobs:
           echo "deb [signed-by=/etc/apt/trusted.gpg.d/playit.gpg] https://playit-cloud.github.io/ppa/data ./" | sudo tee /etc/apt/sources.list.d/playit-cloud.list
           sudo apt update && sudo apt install playit -y
       
-      - name: Force Generate Claim Link
+      - name: Force Claim Link Output
         run: |
-          echo "⏳ Requesting Claim Link from Playit..."
-          # We run 'playit run', which generates the link if playit.toml is missing
-          # 'grep' will look for the link specifically
-          timeout 60s playit run 2>&1 | grep -i "https://playit.gg/claim/" || echo "Check the full logs below if link didn't appear"
+          echo "⏳ Requesting Claim Link..."
+          # This creates a 'fake' terminal to capture the link
+          script -q -c "timeout 60s playit setup" /dev/null | grep -E "https://playit.gg/claim/[a-zA-Z0-9-]+" || echo "Link not found in filtered output, checking raw..."
+          
+          # Fallback: Print everything if grep fails
+          echo "--- RAW LOG START ---"
+          timeout 20s playit setup || true
+          echo "--- RAW LOG END ---"
