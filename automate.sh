@@ -15,46 +15,34 @@ else
 fi
 
 
-# --- 2. INSTALL LOCALTUNNEL ---
-echo "📥 Installing Localtunnel..."
-# GitHub Actions already has Node.js/npm installed
-npm install -g localtunnel
-
-# --- 3. START TUNNEL WITH FIXED SUBDOMAIN ---
-# CHANGE THIS NAME to something unique to you!
+# --- 3. START SERVEO WITH PERMANENT SUBDOMAIN ---
+# CHANGE THIS to something unique like 'zx-survival-2026'
 SUBDOMAIN="zx-survival" 
 
-# --- 3. START STABLE TUNNEL WITH WATCHDOG ---
-echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
+echo "🌐 Requesting Permanent IP: $SUBDOMAIN.serveo.net"
 
+start_serveo() {
+    # -o ServerAliveInterval=60 keeps the connection from idling
+    # -R $SUBDOMAIN:80:localhost:25565 maps your server to the subdomain
+    ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R "$SUBDOMAIN":80:localhost:25565 serveo.net >> serveo.log 2>&1 &
+    SERVEO_PID=$!
+}
+
+start_serveo
+
+# --- WATCHDOG ---
 (
     while true; do
-        # Update this line in your main script:
-        # We add --local-host 127.0.0.1 to speed up player logins
-        
-        lt --port 25565 --subdomain "$SUBDOMAIN" --local-host 127.0.0.1 --print-requests >> tunnel.log 2>&1 &
-        TUNNEL_PID=$!
-        
-        # 2. Watchdog: Monitor the tunnel for the next 20 minutes before a hard refresh
-        for i in {1..40}; do 
-            sleep 30
-            
-            # Check if the process is still running
-            if ! ps -p $TUNNEL_PID > /dev/null; then
-                echo "⚠️ Tunnel process died. Restarting..."
-                break
-            fi
-            
-            # 3. Heartbeat: Ping the URL to prevent "Idle Timeout"
-            # This keeps the 'pipe' warm and active
-            curl -s "https://$SUBDOMAIN.loca.lt" > /dev/null
-        done
-        
-        # Cleanup before restart to prevent 'Zombie' processes
-        kill $TUNNEL_PID 2>/dev/null
-        sleep 2
+        sleep 30
+        # If the tunnel dies, restart it immediately
+        if ! ps -p $SERVEO_PID > /dev/null; then
+            echo "⚠️ Tunnel disconnected. Reconnecting..."
+            start_serveo
+        fi
     done
 ) &
+
+echo "✅ Server IP: wss://$SUBDOMAIN.serveo.net"
 
 # --- 4. WAIT & ANNOUNCE ---
 echo "⏳ Waiting for Localtunnel to stabilize..."
