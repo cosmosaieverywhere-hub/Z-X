@@ -14,23 +14,37 @@ else
     echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
 
-# --- 3. START MINEKUBE (Permanent IP + No Login) ---
-SUBDOMAIN="zx-survival" # This will be your permanent name
+# --- 3. START BOOSTED LOCALTUNNEL ---
+SUBDOMAIN="zx-survival"
 
-echo "📥 Installing Minekube Connect..."
-curl -fsSL https://mgate.io/install.sh | bash
+echo "📥 Installing/Updating Localtunnel..."
+npm install -g localtunnel
 
-echo "🌐 Requesting Permanent IP: $SUBDOMAIN.play.minekube.net"
+# Function to start the tunnel with high-performance flags
+start_tunnel() {
+    # --local-host 127.0.0.1 forces LT to use a direct loopback, reducing lag
+    # We use a custom host if the main one is full (optional)
+    lt --port 25565 --subdomain "$SUBDOMAIN" --local-host 127.0.0.1 >> tunnel.log 2>&1 &
+    LT_PID=$!
+}
 
-# We start it in the background. 
-# The --name flag sets your permanent subdomain.
-# The --port 8081 points to your EaglerProxy port.
-./minekube-connect --name "$SUBDOMAIN" --port 25565 > tunnel.log 2>&1 &
-TUNNEL_PID=$!
+start_tunnel
 
-# Extract the final URL (usually wss:// if your proxy handles SSL)
-echo "✅ Server IP: wss://$SUBDOMAIN.play.minekube.net"
+# --- WATCHDOG (Now with 'Life Check') ---
+(
+    while true; do
+        sleep 45
+        # If the process is dead OR the URL isn't responding, restart it
+        if ! ps -p $LT_PID > /dev/null || ! curl -s "https://$SUBDOMAIN.loca.lt" > /dev/null; then
+            echo "⚠️ Tunnel crashed or blocked. Force restarting..."
+            pkill -f localtunnel
+            sleep 2
+            start_tunnel
+        fi
+    done
+) &
 
+echo "✅ Join Link: wss://$SUBDOMAIN.loca.lt"
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
   sleep 18000   # Wait until 6:59:30 PM IST   14370 18000 
