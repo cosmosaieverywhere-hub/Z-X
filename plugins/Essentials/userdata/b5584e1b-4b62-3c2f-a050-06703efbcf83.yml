@@ -4,20 +4,20 @@ godmode: false
 muted: false
 jailed: false
 ip-address: 127.0.0.1
-afk: false
+afk: true
 socialspy: false
 npc: false
 powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1772005053931
+  lastteleport: 1772016552885
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1772008512001
-  login: 1772008455583
+  logout: 1772018126539
+  login: 1772014925576
   kits:
     tools: 1760310358197
     opkit: 1771770360325
@@ -30,24 +30,24 @@ timestamps:
     pot1: 1765454530551
     bow: 1767360687000
     starter: 1767659838511
-money: '800'
+money: '1800'
 last-account-name: PRO_BRO
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.9176500628058583E7
-  y: 63.0
-  z: -2.3329557833018247E7
-  yaw: -164.97459411621094
-  pitch: -26.550090789794922
+  x: 1.9176501328306377E7
+  y: 52.0
+  z: -2.3329561744866982E7
+  yaw: 294.0240478515625
+  pitch: 15.899917602539062
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.917650086503539E7
+  x: 1.9176500697940886E7
   y: 63.0
-  z: -2.3329562134836826E7
-  yaw: -137.37448120117188
-  pitch: 68.54996490478516
+  z: -2.332956203572523E7
+  yaw: 158.57598876953125
+  pitch: 28.349740982055664
 homes:
   home:
     world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760

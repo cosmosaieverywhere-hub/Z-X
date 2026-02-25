@@ -132,14 +132,13 @@ world-settings:
         min: 20
         max: 40
     container-update-tick-rate: 1
-    mob-spawner-tick-rate: 1
     disable-explosion-knockback: false
     elytra-hit-wall-damage: true
     grass-spread-tick-rate: 1
     use-alternate-fallingblock-onGround-detection: false
     bed-search-radius: 1
-    prevent-tnt-from-moving-in-water: false
     non-player-arrow-despawn-rate: -1
+    prevent-tnt-from-moving-in-water: false
     armor-stands-tick: true
     keep-spawn-loaded: true
     anti-xray:
@@ -176,6 +175,7 @@ world-settings:
     spawner-nerfed-mobs-should-jump: false
     allow-leashing-undead-horse: false
     all-chunks-are-slime-chunks: false
+    mob-spawner-tick-rate: 1
     squid-spawn-height:
       maximum: 0.0
     disable-teleportation-suffocation-check: false

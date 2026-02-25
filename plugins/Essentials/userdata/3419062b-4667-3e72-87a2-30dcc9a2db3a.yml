@@ -11,13 +11,13 @@ powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1772006075434
+  lastteleport: 1772017473215
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1772006161147
-  login: 1772005089459
+  logout: 1772017581824
+  login: 1772017060148
   kits:
     bow: 1771765385295
     artmap: 1768472897361
@@ -29,19 +29,19 @@ last-account-name: XxVaibhavxX
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.9176514692284875E7
-  y: 88.0
-  z: -2.3329581465569396E7
-  yaw: 186.34352111816406
-  pitch: 68.94927978515625
+  x: 1.9176501564477094E7
+  y: 63.05489334703208
+  z: -2.3329562341844454E7
+  yaw: 154.04541015625
+  pitch: 79.88700103759766
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.917649838943484E7
-  y: 69.0
-  z: -2.332953432858731E7
-  yaw: 30.93963623046875
-  pitch: 31.446626663208008
+  x: 1.9176499266908687E7
+  y: 52.0
+  z: -2.3329551675229464E7
+  yaw: 128.13668823242188
+  pitch: 28.2080020904541
 mail:
 - legacy: false
   read: false
