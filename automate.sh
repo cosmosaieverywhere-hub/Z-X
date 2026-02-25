@@ -24,13 +24,41 @@ npm install -g localtunnel
 # CHANGE THIS NAME to something unique to you!
 SUBDOMAIN="zx-survival" 
 
+# --- 3. START STABLE TUNNEL WITH WATCHDOG ---
 echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
-lt --port 25565 --subdomain "$SUBDOMAIN" > tunnel.log 2>&1 &
 
-# --- 4. WAIT & SEND TO DISCORD ---
+(
+    while true; do
+        # 1. Start the tunnel with local-host mapping for better stability
+        lt --port 25565 --subdomain "$SUBDOMAIN" --local-host 127.0.0.1 --print-requests >> tunnel.log 2>&1 &
+        TUNNEL_PID=$!
+        
+        # 2. Watchdog: Monitor the tunnel for the next 20 minutes before a hard refresh
+        for i in {1..40}; do 
+            sleep 30
+            
+            # Check if the process is still running
+            if ! ps -p $TUNNEL_PID > /dev/null; then
+                echo "⚠️ Tunnel process died. Restarting..."
+                break
+            fi
+            
+            # 3. Heartbeat: Ping the URL to prevent "Idle Timeout"
+            # This keeps the 'pipe' warm and active
+            curl -s "https://$SUBDOMAIN.loca.lt" > /dev/null
+        done
+        
+        # Cleanup before restart to prevent 'Zombie' processes
+        kill $TUNNEL_PID 2>/dev/null
+        sleep 2
+    done
+) &
+
+# --- 4. WAIT & ANNOUNCE ---
 echo "⏳ Waiting for Localtunnel to stabilize..."
-sleep 8
+sleep 10
 IP="wss://$SUBDOMAIN.loca.lt"
+
 
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
