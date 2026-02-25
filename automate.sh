@@ -30,6 +30,8 @@ echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
 (
     while true; do
         # Update this line in your main script:
+        # We add --local-host 127.0.0.1 to speed up player logins
+        
         lt --port 25565 --subdomain "$SUBDOMAIN" --local-host 127.0.0.1 --print-requests >> tunnel.log 2>&1 &
         TUNNEL_PID=$!
         
