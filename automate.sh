@@ -64,7 +64,7 @@ IP="wss://$SUBDOMAIN.loca.lt"
 
 # --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
-  sleep 3600  # Wait until 6:59:30 PM IST   14370 18000 
+  sleep 18000   # Wait until 6:59:30 PM IST   14370 18000 
   for i in {30..1}; do
     echo "say [System] Server closing in $i seconds! Thank you for joining the server :)" > server_input
     sleep 1
