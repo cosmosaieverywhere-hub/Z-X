@@ -11,50 +11,50 @@ if [ -f "$CONFIG_PATH" ]; then
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
 fi
 
-# --- 2. INSTALL BORE ---
-echo "📥 Installing Bore..."
-sudo curl -Ls https://github.com/ekzhang/bore/releases/latest/download/bore-v0.5.1-x86_64-unknown-linux-musl.tar.gz | tar -xz
-sudo mv bore /usr/bin/
+# --- 2. INSTALL TOOLS (Cloudflared & Localtunnel) ---
+echo "📥 Installing Cloudflared..."
+wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+chmod +x cloudflared
+sudo mv cloudflared /usr/bin/
 
-# --- 3. START BORE TUNNEL ---
-# PICK YOUR PERMANENT PORT HERE
-REMOTE_PORT=45566 
-echo "🌐 Connecting to bore.pub:$REMOTE_PORT..."
-bore local 25565 --to bore.pub --port $REMOTE_PORT > tunnel.log 2>&1 &
-BORE_PID=$!
+echo "📥 Installing Localtunnel..."
+npm install -g localtunnel --silent
 
-# --- 4. THE SSL MAGIC (WSS Proxy) ---
-# We use a simple Node.js script to tell the browser "It's okay, this is Secure!"
-cat <<EOF > wss-proxy.js
-const http = require('http');
-const httpProxy = require('http-proxy');
-const proxy = httpProxy.createProxyServer({ target: 'ws://localhost:25565', ws: true });
-const server = http.createServer((req, res) => { res.end('Proxy Active'); });
-server.on('upgrade', (req, socket, head) => { proxy.ws(req, socket, head); });
-server.listen(25565);
-EOF
+# --- 3. START THE STABLE BACKEND (Cloudflare) ---
+echo "🌐 Starting Cloudflare Stability Tunnel..."
+cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
+CF_PID=$!
 
-# Install the small proxy library
-npm install http-proxy --silent
-node wss-proxy.js &
-PROXY_PID=$!
+# --- 4. START THE LOBBY FRONT-END (Localtunnel) ---
+# This gives players the easy "zx-survival.loca.lt" address
+echo "🔗 Starting Localtunnel Front-End..."
+lt --port 25565 --subdomain zx-survival > lt.log 2>&1 &
+LT_PID=$!
 
+# Wait a moment for links to generate
+sleep 5
 echo "------------------------------------------------"
-echo "✅ SERVER IS ONLINE (SSL ENABLED)"
-echo "🔗 JOIN LINK: wss://bore.pub:$REMOTE_PORT"
+echo "✅ SERVER IS ONLINE"
+echo "🏠 LOBBY IP: wss://zx-survival.loca.lt"
+echo "⚡ STABILITY BACKEND: Check cloudflare.log for IP"
 echo "------------------------------------------------"
 
-# --- 5. 4-HOUR TIMER & WATCHDOG ---
+# --- 5. WATCHDOG (Keep both tunnels alive) ---
 (
     while true; do
-        sleep 45
-        if ! ps -p $BORE_PID > /dev/null; then
-            bore local 25565 --to bore.pub --port $REMOTE_PORT >> tunnel.log 2>&1 &
-            BORE_PID=$!
+        sleep 30
+        if ! ps -p $CF_PID > /dev/null; then
+            cloudflared tunnel --url tcp://localhost:25565 >> cloudflare.log 2>&1 &
+            CF_PID=$!
+        fi
+        if ! ps -p $LT_PID > /dev/null; then
+            lt --port 25565 --subdomain zx-survival >> lt.log 2>&1 &
+            LT_PID=$!
         fi
     done
 ) &
 
+# 4-hour kill switch (14400 seconds)
 (
   sleep 18000
   echo "stop" > server_input
