@@ -1,0 +1,31 @@
+name: Download Eaglercraft Plugins
+
+on:
+  workflow_dispatch: # Allows you to run this manually from the "Actions" tab
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to push the file back to your repo
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create Plugins Folder
+        run: mkdir -p plugins
+
+      - name: Download EaglerXServer Plugin
+        run: |
+          # Downloading the latest EaglerXServer (Spigot/Bungee compatible)
+          # This version supports the /transfer command
+          curl -L -o plugins/EaglercraftXServer.jar "https://github.com/lax1dude/eaglerxserver/releases/latest/download/EaglercraftXServer-Latest.jar"
+
+      - name: Commit and Push Plugin
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add plugins/EaglercraftXServer.jar
+          git commit -m "System: Auto-downloaded EaglercraftXServer plugin" || echo "No changes to commit"
+          git push
