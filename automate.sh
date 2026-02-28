@@ -22,7 +22,7 @@ npm install -g localtunnel --silent
 
 # --- 3. START THE STABLE BACKEND (Cloudflare) ---
 echo "🌐 Starting Cloudflare Stability Tunnel..."
-cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
+cloudflared tunnel --url https://localhost:25565 > cloudflare.log 2>&1 &
 CF_PID=$!
 
 # --- 4. START THE LOBBY FRONT-END (Localtunnel) ---
