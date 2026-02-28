@@ -1,67 +1,40 @@
 #!/bin/bash
 
-# --- 1. SETUP ---
-mkdir -p ~/.ssh
-rm -f tunnel.log
-rm -f server_input && mkfifo server_input
+# --- 1. CONFIG & CLEANUP ---
+SUBDOMAIN="zx-survival"
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
+rm -f server_input && mkfifo server_input
+pkill -f "node bouncer.js" || true
+pkill -f "cloudflared" || true
+pkill -f "localtunnel" || true
 
-# Inject Discord Token
+# --- 2. DISCORD TOKEN INJECTION ---
 if [ -f "$CONFIG_PATH" ]; then
+    echo "🔑 Injecting Discord Token..."
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
 fi
 
-# --- 2. INSTALL TOOLS (Cloudflared & Localtunnel) ---
-echo "📥 Installing Cloudflared..."
-wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
-chmod +x cloudflared
-sudo mv cloudflared /usr/bin/
+# --- 3. DEPENDENCIES ---
+echo "📦 Installing Networking Tools..."
+npm install ws localtunnel -g || npm install ws localtunnel 
 
-echo "📥 Installing Localtunnel..."
-npm install -g localtunnel --silent
+# --- 4. THE GHOST BOUNCER (Embedded Node.js) ---
+# This script catches players on Localtunnel and shoots them to Cloudflare.
+cat << 'EOF' > bouncer.js
+const WebSocket = require('ws');
+const TARGET_CF_URL = process.argv[2]; 
+const wss = new WebSocket.Server({ port: 25566 });
 
-# --- 3. START THE STABLE BACKEND (Cloudflare) ---
-echo "🌐 Starting Cloudflare Stability Tunnel..."
-cloudflared tunnel --url https://localhost:25565 > cloudflare.log 2>&1 &
-CF_PID=$!
+console.log(`🚀 Bouncer Active. Target: ${TARGET_CF_URL}`);
 
-# --- 4. START THE LOBBY FRONT-END (Localtunnel) ---
-# This gives players the easy "zx-survival.loca.lt" address
-echo "🔗 Starting Localtunnel Front-End..."
-lt --port 25565 --subdomain zx-survival > lt.log 2>&1 &
-LT_PID=$!
-
-# Wait a moment for links to generate
-sleep 5
-echo "------------------------------------------------"
-echo "✅ SERVER IS ONLINE"
-echo "🏠 LOBBY IP: wss://zx-survival.loca.lt"
-echo "⚡ STABILITY BACKEND: Check cloudflare.log for IP"
-echo "------------------------------------------------"
-
-# --- 5. WATCHDOG (Keep both tunnels alive) ---
-(
-    while true; do
-        sleep 30
-        if ! ps -p $CF_PID > /dev/null; then
-            cloudflared tunnel --url tcp://localhost:25565 >> cloudflare.log 2>&1 &
-            CF_PID=$!
-        fi
-        if ! ps -p $LT_PID > /dev/null; then
-            lt --port 25565 --subdomain zx-survival >> lt.log 2>&1 &
-            LT_PID=$!
-        fi
-    done
-) &
-
-# 4-hour kill switch (14400 seconds)
-(
-  sleep 18000
-  echo "stop" > server_input
-) &
-
-# --- 6. START SERVER ---
-echo "🚀 Minecraft is starting..."
-( tail -f server_input & ) | bash ./run.sh
-
-# --- 7. SAVE & PUSH ---
+wss.on('connection', (ws) => {
+    // Wait 150ms to ensure the handshake is stable
+    setTimeout(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+            // Eaglercraft Transfer Packet
+            ws.send(JSON.stringify({
+                type: "transfer", 
+                url: TARGET_CF_URL
+            }));
+            console.log("⚡ Player Handover: LT -> Cloudflare");
+            // Disconnect from LT after 300ms so the 2-player
