@@ -65,11 +65,3 @@ echo "🚀 Minecraft is starting..."
 ( tail -f server_input & ) | bash ./run.sh
 
 # --- 7. SAVE & PUSH ---
-pkill -P $$ 
-git config --global user.name "github-actions[bot]"
-git config --global user.email "github-actions[bot]@users.noreply.github.com"
-git add .
-git reset "$CONFIG_PATH"
-git commit -m "Save: $(date)" || echo "No changes"
-git pull --rebase origin main
-git push origin main
