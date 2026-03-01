@@ -7,7 +7,7 @@ forward_secret_file: 'eagler_forwarding.secret'
 spoof_player_address_forwarded: true
 tls_config:
   enable_tls: false
-  require_tls: false
+  require_tls: true
   tls_managed_by_external_plugin: false
   tls_public_chain_file: 'fullchain.pem'
   tls_private_key_file: 'privatekey.pem'
