@@ -15,33 +15,26 @@ if [ -f "$CONFIG_PATH" ]; then
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
 fi
 
-# --- 3. START CLOUDFLARE (HTTP Mode for HTTPS Link) ---
-echo "📥 Setting up Cloudflared..."
-if [ ! -f "./cloudflared" ]; then
-    wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
-    chmod +x cloudflared
-fi
+# --- 3. START TUNNEL (Pinggy Alternative) ---
+echo "🌐 Starting Pinggy Tunnel (HTTPS/WSS)..."
+# We use SSH to create a tunnel to port 8081
+# The '-o StrictHostKeyChecking=no' prevents the script from hanging on a yes/no prompt
+ssh -o StrictHostKeyChecking=no -p 443 -R0:localhost:8081 a.pinggy.io > tunnel.log 2>&1 &
 
-echo "🌐 Starting Cloudflare (Generating HTTPS Link)..."
-# We tunnel the Eaglercraft port (usually 8081 if using the plugin)
-./cloudflared tunnel --url http://localhost:25565 >> tunnel.log 2>&1 &
-
-# Wait for the URL to generate
-sleep 12
-ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.trycloudflare\.com" tunnel.log | head -n 1)
+# Wait for Pinggy to generate the URL
+sleep 10
+ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.pinggy\.link" tunnel.log | head -n 1)
 
 if [ -z "$ADDRESS" ]; then
-    echo "❌ Failed to get Cloudflare URL. Printing logs:"
+    echo "❌ Failed to get Tunnel URL. Printing logs:"
     cat tunnel.log
     exit 1
 fi
 
-# This is your HTTPS link
-FINAL_HTTPS="$ADDRESS"
-# This is the WSS link the game needs
+# Convert https:// to wss:// for Eaglercraft
 FINAL_WSS=${ADDRESS/https/wss}
+echo "✅ Tunnel Ready: $FINAL_WSS"
 
-echo "✅ HTTPS Link Ready: $FINAL_HTTPS"
 
 # --- 4. START GHOST BOUNCER (Frontend Redirection) ---
 echo "👻 Starting Bouncer..."
