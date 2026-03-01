@@ -7,8 +7,8 @@ rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
 SUBDOMAIN="zx-survival"
 
-# Kill any lingering processes from previous runs
-pkill -f "cloudflared" || true
+# Kill old processes
+pkill -f "ssh.*pinggy" || true
 pkill -f "node bouncer.js" || true
 pkill -f "localtunnel" || true
 
@@ -16,36 +16,33 @@ pkill -f "localtunnel" || true
 if [ -f "$CONFIG_PATH" ]; then
     echo "🔐 Injecting Discord Token..."
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
-else
-    echo "⚠️ Warning: EssentialsDiscord config not found."
 fi
 
-# --- 3. INSTALL CLOUDFLARE ---
-if [ ! -f "./cloudflared" ]; then
-    echo "📥 Installing Cloudflared..."
-    wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
-    chmod +x cloudflared
-fi
+# --- 3. FIX PLUGIN CONFIG (Ensure Port 8081) ---
+echo "⚙️ Configuring Eaglercraft..."
+mkdir -p plugins/EaglercraftXServer
+cat << EOF > plugins/EaglercraftXServer/settings.yml
+server:
+  address: '0.0.0.0:8081'
+  server_icon: 'server-icon.gif'
+tls_config:
+  enable_tls: false
+EOF
 
-# --- 4. START TUNNEL (AUTO-RESTARTING) ---
-echo "🌐 Starting Cloudflare Quick Tunnel..."
-(
-    while true; do
-        ./cloudflared tunnel --url http://localhost:25565 >> tunnel.log 2>&1
-        sleep 5 
-    done
-) &
+# --- 4. START PINGGY TUNNEL (Replacing Cloudflare) ---
+echo "🌐 Starting Pinggy Tunnel on Port 8081..."
+ssh -o StrictHostKeyChecking=no -p 443 -R0:localhost:8081 a.pinggy.io > tunnel.log 2>&1 &
 
 # --- 5. WAIT FOR URL & SETUP BOUNCER ---
-echo "⏳ Waiting for Cloudflare link..."
+echo "⏳ Waiting for Pinggy link..."
 sleep 15
-ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.trycloudflare\.com" tunnel.log | head -n 1)
+ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.pinggy\.link" tunnel.log | head -n 1)
 
 if [ -n "$ADDRESS" ]; then
     FINAL_WSS=${ADDRESS/https/wss}
     echo "✅ Backend Live: $FINAL_WSS"
 
-    # Start the Bouncer to point the Static IP to this new Cloudflare link
+    # Start the Bouncer for your Static Localtunnel IP
     npm install ws --no-save
     cat << EOF > bouncer.js
 const WebSocket = require('ws');
@@ -60,14 +57,14 @@ wss.on('connection', (ws) => {
 });
 EOF
     node bouncer.js &
-
-    # Start Localtunnel for the Static IP
     npx localtunnel --port 25566 --subdomain "$SUBDOMAIN" > lt.log 2>&1 &
 
     # Send to Discord
-    curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online!**\\n🏠 **Static IP:** \`wss://$SUBDOMAIN.loca.lt\`\\n🔗 **Direct IP:** \`$FINAL_WSS\`\\n⏰ **Status:** Online for 5 hours.\"}" "$DISCORD_WEBHOOK"
+    if [ ! -z "$DISCORD_WEBHOOK" ]; then
+        curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online!**\\n🏠 **Static IP:** \`wss://$SUBDOMAIN.loca.lt\`\\n🔗 **Direct IP:** \`$FINAL_WSS\`\"}" "$DISCORD_WEBHOOK"
+    fi
 else
-    echo "❌ Failed to get Cloudflare URL. Check tunnel.log"
+    echo "❌ Failed to get Pinggy URL. Check tunnel.log"
     cat tunnel.log
 fi
 
@@ -82,6 +79,7 @@ fi
 ) &
 
 # --- 7. START SERVER ---
+echo "🚀 Minecraft is starting..."
 tail -f server_input | bash ./run.sh
 
 # --- 8. SAVE & PUSH ---
