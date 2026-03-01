@@ -1,66 +1,61 @@
 #!/bin/bash
 
-# --- 1. SETUP & CONFIG ---
+# --- 1. SETUP ---
+mkdir -p ~/.ssh
+rm -f tunnel.log
 rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
-SUBDOMAIN="zx-survival"
 
-# --- 2. THE SECRET SAUCE: NO CONFLICTS ---
-# Move Java to 25566 so the Eaglercraft Bridge can own 25565
-sed -i 's/server-port=.*/server-port=25566/' server.properties
-sed -i 's/online-mode=.*/online-mode=false/' server.properties
-
-mkdir -p plugins/EaglercraftXServer
-cat << EOF > plugins/EaglercraftXServer/settings.yml
-server:
-  address: '0.0.0.0:25565'
-tls_config:
-  enable_tls: false
-EOF
-
-# --- 3. GET THE BYPASS PASSWORD ---
-echo "🔑 YOUR TUNNEL PASSWORD (IP) IS:"
-curl -s https://loca.lt/mytunnelpassword
-echo -e "\n----------------------------"
-
-# --- 4. START LOCALTUNNEL WITH WATCHDOG ---
-echo "📥 Installing/Starting Localtunnel..."
-npm install -g localtunnel > /dev/null 2>&1
-
-(
-    while true; do
-        lt --port 25565 --subdomain "$SUBDOMAIN" --print-requests >> tunnel.log 2>&1 &
-        TUNNEL_PID=$!
-        # Stay alive for 20 mins then refresh
-        for i in {1..40}; do 
-            sleep 30
-            if ! ps -p $TUNNEL_PID > /dev/null; then break; fi
-            curl -s "https://$SUBDOMAIN.loca.lt" > /dev/null
-        done
-        kill $TUNNEL_PID 2>/dev/null
-    done
-) &
-
-# --- 5. DISCORD ANNOUNCEMENT ---
-IP="wss://$SUBDOMAIN.loca.lt"
-if [ ! -z "$DISCORD_WEBHOOK" ]; then
-    curl -s -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online!**\\n🏠 **IP:** \`$IP\`\\n🔑 **Password:** (Check GitHub Logs if prompted)\"}" "$DISCORD_WEBHOOK" > /dev/null
+if [ -f "$CONFIG_PATH" ]; then
+    echo "🔐 Injecting Discord Token..."
+    # Replace any existing token value with the secret from GitHub
+    sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
+else
+    echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
 
-# --- 6. 5-HOUR TIMER ---
+
+# --- 2. INSTALL LOCALTUNNEL ---
+echo "📥 Installing Localtunnel..."
+# GitHub Actions already has Node.js/npm installed
+npm install -g localtunnel
+
+# --- 3. START TUNNEL WITH FIXED SUBDOMAIN ---
+# CHANGE THIS NAME to something unique to you!
+SUBDOMAIN="zx-survival" 
+
+echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
+lt --port 25565 --subdomain "$SUBDOMAIN" > tunnel.log 2>&1 &
+
+# --- 4. WAIT & SEND TO DISCORD ---
+echo "⏳ Waiting for Localtunnel to stabilize..."
+sleep 8
+IP="wss://$SUBDOMAIN.loca.lt"
+
+
+
+# --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
 (
-  sleep 18000
+  sleep 18000  # Wait until 6:59:30 PM IST   14370
+  for i in {30..1}; do
+    echo "say [System] Server closing in $i seconds! Thank you for joining the server :)" > server_input
+    sleep 1
+  done
   echo "stop" > server_input
 ) &
 
-# --- 7. START SERVER ---
-echo "🚀 Starting Minecraft (Eaglercraft 25565 <-> Java 25566)..."
-( tail -f server_input & ) | bash ./run.sh
+# --- 5. START SERVER ---
+tail -f server_input | bash ./run.sh
 
-# --- 8. SAVE ---
+# --- 6. PUSH BACK TO GITHUB ---
 git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git add .
+
+# 2. Specifically unstage the config file so it won't be committed
 git reset "$CONFIG_PATH"
+
+# 3. Commit and push the rest
 git pull --rebase origin main
-git commit -m "Auto-Save: $(date)" || echo "No changes"
+
 git push origin main
