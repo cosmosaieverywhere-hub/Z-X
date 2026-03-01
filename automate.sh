@@ -1,79 +1,93 @@
 #!/bin/bash
 
-# --- 1. CONFIG & CLEANUP ---
-SUBDOMAIN="zx-survival"
-CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
-rm -f server_input && mkfifo server_input
+# --- 1. SETUP & CLEANUP ---
+mkdir -p ~/.ssh
 rm -f tunnel.log
+rm -f server_input && mkfifo server_input
+CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
+SUBDOMAIN="zx-survival"
+
+# Kill any lingering processes from previous runs
+pkill -f "cloudflared" || true
 pkill -f "node bouncer.js" || true
-pkill -f "ssh.*pinggy" || true
 pkill -f "localtunnel" || true
 
-# --- 2. REPAIR & CONFIGURE PLUGINS ---
-echo "🧹 Fixing EaglercraftXServer Plugin..."
-# Redownload if corrupted (fixes the Zip END header error)
-if [ ! -f "plugins/EaglercraftXServer.jar" ] || ! unzip -t plugins/EaglercraftXServer.jar > /dev/null 2>&1; then
-    curl -L "https://github.com/lax1dude/eaglerxserver/releases/latest/download/EaglerXServer.jar" -o plugins/EaglercraftXServer.jar
+# --- 2. DISCORD TOKEN INJECTION ---
+if [ -f "$CONFIG_PATH" ]; then
+    echo "🔐 Injecting Discord Token..."
+    sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
+else
+    echo "⚠️ Warning: EssentialsDiscord config not found."
 fi
 
-# Force the correct port (8081) and GIF icon support in settings.yml
-mkdir -p plugins/EaglercraftXServer
-if [ -f "plugins/EaglercraftXServer/settings.yml" ]; then
-    sed -i "s/address: .*/address: '0.0.0.0:8081'/" plugins/EaglercraftXServer/settings.yml
-    sed -i "s/enable_tls: true/enable_tls: false/" plugins/EaglercraftXServer/settings.yml
-    # Set this to .gif if you uploaded a gif!
-    sed -i "s/server_icon: .*/server_icon: 'server-icon.gif'/" plugins/EaglercraftXServer/settings.yml
+# --- 3. INSTALL CLOUDFLARE ---
+if [ ! -f "./cloudflared" ]; then
+    echo "📥 Installing Cloudflared..."
+    wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+    chmod +x cloudflared
 fi
 
-# --- 3. INSTALL DEPENDENCIES ---
-echo "📦 Installing WebSocket library..."
-npm install ws --no-save
+# --- 4. START TUNNEL (AUTO-RESTARTING) ---
+echo "🌐 Starting Cloudflare Quick Tunnel..."
+(
+    while true; do
+        ./cloudflared tunnel --url http://localhost:25565 >> tunnel.log 2>&1
+        sleep 5 
+    done
+) &
 
-# --- 4. START TUNNEL ON 8081 (The WebSocket Port) ---
-echo "🌐 Starting Pinggy Tunnel..."
-ssh -o StrictHostKeyChecking=no -p 443 -R0:localhost:8081 a.pinggy.io > tunnel.log 2>&1 &
+# --- 5. WAIT FOR URL & SETUP BOUNCER ---
+echo "⏳ Waiting for Cloudflare link..."
+sleep 15
+ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.trycloudflare\.com" tunnel.log | head -n 1)
 
-sleep 10
-ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.pinggy\.link" tunnel.log | head -n 1)
+if [ -n "$ADDRESS" ]; then
+    FINAL_WSS=${ADDRESS/https/wss}
+    echo "✅ Backend Live: $FINAL_WSS"
 
-if [ -z "$ADDRESS" ]; then
-    echo "❌ Failed to get Tunnel URL. Logs:"
-    cat tunnel.log
-    exit 1
-fi
-
-FINAL_WSS=${ADDRESS/https/wss}
-echo "✅ Tunnel Ready: $FINAL_WSS"
-
-# --- 5. START GHOST BOUNCER ---
-echo "👻 Starting Bouncer on Port 25566..."
-cat << EOF > bouncer.js
+    # Start the Bouncer to point the Static IP to this new Cloudflare link
+    npm install ws --no-save
+    cat << EOF > bouncer.js
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 25566 });
 wss.on('connection', (ws) => {
     setTimeout(() => {
         if (ws.readyState === WebSocket.OPEN) {
             ws.send(JSON.stringify({ type: "transfer", url: "$FINAL_WSS" }));
-            setTimeout(() => ws.close(), 300);
+            setTimeout(() => ws.close(), 500);
         }
-    }, 150);
+    }, 200);
 });
 EOF
-node bouncer.js &
+    node bouncer.js &
 
-# --- 6. START LOCALTUNNEL & MINECRAFT ---
-echo "🔗 Registering Static IP: wss://$SUBDOMAIN.loca.lt"
-npx localtunnel --port 25566 --subdomain "$SUBDOMAIN" > lt.log 2>&1 &
+    # Start Localtunnel for the Static IP
+    npx localtunnel --port 25566 --subdomain "$SUBDOMAIN" > lt.log 2>&1 &
 
-echo "🚀 Minecraft is starting. Port 25565 (Internal) -> Port 8081 (WebSocket) -> Internet"
-( tail -f server_input & ) | bash ./run.sh
+    # Send to Discord
+    curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online!**\\n🏠 **Static IP:** \`wss://$SUBDOMAIN.loca.lt\`\\n🔗 **Direct IP:** \`$FINAL_WSS\`\\n⏰ **Status:** Online for 5 hours.\"}" "$DISCORD_WEBHOOK"
+else
+    echo "❌ Failed to get Cloudflare URL. Check tunnel.log"
+    cat tunnel.log
+fi
 
-# --- 7. SAVE & PUSH ---
-echo "💾 Saving world data..."
-pkill -P $$ 
+# --- 6. 5-HOUR TIMER ---
+(
+  sleep 18000
+  for i in {30..1}; do
+    echo "say [System] Server closing in $i seconds!" > server_input
+    sleep 1
+  done
+  echo "stop" > server_input
+) &
+
+# --- 7. START SERVER ---
+tail -f server_input | bash ./run.sh
+
+# --- 8. SAVE & PUSH ---
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git add .
 git reset "$CONFIG_PATH"
-git commit -m "Auto-Save: $(date)" || echo "No changes to save"
+git commit -m "Automated Save: $(date)" || echo "No changes to save"
 git push origin main
