@@ -19,7 +19,7 @@ fi
 echo "🌐 Starting Pinggy Tunnel (HTTPS/WSS)..."
 # We use SSH to create a tunnel to port 8081
 # The '-o StrictHostKeyChecking=no' prevents the script from hanging on a yes/no prompt
-ssh -o StrictHostKeyChecking=no -p 443 -R0:localhost:8081 a.pinggy.io > tunnel.log 2>&1 &
+ssh -o StrictHostKeyChecking=no -p 443 -R0:localhost:25565 a.pinggy.io > tunnel.log 2>&1 &
 
 # Wait for Pinggy to generate the URL
 sleep 10
