@@ -47,7 +47,6 @@ EOF
 # --- 5. START CLOUDFLARE (The Speed) ---
 echo "🌐 Setting up Cloudflare..."
 
-# Download cloudflared if it doesn't exist
 if [ ! -f "./cloudflared" ]; then
     echo "📥 Downloading Cloudflare Binary..."
     wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
@@ -55,26 +54,34 @@ if [ ! -f "./cloudflared" ]; then
 fi
 
 echo "📡 Opening High-Speed Tunnel..."
-./cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
-
-# Wait and verify the URL
-MAX_RETRIES=30
-COUNT=0
-STABLE_ADDR=""
-
-while [ -z "$STABLE_ADDR" ] && [ $COUNT -lt $MAX_RETRIES ]; do
-    STABLE_ADDR=$(grep -oE "[a-zA-Z0-9.-]+\.tcp\.cloudflare\.com:[0-9]+" cloudflare.log | head -n 1)
-    sleep 1
-    ((COUNT++))
+# We use a loop to try and start the tunnel up to 3 times if it fails
+ATTEMPT=0
+while [ $ATTEMPT -lt 3 ]; do
+    echo "Attempt $((ATTEMPT+1)) to start Cloudflare..."
+    rm -f cloudflare.log
+    ./cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
+    
+    # Wait up to 20 seconds for the URL to appear
+    for i in {1..20}; do
+        STABLE_ADDR=$(grep -oE "[a-zA-Z0-9.-]+\.tcp\.cloudflare\.com:[0-9]+" cloudflare.log | head -n 1)
+        if [ ! -z "$STABLE_ADDR" ]; then
+            echo "✅ Cloudflare Tunnel Online!"
+            break 2
+        fi
+        sleep 1
+    done
+    
+    echo "⚠️ Failed to get URL, retrying..."
+    pkill -f cloudflared
+    ((ATTEMPT++))
 done
 
 if [ -z "$STABLE_ADDR" ]; then
-    echo "❌ Error: Cloudflare Tunnel failed. Content of cloudflare.log:"
+    echo "❌ Error: Cloudflare Tunnel failed after 3 attempts."
     cat cloudflare.log
     exit 1
 fi
-FINAL_WSS="wss://${STABLE_ADDR}"  
-
+FINAL_WSS="wss://${STABLE_ADDR}"
 echo "🚀 Starting Ghost Bouncer on port 25566..."
 node bouncer.js "$FINAL_WSS" &
 BOUNCER_PID=$!
