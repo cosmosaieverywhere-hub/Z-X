@@ -37,4 +37,58 @@ wss.on('connection', (ws) => {
                 url: TARGET_CF_URL
             }));
             console.log("⚡ Player Handover: LT -> Cloudflare");
-            // Disconnect from LT after 300ms so the 2-player
+            // Disconnect from LT after 300ms so the 2-player limit is never hit
+            setTimeout(() => ws.close(), 300);
+        }
+    }, 150);
+});
+EOF
+
+# --- 5. START CLOUDFLARE (The Speed) ---
+echo "🌐 Opening Cloudflare High-Speed Tunnel..."
+./cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
+sleep 15
+
+# Extract the random Cloudflare URL
+STABLE_ADDR=$(grep -oE "[a-zA-Z0-9.-]+\.tcp\.cloudflare\.com:[0-9]+" cloudflare.log | head -n 1)
+if [ -z "$STABLE_ADDR" ]; then
+    echo "❌ Error: Cloudflare Tunnel failed to start. Check cloudflare.log"
+    exit 1
+fi
+FINAL_WSS="wss://${STABLE_ADDR}"
+
+# --- 6. START BOUNCER & LOCALTUNNEL (The Static IP) ---
+node bouncer.js "$FINAL_WSS" &
+BOUNCER_PID=$!
+
+echo "🔗 Registering Static IP: wss://$SUBDOMAIN.loca.lt"
+npx localtunnel --port 25566 --subdomain "$SUBDOMAIN" > lt.log 2>&1 &
+
+# --- 7. START MINECRAFT SERVER ---
+echo "------------------------------------------------"
+echo "✅ STEALTH SYSTEM ONLINE"
+echo "🏠 JOIN AT: wss://$SUBDOMAIN.loca.lt"
+echo "💨 DATA: Cloudflare ($FINAL_WSS)"
+echo "------------------------------------------------"
+
+# 5-hour auto-stop (18000 seconds)
+(
+  sleep 18000
+  echo "say [SYSTEM] Server auto-restarting for backup..." > server_input
+  sleep 10
+  echo "stop" > server_input
+) &
+
+echo "🚀 Minecraft is starting..."
+( tail -f server_input & ) | bash ./run.sh
+
+# --- 8. SAVE & PUSH TO GITHUB ---
+echo "💾 Saving world data..."
+pkill -P $$ 
+git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
+git add .
+git reset "$CONFIG_PATH" # Don't push the secret token
+git commit -m "Auto-Save: $(date)" || echo "No changes to save"
+git pull --rebase origin main
+git push origin main
