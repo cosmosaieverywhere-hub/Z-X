@@ -73,7 +73,7 @@ echo "------------------------------------------------"
 
 # 5-hour auto-stop (18000 seconds)
 (
-  sleep 18000
+  sleep 3600
   echo "say [SYSTEM] Server auto-restarting for backup..." > server_input
   sleep 10
   echo "stop" > server_input
