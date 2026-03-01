@@ -1,69 +1,70 @@
 #!/bin/bash
 
-# --- 1. SETUP ---
+# --- 1. SETUP & CLEANUP ---
 mkdir -p ~/.ssh
 rm -f tunnel.log
 rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
+pkill -f "ssh.*serveo.net" || true
 
+# --- 2. DISCORD TOKEN INJECTION ---
 if [ -f "$CONFIG_PATH" ]; then
     echo "🔐 Injecting Discord Token..."
-    # Replace any existing token value with the secret from GitHub
-    sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
-else
-    echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
+    sed -i "s|token: \".*\"|token: \"$ESSENTIALS_DISCORD_TOKEN\"|" "$CONFIG_PATH"
 fi
 
+# --- 3. FORCE EAGLERCRAFT TO 25565 ---
+echo "⚙️ Setting Eaglercraft Bridge to Port 25565..."
+mkdir -p plugins/EaglercraftXServer
+cat << EOF > plugins/EaglercraftXServer/settings.yml
+server:
+  address: '0.0.0.0:25565'
+  server_icon: 'server-icon.gif'
+tls_config:
+  enable_tls: false
+EOF
 
-# --- 2. INSTALL LOCALTUNNEL ---
-echo "📥 Installing Localtunnel..."
-# GitHub Actions already has Node.js/npm installed
-npm install -g localtunnel
-
-# --- 3. START TUNNEL WITH FIXED SUBDOMAIN ---
-# CHANGE THIS NAME to something unique to you!
-SUBDOMAIN="zx-survival" 
-
-
-
-
-
-
-echo "🌐 Starting Localtunnel on subdomain: $SUBDOMAIN"
-lt --port 25565 --subdomain "$SUBDOMAIN" > tunnel.log 2>&1 &
-
-
-
-# --- 4. WAIT & SEND TO DISCORD ---
-echo "⏳ Waiting for Localtunnel to stabilize..."
-sleep 8
-IP="wss://$SUBDOMAIN.loca.lt"
-
-echo "✅ Server Live at: $IP"
-curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online (Localtunnel)!**\\n🔗 **IP:** \`$IP\`\\n⚠️ *Note: If it won't connect, visit the link in your browser first to click 'Continue'.*\"}" "$DISCORD_WEBHOOK"
-
-
-# --- 4. 4-HOUR TIMER WITH 30s COUNTDOWN ---
+# --- 4. START THE NO-WARNING TUNNEL (Serveo) ---
+# We tunnel 25565 directly. Serveo has NO password pages!
+echo "🌐 Starting Serveo Tunnel on port 25565..."
 (
-  sleep 18000  # Wait until 6:59:30 PM IST   14370
-  for i in {30..1}; do
-    echo "say [System] Server closing in $i seconds! Thank you for joining the server :)" > server_input
-    sleep 1
-  done
+    while true; do
+        # We request the 'zx-survival' name on port 80 (standard web port)
+        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 \
+            -R zx-survival:80:localhost:25565 serveo.net >> tunnel.log 2>&1
+        sleep 5 
+    done
+) &
+
+# --- 5. WAIT & GET THE LINK ---
+sleep 15
+ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.serveo\.net" tunnel.log | head -n 1)
+
+if [ -n "$ADDRESS" ]; then
+    IP=${ADDRESS/https/wss}
+    echo "✅ PERFECT IP READY: $IP"
+    if [ ! -z "$DISCORD_WEBHOOK" ]; then
+        curl -s -H "Content-Type: application/json" -X POST -d "{\"content\": \"🔥 **Server Online!**\\n💎 **Join:** \`$IP\`\\n🚀 **No Password/Warning Page!**\"}" "$DISCORD_WEBHOOK" > /dev/null
+    fi
+else
+    echo "⚠️ Serveo is assigning a link, please wait..."
+    cat tunnel.log
+fi
+
+# --- 6. 5-HOUR TIMER ---
+(
+  sleep 18000
   echo "stop" > server_input
 ) &
 
-# --- 5. START SERVER ---
-tail -f server_input | bash ./run.sh
+# --- 7. START SERVER ---
+echo "🚀 Minecraft is starting on 25565..."
+( tail -f server_input & ) | bash ./run.sh
 
-# --- 6. PUSH BACK TO GITHUB ---
+# --- 8. SAVE & PUSH ---
 git config --global user.name "github-actions[bot]"
-git config --global user.email "github-actions[bot]@users.noreply.github.com"
 git add .
-
-# 2. Specifically unstage the config file so it won't be committed
 git reset "$CONFIG_PATH"
-
-# 3. Commit and push the rest
-git commit -m "Automated Save: $(date)" || echo "No changes to save"
+git pull --rebase origin main
+git commit -m "Auto-Save: $(date)" || echo "No changes"
 git push origin main
