@@ -6,45 +6,39 @@ CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
 rm -f server_input && mkfifo server_input
 rm -f tunnel.log
 pkill -f "node bouncer.js" || true
-pkill -f "cloudflared" || true
+pkill -f "ssh.*pinggy" || true
 pkill -f "localtunnel" || true
 
-# --- 2. DISCORD TOKEN INJECTION ---
-if [ -f "$CONFIG_PATH" ]; then
-    echo "🔑 Injecting Discord Token..."
-    sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
-fi
+# --- 2. INSTALL DEPENDENCIES ---
+echo "📦 Installing WebSocket library..."
+npm install ws --no-save
 
-# --- 3. START TUNNEL (Pinggy Alternative) ---
-echo "🌐 Starting Pinggy Tunnel (HTTPS/WSS)..."
-# We use SSH to create a tunnel to port 8081
-# The '-o StrictHostKeyChecking=no' prevents the script from hanging on a yes/no prompt
+# --- 3. START TUNNEL (Backend Data) ---
+echo "🌐 Starting Pinggy Tunnel..."
+# Tunnel points to the Minecraft Server port (25565)
 ssh -o StrictHostKeyChecking=no -p 443 -R0:localhost:25565 a.pinggy.io > tunnel.log 2>&1 &
 
-# Wait for Pinggy to generate the URL
 sleep 10
 ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.pinggy\.link" tunnel.log | head -n 1)
 
 if [ -z "$ADDRESS" ]; then
-    echo "❌ Failed to get Tunnel URL. Printing logs:"
+    echo "❌ Failed to get Tunnel URL. Logs:"
     cat tunnel.log
     exit 1
 fi
 
-# Convert https:// to wss:// for Eaglercraft
 FINAL_WSS=${ADDRESS/https/wss}
 echo "✅ Tunnel Ready: $FINAL_WSS"
 
-
 # --- 4. START GHOST BOUNCER (Frontend Redirection) ---
-echo "👻 Starting Bouncer..."
+echo "👻 Starting Bouncer on Port 25566..."
 cat << EOF > bouncer.js
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 25565 });
+// Bouncer MUST be on a different port than the Minecraft Server
+const wss = new WebSocket.Server({ port: 25566 });
 wss.on('connection', (ws) => {
     setTimeout(() => {
         if (ws.readyState === WebSocket.OPEN) {
-            // We send the player to the WSS version of your HTTPS link
             ws.send(JSON.stringify({ type: "transfer", url: "$FINAL_WSS" }));
             setTimeout(() => ws.close(), 300);
         }
@@ -53,12 +47,14 @@ wss.on('connection', (ws) => {
 EOF
 node bouncer.js &
 
+# --- 5. START LOCALTUNNEL ---
 echo "🔗 Registering Static IP: wss://$SUBDOMAIN.loca.lt"
+# Localtunnel points to the Bouncer (25566)
 npx localtunnel --port 25566 --subdomain "$SUBDOMAIN" > lt.log 2>&1 &
 
-
 # --- 6. START MINECRAFT SERVER ---
-echo "🚀 Minecraft is starting..."
+echo "🚀 Minecraft is starting on 25565..."
+# The server runs on 25565. Pinggy sends players here AFTER the bounce.
 ( tail -f server_input & ) | bash ./run.sh
 
 # --- 7. SAVE & PUSH ---
