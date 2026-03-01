@@ -63,7 +63,6 @@ stats:
 world-settings:
   default:
     verbose: true
-    mob-spawn-range: 4
     entity-activation-range:
       animals: 32
       monsters: 32
@@ -76,6 +75,7 @@ world-settings:
       monsters: 48
       misc: 32
       other: 64
+    mob-spawn-range: 4
     ticks-per:
       hopper-transfer: 8
       hopper-check: 1
