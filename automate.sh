@@ -45,30 +45,49 @@ wss.on('connection', (ws) => {
 EOF
 
 # --- 5. START CLOUDFLARE (The Speed) ---
-echo "🌐 Opening Cloudflare High-Speed Tunnel..."
-./cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
-sleep 15
+echo "🌐 Setting up Cloudflare..."
 
-# Extract the random Cloudflare URL
-STABLE_ADDR=$(grep -oE "[a-zA-Z0-9.-]+\.tcp\.cloudflare\.com:[0-9]+" cloudflare.log | head -n 1)
+# Download cloudflared if it doesn't exist
+if [ ! -f "./cloudflared" ]; then
+    echo "📥 Downloading Cloudflare Binary..."
+    wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+    chmod +x cloudflared
+fi
+
+echo "📡 Opening High-Speed Tunnel..."
+./cloudflared tunnel --url tcp://localhost:25565 > cloudflare.log 2>&1 &
+
+# Wait and verify the URL
+MAX_RETRIES=30
+COUNT=0
+STABLE_ADDR=""
+
+while [ -z "$STABLE_ADDR" ] && [ $COUNT -lt $MAX_RETRIES ]; do
+    STABLE_ADDR=$(grep -oE "[a-zA-Z0-9.-]+\.tcp\.cloudflare\.com:[0-9]+" cloudflare.log | head -n 1)
+    sleep 1
+    ((COUNT++))
+done
+
 if [ -z "$STABLE_ADDR" ]; then
-    echo "❌ Error: Cloudflare Tunnel failed to start. Check cloudflare.log"
+    echo "❌ Error: Cloudflare Tunnel failed. Content of cloudflare.log:"
+    cat cloudflare.log
     exit 1
 fi
-FINAL_WSS="wss://${STABLE_ADDR}"
+FINAL_WSS="wss://${STABLE_ADDR}"  
 
-# --- 6. START BOUNCER & LOCALTUNNEL (The Static IP) ---
+echo "🚀 Starting Ghost Bouncer on port 25566..."
 node bouncer.js "$FINAL_WSS" &
 BOUNCER_PID=$!
 
 echo "🔗 Registering Static IP: wss://$SUBDOMAIN.loca.lt"
+# We run this in the background so the script can continue to Minecraft
 npx localtunnel --port 25566 --subdomain "$SUBDOMAIN" > lt.log 2>&1 &
 
 # --- 7. START MINECRAFT SERVER ---
 echo "------------------------------------------------"
 echo "✅ STEALTH SYSTEM ONLINE"
 echo "🏠 JOIN AT: wss://$SUBDOMAIN.loca.lt"
-echo "💨 DATA: Cloudflare ($FINAL_WSS)"
+echo "💨 DATA REDIRECT: -> $FINAL_WSS"
 echo "------------------------------------------------"
 
 # 5-hour auto-stop (18000 seconds)
