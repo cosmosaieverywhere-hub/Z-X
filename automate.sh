@@ -1,54 +1,50 @@
 #!/bin/bash
 
-# --- 1. SETUP & CLEANUP ---
-mkdir -p ~/.ssh
-rm -f tunnel.log
+# --- 1. SETUP & CONFIG ---
 rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
-pkill -f "ssh.*serveo.net" || true
+SUBDOMAIN="zx-survival"
 
-# --- 2. DISCORD TOKEN INJECTION ---
-if [ -f "$CONFIG_PATH" ]; then
-    echo "🔐 Injecting Discord Token..."
-    sed -i "s|token: \".*\"|token: \"$ESSENTIALS_DISCORD_TOKEN\"|" "$CONFIG_PATH"
-fi
+# --- 2. THE SECRET SAUCE: NO CONFLICTS ---
+# Move Java to 25566 so the Eaglercraft Bridge can own 25565
+sed -i 's/server-port=.*/server-port=25566/' server.properties
+sed -i 's/online-mode=.*/online-mode=false/' server.properties
 
-# --- 3. FORCE EAGLERCRAFT TO 25565 ---
-echo "⚙️ Setting Eaglercraft Bridge to Port 25565..."
 mkdir -p plugins/EaglercraftXServer
 cat << EOF > plugins/EaglercraftXServer/settings.yml
 server:
   address: '0.0.0.0:25565'
-  server_icon: 'server-icon.gif'
 tls_config:
   enable_tls: false
 EOF
 
-# --- 4. START THE NO-WARNING TUNNEL (Serveo) ---
-# We tunnel 25565 directly. Serveo has NO password pages!
-echo "🌐 Starting Serveo Tunnel on port 25565..."
+# --- 3. GET THE BYPASS PASSWORD ---
+echo "🔑 YOUR TUNNEL PASSWORD (IP) IS:"
+curl -s https://loca.lt/mytunnelpassword
+echo -e "\n----------------------------"
+
+# --- 4. START LOCALTUNNEL WITH WATCHDOG ---
+echo "📥 Installing/Starting Localtunnel..."
+npm install -g localtunnel > /dev/null 2>&1
+
 (
     while true; do
-        # We request the 'zx-survival' name on port 80 (standard web port)
-        ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 \
-            -R zx-survival:80:localhost:25565 serveo.net >> tunnel.log 2>&1
-        sleep 5 
+        lt --port 25565 --subdomain "$SUBDOMAIN" --print-requests >> tunnel.log 2>&1 &
+        TUNNEL_PID=$!
+        # Stay alive for 20 mins then refresh
+        for i in {1..40}; do 
+            sleep 30
+            if ! ps -p $TUNNEL_PID > /dev/null; then break; fi
+            curl -s "https://$SUBDOMAIN.loca.lt" > /dev/null
+        done
+        kill $TUNNEL_PID 2>/dev/null
     done
 ) &
 
-# --- 5. WAIT & GET THE LINK ---
-sleep 15
-ADDRESS=$(grep -oE "https://[a-zA-Z0-9.-]+\.serveo\.net" tunnel.log | head -n 1)
-
-if [ -n "$ADDRESS" ]; then
-    IP=${ADDRESS/https/wss}
-    echo "✅ PERFECT IP READY: $IP"
-    if [ ! -z "$DISCORD_WEBHOOK" ]; then
-        curl -s -H "Content-Type: application/json" -X POST -d "{\"content\": \"🔥 **Server Online!**\\n💎 **Join:** \`$IP\`\\n🚀 **No Password/Warning Page!**\"}" "$DISCORD_WEBHOOK" > /dev/null
-    fi
-else
-    echo "⚠️ Serveo is assigning a link, please wait..."
-    cat tunnel.log
+# --- 5. DISCORD ANNOUNCEMENT ---
+IP="wss://$SUBDOMAIN.loca.lt"
+if [ ! -z "$DISCORD_WEBHOOK" ]; then
+    curl -s -H "Content-Type: application/json" -X POST -d "{\"content\": \"🚀 **Server Online!**\\n🏠 **IP:** \`$IP\`\\n🔑 **Password:** (Check GitHub Logs if prompted)\"}" "$DISCORD_WEBHOOK" > /dev/null
 fi
 
 # --- 6. 5-HOUR TIMER ---
@@ -58,10 +54,10 @@ fi
 ) &
 
 # --- 7. START SERVER ---
-echo "🚀 Minecraft is starting on 25565..."
+echo "🚀 Starting Minecraft (Eaglercraft 25565 <-> Java 25566)..."
 ( tail -f server_input & ) | bash ./run.sh
 
-# --- 8. SAVE & PUSH ---
+# --- 8. SAVE ---
 git config --global user.name "github-actions[bot]"
 git add .
 git reset "$CONFIG_PATH"
