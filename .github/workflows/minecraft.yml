@@ -1,11 +1,10 @@
 name: Scheduled Minecraft Server
 
 on:
-  schedule:
-    - cron: '30 9 * * *'  # 3:00 PM IST (9:30 AM UTC)
-  workflow_dispatch:
+#  schedule:
+#    - cron: '30 9 * * *'  # 3:00 PM IST (DISABLED)
+  workflow_dispatch:      # Manual trigger only
 
-# --- REQUIRED: This allows the runner to push files back to your repo ---
 permissions:
   contents: write
 
@@ -30,7 +29,7 @@ jobs:
           MY_DOMAIN: ${{ secrets.MY_DOMAIN }}
           CLOUDFLARE_TUNNEL_TOKEN: ${{ secrets.CLOUDFLARE_TUNNEL_TOKEN }}
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          ESSENTIALS_DISCORD_TOKEN: ${{ secrets.ESSENTIALS_DISCORD_TOKEN }} # Add this line
+          ESSENTIALS_DISCORD_TOKEN: ${{ secrets.ESSENTIALS_DISCORD_TOKEN }}
         run: |
           chmod +x automate.sh
           ./automate.sh
