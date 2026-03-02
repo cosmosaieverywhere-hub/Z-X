@@ -11,28 +11,28 @@ powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1771771859791
+  lastteleport: 1772450222728
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1771771935817
-  login: 1771771732490
+  logout: 1772461547807
+  login: 1772461512184
 money: '0'
 last-account-name: hairbeyar
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: 1.917650049942687E7
-  y: 73.0
-  z: -2.332954340200168E7
-  yaw: 0.3404236435890198
-  pitch: 28.949979782104492
+  x: -56.2656678924511
+  y: 59.0
+  z: 241.15148286776883
+  yaw: 131.2498779296875
+  pitch: 10.350003242492676
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: -51.39023577192487
-  y: 59.0
-  z: 252.5696549545347
-  yaw: 347.3998718261719
-  pitch: 8.25000286102295
+  x: -54.206262678973424
+  y: 67.0
+  z: 205.44636589981175
+  yaw: -273.8311462402344
+  pitch: -1.9536093473434448

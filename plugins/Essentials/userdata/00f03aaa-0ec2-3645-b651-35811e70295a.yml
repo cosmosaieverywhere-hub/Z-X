@@ -16,8 +16,8 @@ timestamps:
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1772371140990
-  login: 1772370914878
+  logout: 1772461489734
+  login: 1772461479730
 money: '0'
 last-account-name: zamran
 lastlocation:
@@ -31,8 +31,8 @@ lastlocation:
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: -52.6928900456095
-  y: 59.0
-  z: 244.93155948583993
-  yaw: -47.49724578857422
-  pitch: 5.770512104034424
+  x: 1.9176827501113847E7
+  y: 65.0
+  z: -2.332972764773674E7
+  yaw: 88.98431396484375
+  pitch: 3.899991989135742

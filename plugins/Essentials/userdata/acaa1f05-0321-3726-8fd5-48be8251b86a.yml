@@ -11,28 +11,28 @@ powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1767268281227
+  lastteleport: 1772451050953
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1767268488417
-  login: 1767268244110
+  logout: 1772451078100
+  login: 1772450624197
 money: '60'
 last-account-name: SHADOW
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: -30.61660636879461
-  y: 68.0
-  z: 269.5248751798099
-  yaw: -88.95684814453125
-  pitch: 17.894018173217773
+  x: 1.9176501463910583E7
+  y: 52.0
+  z: -2.3329564699999988E7
+  yaw: 126.43919372558594
+  pitch: 44.41526794433594
 logoutlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: -23.429246455505652
-  y: 68.0
-  z: 257.4458972794325
-  yaw: -355.060791015625
-  pitch: 33.834842681884766
+  x: 1.917650121927071E7
+  y: 69.0
+  z: -2.3329532589814976E7
+  yaw: -187.57659912109375
+  pitch: 22.22995376586914
