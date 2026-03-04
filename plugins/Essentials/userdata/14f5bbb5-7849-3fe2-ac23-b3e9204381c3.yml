@@ -3,7 +3,7 @@ teleportauto: false
 godmode: false
 muted: false
 jailed: false
-ip-address: 127.0.0.1
+ip-address: 0:0:0:0:0:0:0:1%0
 afk: false
 socialspy: false
 npc: false
@@ -11,13 +11,13 @@ powertoolsenabled: true
 accepting-pay: true
 baltop-exempt: false
 timestamps:
-  lastteleport: 1772017737040
+  lastteleport: 1772630668165
   lastheal: 0
   mute: 0
   jail: 0
   onlinejail: 0
-  logout: 1772018126541
-  login: 1772017688927
+  logout: 1772630708581
+  login: 1772630653191
   kits:
     dtools: 1771770883933
     starter: 1771768103140
@@ -29,19 +29,19 @@ last-account-name: dev_765_________
 lastlocation:
   world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
   world-name: world
-  x: -34.985046974837765
-  y: 67.0
-  z: 210.27164991978557
-  yaw: -54.89982223510742
-  pitch: 35.10000991821289
-logoutlocation:
-  world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
-  world-name: world
   x: 193.67514013801699
   y: 5.0
   z: 353.31351032262796
-  yaw: 184.04107666015625
-  pitch: 17.849960327148438
+  yaw: 204.59107971191406
+  pitch: 19.799959182739258
+logoutlocation:
+  world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760
+  world-name: world
+  x: -12.130944029094785
+  y: 67.0
+  z: 261.4028919650049
+  yaw: 17.699737548828125
+  pitch: -12.150032997131348
 homes:
   bal:
     world: 8d9f7df2-d8a3-4d01-9340-98ce4bfe7760

@@ -65,6 +65,8 @@ world-settings:
       disable-extreme-hills-emeralds: false
       disable-extreme-hills-monster-eggs: false
       disable-mesa-additional-gold: false
+    prevent-moving-into-unloaded-chunks: false
+    use-vanilla-world-scoreboard-name-coloring: false
     lootables:
       auto-replenish: false
       restrict-player-reloot: true
@@ -81,8 +83,18 @@ world-settings:
       push-based: false
     duplicate-uuid-resolver: saferegen
     duplicate-uuid-saferegen-delete-range: 32
-    prevent-moving-into-unloaded-chunks: false
-    use-vanilla-world-scoreboard-name-coloring: false
+    despawn-ranges:
+      soft: 32
+      hard: 128
+    falling-block-height-nerf: 0
+    tnt-entity-height-nerf: 0
+    water-over-lava-flow-speed: 5
+    fast-drain:
+      lava: false
+      water: false
+    lava-flow-speed:
+      normal: 30
+      nether: 10
     portal-search-radius: 128
     optimize-explosions: false
     delay-chunk-unloads-by: 10s
@@ -106,23 +118,12 @@ world-settings:
     fishing-time-range:
       MinimumTicks: 100
       MaximumTicks: 600
-    despawn-ranges:
-      soft: 32
-      hard: 128
-    falling-block-height-nerf: 0
-    tnt-entity-height-nerf: 0
-    water-over-lava-flow-speed: 5
-    fast-drain:
-      lava: false
-      water: false
-    lava-flow-speed:
-      normal: 30
-      nether: 10
     remove-corrupt-tile-entities: false
     use-chunk-inhabited-timer: true
     queue-light-updates: false
     keep-spawn-loaded-range: 6
     auto-save-interval: -1
+    non-player-arrow-despawn-rate: -1
     parrots-are-unaffected-by-player-movement: false
     nether-ceiling-void-damage: false
     allow-non-player-entities-on-scoreboards: false
@@ -138,7 +139,7 @@ world-settings:
     use-alternate-fallingblock-onGround-detection: false
     bed-search-radius: 1
     prevent-tnt-from-moving-in-water: false
-    non-player-arrow-despawn-rate: -1
+    mob-spawner-tick-rate: 1
     armor-stands-tick: true
     keep-spawn-loaded: true
     anti-xray:
@@ -174,7 +175,6 @@ world-settings:
     baby-zombie-movement-speed: 0.5
     spawner-nerfed-mobs-should-jump: false
     allow-leashing-undead-horse: false
-    mob-spawner-tick-rate: 1
     all-chunks-are-slime-chunks: false
     squid-spawn-height:
       maximum: 0.0
