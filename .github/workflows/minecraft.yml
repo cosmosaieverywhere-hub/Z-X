@@ -1,9 +1,9 @@
-name: Scheduled Minecraft Server
+name: Scheduled zx Server
 
 on:
-#  schedule:
-#    - cron: '30 9 * * *'  # 3:00 PM IST (DISABLED)
-  workflow_dispatch:      # Manual trigger only
+  schedule:
+    - cron: '30 9 * * *'  # This triggers at 9:30 AM UTC (3:00 PM IST)
+  workflow_dispatch:      # Allows you to still click "Run workflow" manually
 
 permissions:
   contents: write
@@ -11,6 +11,7 @@ permissions:
 jobs:
   run-server:
     runs-on: ubuntu-latest
+    timeout-minutes: 360 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
