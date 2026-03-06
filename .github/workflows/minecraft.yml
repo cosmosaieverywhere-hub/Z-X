@@ -1,8 +1,8 @@
 name: Scheduled zx Server
 
 on:
-  schedule:
-    - cron: '30 9 * * *'  # This triggers at 9:30 AM UTC (3:00 PM IST)
+ # schedule:
+  #  - cron: '30 9 * * *'  # This triggers at 9:30 AM UTC (3:00 PM IST)
   workflow_dispatch:      # Allows you to still click "Run workflow" manually
 
 permissions:
