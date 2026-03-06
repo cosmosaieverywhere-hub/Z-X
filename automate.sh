@@ -2,7 +2,6 @@
 
 # --- 1. SETUP & SECRETS ---
 mkdir -p ~/.ssh
-rm -f tunnel.log
 rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
 
@@ -21,11 +20,10 @@ sudo dpkg -i cloudflared-linux-amd64.deb
 
 # --- 3. START TUNNEL ---
 echo "🌐 Starting Cloudflare Tunnel for z-x.work.gd..."
-# Ensure 'CLOUDFLARE_TUNNEL_TOKEN' is in GitHub Secrets
-cloudflared tunnel --no-autoupdate run --token "$CLOUDFLARE_TUNNEL_TOKEN" > tunnel.log 2>&1 &
+# We run this in the background WITHOUT hidden logs so you can see errors
+cloudflared tunnel --no-autoupdate run --token "$CLOUDFLARE_TUNNEL_TOKEN" &
 
-# --- 4. 5-HOUR AUTO-STOP TIMER (18000s total) ---
-# 17970s sleep + 30s countdown = 18000s (5 hours)
+# --- 4. 5-HOUR AUTO-STOP TIMER ---
 (
   sleep 17970
   for i in {30..1}; do
@@ -39,21 +37,4 @@ cloudflared tunnel --no-autoupdate run --token "$CLOUDFLARE_TUNNEL_TOKEN" > tunn
 
 # --- 5. START SERVER ---
 echo "🚀 Eaglercraft Server starting on port 25565..."
-echo "🔗 Permanent IP: wss://z-x.work.gd"
-
-# Tail the pipe into bash/run script
-tail -f server_input | bash ./run.sh
-
-# --- 6. PUSH DATA BACK TO GITHUB ---
-echo "💾 Saving world data and pushing to GitHub..."
-git config --global user.name "github-actions[bot]"
-git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-git add .
-git reset "$CONFIG_PATH"
-
-git commit -m "Automated backup: World state after 5-hour session"
-git pull --rebase origin main
-git push origin main
-
-echo "✅ 5-hour session complete. Data saved."
+echo "🔗
