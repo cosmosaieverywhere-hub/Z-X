@@ -20,7 +20,6 @@ sudo dpkg -i cloudflared-linux-amd64.deb
 
 # --- 3. START TUNNEL ---
 echo "🌐 Starting Cloudflare Tunnel for z-x.work.gd..."
-# We run this in the background WITHOUT hidden logs so you can see errors
 cloudflared tunnel --no-autoupdate run --token "$CLOUDFLARE_TUNNEL_TOKEN" &
 
 # --- 4. 5-HOUR AUTO-STOP TIMER ---
@@ -37,4 +36,22 @@ cloudflared tunnel --no-autoupdate run --token "$CLOUDFLARE_TUNNEL_TOKEN" &
 
 # --- 5. START SERVER ---
 echo "🚀 Eaglercraft Server starting on port 25565..."
-echo "🔗
+echo "🔗 Connect using: wss://z-x.work.gd"
+
+# Start the server and feed the pipe into it
+tail -f server_input | bash ./run.sh
+
+# --- 6. PUSH DATA BACK TO GITHUB ---
+echo "💾 Saving world data and pushing to GitHub..."
+git config --global user.name "github-actions[bot]"
+git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+git add .
+# Don't save the config with the secret token
+git reset "$CONFIG_PATH"
+
+git commit -m "Automated backup: World state after session"
+git pull --rebase origin main
+git push origin main
+
+echo "✅ Session complete. Data saved."
