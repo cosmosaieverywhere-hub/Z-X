@@ -1,0 +1,54 @@
+name: Kill LFS Forever
+
+on:
+  workflow_dispatch: # This allows you to run it manually with a button
+
+permissions:
+  contents: write
+
+jobs:
+  exorcise-lfs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          lfs: false          # Don't crash on the initial 404
+          fetch-depth: 0      # Get history so we can rewrite it
+
+      - name: Install Git LFS
+        run: sudo apt-get install git-lfs
+
+      - name: The Exorcism
+        run: |
+          # 1. Configure Git identity
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 2. Try to pull the real data from the original source
+          # Replace 'ORIGINAL_OWNER/REPO' with the actual source if known
+          echo "Attempting to fetch real data..."
+          git lfs fetch --all || echo "⚠️ Bandwidth limit might still be active."
+
+          # 3. Pull the files into the workspace
+          git lfs checkout
+
+          # 4. EXORCISE: Strip LFS tracking
+          # This converts pointers into real files in the git index
+          git lfs uninstall
+          
+          # Delete the 'Contract' (LFS rules)
+          if [ -f ".gitattributes" ]; then
+            rm .gitattributes
+          fi
+
+          # 5. Safety Check: Is level.dat real binary or a text pointer?
+          if grep -q "oid sha256" world/level.dat; then
+            echo "❌ ERROR: level.dat is still a text pointer. Data is still locked."
+            exit 1
+          fi
+
+          # 6. Push the 'Real' files back to your repo
+          git add .
+          git commit -m "Exorcism Complete: LFS removed, world is now standard."
+          git push origin main --force
