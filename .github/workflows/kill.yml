@@ -7,37 +7,42 @@ jobs:
   unlfs:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Essential for the bot to push changes back
+      contents: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          lfs: true
           fetch-depth: 0
+          lfs: true # Initial attempt to pull LFS
+
+      - name: Force LFS Download
+        run: |
+          git lfs install
+          git lfs pull # This ensures the runner actually has the binary data
+          ls -lh paper-1.12.2.jar # This will print the file size in the logs so we can verify
 
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Force Convert paper-1.12.2.jar
+      - name: Swap Pointer for Real File
         run: |
-          # 1. Remove LFS tracking for this specific file
+          # 1. Stop tracking in LFS
           git lfs untrack "paper-1.12.2.jar"
           
-          # 2. Clean up .gitattributes if it exists
+          # 2. Delete the .gitattributes entry
           if [ -f .gitattributes ]; then
             sed -i '/paper-1.12.2.jar/d' .gitattributes
-            sed -i '/\.jar/d' .gitattributes
             [ -s .gitattributes ] || rm .gitattributes
           fi
 
-          # 3. THE FORCE MOVE: Remove from index, then add back as a real binary
+          # 3. Force Git to see the ACTUAL binary data
           git rm --cached "paper-1.12.2.jar"
           git add "paper-1.12.2.jar"
           if [ -f .gitattributes ]; then git add .gitattributes; fi
 
       - name: Commit and Push
         run: |
-          git commit -m "fix: convert paper-1.12.2.jar from LFS to normal file" || echo "No changes"
+          git commit -m "fix: replaced LFS pointer with actual paper-1.12.2.jar binary" || echo "No changes"
           git push origin main
