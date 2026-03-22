@@ -13,36 +13,36 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true # Initial attempt to pull LFS
+          # We don't set lfs: true here because we are fixing it manually
 
-      - name: Force LFS Download
+      - name: Force Download Real Binary
         run: |
-          git lfs install
-          git lfs pull # This ensures the runner actually has the binary data
-          ls -lh paper-1.12.2.jar # This will print the file size in the logs so we can verify
+          # 1. Stop tracking the file in LFS locally
+          git lfs untrack "paper-1.12.2.jar"
+          
+          # 2. Delete the pointer file
+          rm -f paper-1.12.2.jar
+          
+          # 3. Download the REAL file directly from your repo's raw link
+          # Replace 'cosmosaieverywhere-hub' and 'Z-X' if your repo name changed
+          curl -L "https://github.com/cosmosaieverywhere-hub/Z-X/raw/main/paper-1.12.2.jar" -o paper-1.12.2.jar
+          
+          # 4. Verify the size (it should be ~30MB to 40MB now, not 133 bytes)
+          ls -lh paper-1.12.2.jar
 
-      - name: Configure Git
+      - name: Commit and Push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Swap Pointer for Real File
-        run: |
-          # 1. Stop tracking in LFS
-          git lfs untrack "paper-1.12.2.jar"
           
-          # 2. Delete the .gitattributes entry
+          # Remove from .gitattributes
           if [ -f .gitattributes ]; then
             sed -i '/paper-1.12.2.jar/d' .gitattributes
             [ -s .gitattributes ] || rm .gitattributes
           fi
 
-          # 3. Force Git to see the ACTUAL binary data
-          git rm --cached "paper-1.12.2.jar"
-          git add "paper-1.12.2.jar"
+          git add paper-1.12.2.jar
           if [ -f .gitattributes ]; then git add .gitattributes; fi
-
-      - name: Commit and Push
-        run: |
-          git commit -m "fix: replaced LFS pointer with actual paper-1.12.2.jar binary" || echo "No changes"
+          
+          git commit -m "fix: replace 133b pointer with actual jar binary"
           git push origin main
