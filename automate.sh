@@ -13,52 +13,67 @@ if [ -f "$CONFIG_PATH" ]; then
 else
     echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
+# Install Cloudflared (for the high-speed tunnel)
+if ! command -v cloudflared &> /dev/null; then
+    echo "📦 Installing Cloudflared..."
+    wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+    sudo dpkg -i cloudflared-linux-amd64.deb
+fi
 
-# --- 2. START BOOSTED LOCALTUNNEL ---
+# ... (Keep your Discord Token injection code here) ...
+
+# --- 2. START CLOUDFLARE (THE ENGINE) ---
+echo "🌐 Starting Cloudflare Ephemeral Tunnel on Port 25565..."
+# Start CF and log it to a file so we can scrape the random URL
+cloudflared tunnel --url http://127.0.0.1:25565 > cf.log 2>&1 &
+
+# Wait for the URL to generate (usually takes 5-10 seconds)
+sleep 10
+CF_URL=$(grep -o 'https://[-a-z0-9.]*\.trycloudflare\.com' cf.log | head -n 1)
+
+if [ -z "$CF_URL" ]; then
+    echo "❌ Error: Cloudflare URL not found. Check cf.log."
+    exit 1
+fi
+
+echo "✅ Cloudflare Link: $CF_URL"
+
+# --- 3. START LOCALTUNNEL (THE SIGNPOST) ---
 SUBDOMAIN="zx-survival"
-echo "📥 Creating High-Concurrency Tunnel Booster..."
 npm install localtunnel --silent
 
-# Create the JS Booster file - POINTING TO MC PORT 25565
+# This script creates a Redirect Server on Port 3000
+# It sends anyone who visits your LT link directly to the new CF link
 cat <<EOF > lt-booster.js
 const localtunnel = require('localtunnel');
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(301, { "Location": "$CF_URL" });
+    res.end();
+});
+server.listen(3000);
+
 (async () => {
     const tunnel = await localtunnel({ 
-        port: 25565, 
-        subdomain: '$SUBDOMAIN',
-        local_host: '127.0.0.1'
+        port: 3000, 
+        subdomain: '$SUBDOMAIN' 
     });
-    console.log('✅ Tunnel Live: ' + tunnel.url);
-    tunnel.on('close', () => { process.exit(1); });
+    console.log('✅ Entry Point Live: ' + tunnel.url);
 })();
 EOF
 
-# Function to start the tunnel
-start_booster() {
-    node lt-booster.js >> tunnel.log 2>&1 &
-    LT_PID=$!
-}
+node lt-booster.js >> tunnel.log 2>&1 &
+LT_PID=$!
 
-start_booster
-
-# --- 3. BYPASS & WATCHDOG ---
-(
-    while true; do
-        sleep 45
-        if ! ps -p $LT_PID > /dev/null; then
-            echo "⚠️ Tunnel process died. Restarting..."
-            start_booster
-        fi
-    done
-) &
-
-# Get the bypass password (you need this for the first-time browser visit)
+# --- 4. BYPASS & WATCHDOG ---
 echo "-----------------------------------------------------"
-echo "🔑 LOCALTUNNEL BYPASS PASSWORD (IP):"
-curl -s https://loca.lt/mytunnelpassword
-echo -e "\n-----------------------------------------------------"
-echo "✅ Join Link: wss://$SUBDOMAIN.loca.lt"
+echo "🎮 SERVER READY!"
+echo "🔗 JOIN LINK (Permanent): https://$SUBDOMAIN.loca.lt"
+echo "🔑 BYPASS PASSWORD (IP): $(curl -s https://loca.lt/mytunnelpassword)"
 echo "-----------------------------------------------------"
+
+# ... (Keep your Watchdog, Timer, and Start Server code here) ...
 
 # --- 4. 5-HOUR AUTO-STOP TIMER ---
 (
