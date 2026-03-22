@@ -1,48 +1,52 @@
-name: Convert Paper JAR to Normal File
+name: Fix All Corrupted Plugins
 
 on:
   workflow_dispatch:
 
 jobs:
-  unlfs:
+  fix-plugins:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # We don't set lfs: true here because we are fixing it manually
 
-      - name: Force Download Real Binary
-        run: |
-          # 1. Stop tracking the file in LFS locally
-          git lfs untrack "paper-1.12.2.jar"
-          
-          # 2. Delete the pointer file
-          rm -f paper-1.12.2.jar
-          
-          # 3. Download the REAL file directly from your repo's raw link
-          # Replace 'cosmosaieverywhere-hub' and 'Z-X' if your repo name changed
-          curl -L "https://github.com/cosmosaieverywhere-hub/Z-X/raw/main/paper-1.12.2.jar" -o paper-1.12.2.jar
-          
-          # 4. Verify the size (it should be ~30MB to 40MB now, not 133 bytes)
-          ls -lh paper-1.12.2.jar
-
-      - name: Commit and Push
+      - name: Force Download Real Plugin Binaries
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 1. Untrack all jars in the plugins folder from LFS
+          git lfs untrack "plugins/*.jar"
           
-          # Remove from .gitattributes
+          # 2. Loop through every jar in the plugins folder
+          for plugin in plugins/*.jar; do
+            echo "Processing $plugin..."
+            
+            # Delete the 133-byte pointer
+            rm "$plugin"
+            
+            # Download the REAL binary from your repo's raw link
+            # This uses the same trick that fixed your Paper JAR
+            curl -L "https://github.com/cosmosaieverywhere-hub/Z-X/raw/main/$plugin" -o "$plugin"
+            
+            # Check size to make sure it's not a pointer anymore
+            ls -lh "$plugin"
+          done
+
+      - name: Clean .gitattributes and Push
+        run: |
           if [ -f .gitattributes ]; then
-            sed -i '/paper-1.12.2.jar/d' .gitattributes
+            # Remove any LFS lines related to the plugins folder
+            sed -i '/plugins/d' .gitattributes
             [ -s .gitattributes ] || rm .gitattributes
           fi
 
-          git add paper-1.12.2.jar
+          git add plugins/*.jar
           if [ -f .gitattributes ]; then git add .gitattributes; fi
           
-          git commit -m "fix: replace 133b pointer with actual jar binary"
+          git commit -m "fix: converted all plugin pointers to real binaries" || echo "No changes"
           git push origin main
