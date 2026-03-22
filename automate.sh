@@ -80,6 +80,13 @@ echo "🎮 SERVER READY!"
 echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
 echo "✅ BYPASS ACTIVE: You should no longer need a password."
 echo "-----------------------------------------------------"
+# Add this right after SERVER READY!
+if [ ! -z "$ESSENTIALS_DISCORD_TOKEN" ]; then
+  curl -H "Content-Type: application/json" \
+       -X POST \
+       -d "{\"content\": \"🚀 **Server Online!**\n🔗 **Link:** $CF_URL\n🔑 **LT Password:** $(curl -s https://loca.lt/mytunnelpassword)\"}" \
+       "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
+fi
 
 # --- 4. 5-HOUR AUTO-STOP TIMER ---
 (
