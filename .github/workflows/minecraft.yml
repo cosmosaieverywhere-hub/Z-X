@@ -16,8 +16,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          lfs: true
-          fetch-depth: 0
+          lfs: false
+          fetch-depth: 1
 
       - name: Setup Java
         uses: actions/setup-java@v4
