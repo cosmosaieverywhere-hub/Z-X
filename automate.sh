@@ -11,7 +11,7 @@ if [ -f "$CONFIG_PATH" ]; then
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
 fi
 
-# Install Dependencies (WireGuard + Cloudflared)
+# Install Dependencies
 echo "📦 Installing Network Tools..."
 sudo apt-get update && sudo apt-get install -y wireguard-tools
 if ! command -v cloudflared &> /dev/null; then
@@ -20,7 +20,7 @@ if ! command -v cloudflared &> /dev/null; then
 fi
 
 # --- 2. START CLOUDFLARE (THE ENGINE) ---
-echo "🌐 Starting Cloudflare Ephemeral Tunnel on Port 25565..."
+echo "🌐 Starting Cloudflare Ephemeral Tunnel..."
 cloudflared tunnel --url http://127.0.0.1:25565 > cf.log 2>&1 &
 
 sleep 10
@@ -34,7 +34,10 @@ fi
 
 # --- 3. START WIREGUARD (THE PRO TUNNEL) ---
 echo "⚙️ Configuring WireGuard for zx.serveousercontent.com..."
-sudo cat <<EOF > /etc/wireguard/serveo.conf
+
+# FIX: Using 'tee' with sudo to avoid Permission Denied error
+sudo mkdir -p /etc/wireguard
+cat <<EOF | sudo tee /etc/wireguard/serveo.conf > /dev/null
 [Interface]
 PrivateKey = UPbZUMnsC6mwyBimUfijp1hCtAV3pQ3AIa+jKG1VcW4=
 Address = fd1d:84e3:8aca:1:beb:4c17:e55:1231/128
@@ -47,7 +50,7 @@ PersistentKeepalive = 25
 EOF
 
 sudo wg-quick up serveo
-sleep 5 # Wait for handshake
+sleep 5
 
 # Start the Redirect Server on Port 3000
 cat <<EOF > redirect-server.js
@@ -61,7 +64,6 @@ EOF
 node redirect-server.js &
 
 # --- 4. DISCORD NOTIFICATION ---
-# Note: Hostname is now your registered zx.serveousercontent.com
 MY_HOSTNAME="zx.serveousercontent.com"
 
 echo "-----------------------------------------------------"
