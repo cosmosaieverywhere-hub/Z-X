@@ -2,7 +2,7 @@ name: Scheduled Minecraft Server
 
 on:
   schedule:
-    - cron: '30 9 * * *'  # 3:00 PM IST (9:30 AM UTC)
+    #- cron: '30 9 * * *'  # 3:00 PM IST (9:30 AM UTC)
   workflow_dispatch:
 
 # --- REQUIRED: This allows the runner to push files back to your repo ---
