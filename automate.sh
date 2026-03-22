@@ -81,6 +81,19 @@ echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
 echo "✅ BYPASS ACTIVE: You should no longer need a password."
 echo "-----------------------------------------------------"
 # Add this right after SERVER READY!
+# --- 4. DISCORD NOTIFICATION & BYPASS INFO ---
+# We use -s for silent and -m 5 to timeout if loca.lt is being slow
+LT_PASSWORD=$(curl -s -m 5 https://loca.lt/mytunnelpassword)
+# Strip "https://" from the CF_URL so the WSS link is clean
+CLEAN_CF=$(echo "$CF_URL" | sed 's~https://~~')
+
+echo "-----------------------------------------------------"
+echo "🎮 SERVER READY!"
+echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
+echo "🔑 BYPASS PASSWORD: $LT_PASSWORD"
+echo "-----------------------------------------------------"
+
+# Send the FIXED payload to Discord
 curl -H "Content-Type: application/json" \
      -X POST \
      -d "{
@@ -90,7 +103,7 @@ curl -H "Content-Type: application/json" \
              \"color\": 5814783,
              \"fields\": [
                { \"name\": \"Permanent Link\", \"value\": \"https://$SUBDOMAIN.loca.lt\", \"inline\": true },
-               { \"name\": \"Direct WSS\", \"value\": \"\`wss://$CF_URL/\`\", \"inline\": true },
+               { \"name\": \"Direct WSS\", \"value\": \"\`wss://$CLEAN_CF/\`\", \"inline\": true },
                { \"name\": \"LT Bypass Password\", \"value\": \"\`$LT_PASSWORD\`\", \"inline\": false }
              ],
              \"footer\": { \"text\": \"Session active for 5 hours\" }
