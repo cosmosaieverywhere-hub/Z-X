@@ -81,13 +81,22 @@ echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
 echo "✅ BYPASS ACTIVE: You should no longer need a password."
 echo "-----------------------------------------------------"
 # Add this right after SERVER READY!
-if [ ! -z "$ESSENTIALS_DISCORD_TOKEN" ]; then
-  curl -H "Content-Type: application/json" \
-       -X POST \
-       -d "{\"content\": \"🚀 **Server Online!**\n🔗 **Link:** $CF_URL\n🔑 **LT Password:** $(curl -s https://loca.lt/mytunnelpassword)\"}" \
-       "https://discord.com/api/webhooks/YOUR_WEBHOOK_URL"
-fi
-
+curl -H "Content-Type: application/json" \
+     -X POST \
+     -d "{
+           \"content\": \"🚀 **Z-X Survival is ONLINE!**\",
+           \"embeds\": [{
+             \"title\": \"Server Connection Details\",
+             \"color\": 5814783,
+             \"fields\": [
+               { \"name\": \"Permanent Link\", \"value\": \"https://$SUBDOMAIN.loca.lt\", \"inline\": true },
+               { \"name\": \"Direct WSS\", \"value\": \"\`wss://$CF_URL/\`\", \"inline\": true },
+               { \"name\": \"LT Bypass Password\", \"value\": \"\`$LT_PASSWORD\`\", \"inline\": false }
+             ],
+             \"footer\": { \"text\": \"Session active for 5 hours\" }
+           }]
+         }" \
+     "https://discord.com/api/webhooks/1485309593742475438/YTuVxDuv8WqXN6gwJARR_ZroTmPl8JEju7AQit_2gmVpMTmS75l2i6xm7VuewBmSzYeA"
 # --- 4. 5-HOUR AUTO-STOP TIMER ---
 (
   sleep 17970
