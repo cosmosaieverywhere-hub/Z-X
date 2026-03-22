@@ -1,7 +1,7 @@
 name: Convert LFS to Normal File
 
 on:
-  workflow_dispatch: # Allows you to run this manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   unlfs:
@@ -10,27 +10,37 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          lfs: true # Crucial: This pulls the actual JAR data, not just the pointer
-          fetch-depth: 0 # Pulls history to ensure a clean rewrite
+          lfs: true
+          fetch-depth: 0
 
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Remove LFS Tracking for JARs
+      - name: Remove LFS Tracking
         run: |
-          # 1. Stop tracking .jar files in LFS
+          # 1. Stop tracking JARs in LFS
           git lfs untrack "*.jar"
           
-          # 2. Remove .jar entries from .gitattributes
-          sed -i '/\.jar/d' .gitattributes
+          # 2. Only run sed if .gitattributes exists to avoid the crash
+          if [ -f .gitattributes ]; then
+            sed -i '/\.jar/d' .gitattributes
+            # If the file is now empty, just remove it
+            [ -s .gitattributes ] || rm .gitattributes
+          fi
           
-          # 3. Force Git to see the JAR as a normal file again
-          git add --renormalize .
-          git add .gitattributes
+          # 3. Force Git to treat JARs as normal binaries
+          # This moves them out of the LFS storage and into the git index
+          git add --renormalize "**/*.jar"
+          if [ -f .gitattributes ]; then git add .gitattributes; fi
 
       - name: Commit and Push
         run: |
-          git commit -m "chore: convert LFS jar to normal file"
-          git push origin main
+          # Only commit if there are actually changes to avoid "nothing to commit" errors
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: convert LFS jar to normal file"
+            git push origin main
+          else
+            echo "No LFS files were found to convert."
+          fi
