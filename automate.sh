@@ -6,15 +6,11 @@ rm -f tunnel.log
 rm -f server_input && mkfifo server_input
 CONFIG_PATH="plugins/EssentialsDiscord/config.yml"
 
-# Inject Discord Token if the config exists
 if [ -f "$CONFIG_PATH" ]; then
     echo "🔐 Injecting Discord Token..."
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
-else
-    echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
 
-# Install Cloudflared
 if ! command -v cloudflared &> /dev/null; then
     echo "📦 Installing Cloudflared..."
     wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
@@ -27,118 +23,67 @@ cloudflared tunnel --url http://127.0.0.1:25565 > cf.log 2>&1 &
 
 sleep 10
 CF_URL=$(grep -o 'https://[-a-z0-9.]*\.trycloudflare\.com' cf.log | head -n 1)
-
-if [ -z "$CF_URL" ]; then
-    echo "❌ Error: Cloudflare URL not found. Check cf.log."
-    exit 1
-fi
-echo "✅ Cloudflare Link: $CF_URL"
-
-# --- 3. START LOCALTUNNEL (THE BYPASS PROXY) ---
-SUBDOMAIN="zx-survival"
-# Install the proxy library needed to handle WebSockets and Headers
-npm install localtunnel http-proxy --silent
-
-cat <<EOF > lt-booster.js
-const localtunnel = require('localtunnel');
-const http = require('http');
-const httpProxy = require('http-proxy');
-
-// Create the proxy pointing to your Cloudflare URL
-const proxy = httpProxy.createProxyServer({
-    target: '$CF_URL',
-    changeOrigin: true,
-    ws: true // Crucial for Eaglercraft WebSockets
-});
-
-const server = http.createServer((req, res) => {
-    // Inject the bypass header into the request before it hits Localtunnel's server
-    req.headers['bypass-tunnel-reminder'] = 'true';
-    proxy.web(req, res);
-});
-
-// Handle WebSocket upgrades with the same bypass header
-server.on('upgrade', (req, socket, head) => {
-    req.headers['bypass-tunnel-reminder'] = 'true';
-    proxy.ws(req, socket, head);
-});
-
-server.listen(3000);
-
-(async () => {
-    const tunnel = await localtunnel({ port: 3000, subdomain: '$SUBDOMAIN' });
-    console.log('✅ Permanent Link Active: ' + tunnel.url);
-})();
-EOF
-
-node lt-booster.js >> tunnel.log 2>&1 &
-LT_PID=$!
-
-# --- 4. BYPASS & WATCHDOG ---
-echo "-----------------------------------------------------"
-echo "🎮 SERVER READY!"
-echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
-echo "✅ BYPASS ACTIVE: You should no longer need a password."
-echo "-----------------------------------------------------"
-# Add this right after SERVER READY!
-# --- 4. DISCORD NOTIFICATION & BYPASS INFO ---
-# We use -s for silent and -m 5 to timeout if loca.lt is being slow
-LT_PASSWORD=$(curl -s -m 5 https://loca.lt/mytunnelpassword)
-# Strip "https://" from the CF_URL so the WSS link is clean
 CLEAN_CF=$(echo "$CF_URL" | sed 's~https://~~')
 
+if [ -z "$CF_URL" ]; then
+    echo "❌ Error: Cloudflare URL not found."
+    exit 1
+fi
+
+# --- 3. START SERVEO (THE NO-PASSWORD SIGNPOST) ---
+SUBDOMAIN="zx-survival"
+# This SSH tunnel is the "Permanent Link" - No password page, no NPM needed!
+ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R $SUBDOMAIN.serveo.net:80:localhost:3000 serveo.net &
+
+# This Node script bounces people from Serveo to Cloudflare instantly
+cat <<EOF > redirect-server.js
+const http = require('http');
+const server = http.createServer((req, res) => {
+    res.writeHead(301, { "Location": "$CF_URL" });
+    res.end();
+});
+server.listen(3000);
+EOF
+node redirect-server.js &
+
+# --- 4. DISCORD NOTIFICATION ---
 echo "-----------------------------------------------------"
 echo "🎮 SERVER READY!"
-echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
-echo "🔑 BYPASS PASSWORD: $LT_PASSWORD"
+echo "🔗 JOIN LINK: https://$SUBDOMAIN.serveo.net"
+echo "🎮 DIRECT WSS: wss://$CLEAN_CF/"
 echo "-----------------------------------------------------"
 
-# Send the FIXED payload to Discord
 curl -H "Content-Type: application/json" \
      -X POST \
      -d "{
            \"content\": \"🚀 **Z-X Survival is ONLINE!**\",
            \"embeds\": [{
              \"title\": \"Server Connection Details\",
-             \"color\": 5814783,
+             \"color\": 3066993,
              \"fields\": [
-               { \"name\": \"Permanent Link\", \"value\": \"https://$SUBDOMAIN.loca.lt\", \"inline\": true },
-               { \"name\": \"Direct WSS\", \"value\": \"\`wss://$CLEAN_CF/\`\", \"inline\": true },
-               { \"name\": \"LT Bypass Password\", \"value\": \"\`$LT_PASSWORD\`\", \"inline\": false }
+               { \"name\": \"Permanent Link (No Password)\", \"value\": \"https://$SUBDOMAIN.serveo.net\", \"inline\": false },
+               { \"name\": \"Direct Eagler WSS\", \"value\": \"\`wss://$CLEAN_CF/\`\", \"inline\": false }
              ],
-             \"footer\": { \"text\": \"Session active for 5 hours\" }
+             \"footer\": { \"text\": \"Session: 5 Hours | No Security Bypass Needed\" }
            }]
          }" \
      "https://discord.com/api/webhooks/1485309593742475438/YTuVxDuv8WqXN6gwJARR_ZroTmPl8JEju7AQit_2gmVpMTmS75l2i6xm7VuewBmSzYeA"
-# --- 4. 5-HOUR AUTO-STOP TIMER ---
+
+# --- 5. 5-HOUR AUTO-STOP & START SERVER ---
 (
   sleep 17970
-  for i in {30..1}; do
-    echo "say [System] Server closing in $i seconds! Saving world..." > server_input
-    sleep 1
-  done
-  echo "save-all" > server_input
-  sleep 2
   echo "stop" > server_input
 ) &
 
-# --- 5. START SERVER ---
 echo "🚀 Eaglercraft Server starting..."
 ( tail -f server_input & ) | bash ./run.sh
 
 # --- 6. CLEANUP & SAVE ---
-echo "🔕 Server stopped. Cleaning up..."
 pkill -P $$ 
-
-echo "💾 Saving world data and pushing to GitHub..."
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
 git add .
 git reset "$CONFIG_PATH"
-
-git commit -m "Automated backup: $(date)" || echo "No changes to commit"
+git commit -m "Automated backup: $(date)" || echo "No changes"
 git pull --rebase origin main
 git push origin main
-
-echo "✅ 5-hour session complete. Data saved."
