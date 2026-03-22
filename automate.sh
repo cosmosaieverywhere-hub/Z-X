@@ -11,8 +11,10 @@ if [ -f "$CONFIG_PATH" ]; then
     sed -i "s/token: \".*\"/token: \"$ESSENTIALS_DISCORD_TOKEN\"/" "$CONFIG_PATH"
 fi
 
+# Install Dependencies (WireGuard + Cloudflared)
+echo "📦 Installing Network Tools..."
+sudo apt-get update && sudo apt-get install -y wireguard-tools
 if ! command -v cloudflared &> /dev/null; then
-    echo "📦 Installing Cloudflared..."
     wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
     sudo dpkg -i cloudflared-linux-amd64.deb
 fi
@@ -30,12 +32,24 @@ if [ -z "$CF_URL" ]; then
     exit 1
 fi
 
-# --- 3. START SERVEO (THE NO-PASSWORD SIGNPOST) ---
-SUBDOMAIN="z-x-survive-25"
-# This SSH tunnel is the "Permanent Link" - No password page, no NPM needed!
-ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R $SUBDOMAIN.serveo.net:80:localhost:3000 serveo.net &
+# --- 3. START WIREGUARD (THE PRO TUNNEL) ---
+echo "⚙️ Configuring WireGuard for zx.serveousercontent.com..."
+sudo cat <<EOF > /etc/wireguard/serveo.conf
+[Interface]
+PrivateKey = UPbZUMnsC6mwyBimUfijp1hCtAV3pQ3AIa+jKG1VcW4=
+Address = fd1d:84e3:8aca:1:beb:4c17:e55:1231/128
 
-# This Node script bounces people from Serveo to Cloudflare instantly
+[Peer]
+PublicKey = dnu982a30YcXBh3Zy4PlPM6nbfavgfOyxx629AO7VEU=
+AllowedIPs = fd1d:84e3:8aca::/48
+Endpoint = wg.serveo.net:51820
+PersistentKeepalive = 25
+EOF
+
+sudo wg-quick up serveo
+sleep 5 # Wait for handshake
+
+# Start the Redirect Server on Port 3000
 cat <<EOF > redirect-server.js
 const http = require('http');
 const server = http.createServer((req, res) => {
@@ -47,9 +61,12 @@ EOF
 node redirect-server.js &
 
 # --- 4. DISCORD NOTIFICATION ---
+# Note: Hostname is now your registered zx.serveousercontent.com
+MY_HOSTNAME="zx.serveousercontent.com"
+
 echo "-----------------------------------------------------"
 echo "🎮 SERVER READY!"
-echo "🔗 JOIN LINK: https://$SUBDOMAIN.serveo.net"
+echo "🔗 JOIN LINK: https://$MY_HOSTNAME"
 echo "🎮 DIRECT WSS: wss://$CLEAN_CF/"
 echo "-----------------------------------------------------"
 
@@ -58,13 +75,13 @@ curl -H "Content-Type: application/json" \
      -d "{
            \"content\": \"🚀 **Z-X Survival is ONLINE!**\",
            \"embeds\": [{
-             \"title\": \"Server Connection Details\",
+             \"title\": \"Registered Connection Details\",
              \"color\": 3066993,
              \"fields\": [
-               { \"name\": \"Permanent Link (No Password)\", \"value\": \"https://$SUBDOMAIN.serveo.net\", \"inline\": false },
+               { \"name\": \"Permanent Link\", \"value\": \"https://$MY_HOSTNAME\", \"inline\": false },
                { \"name\": \"Direct Eagler WSS\", \"value\": \"\`wss://$CLEAN_CF/\`\", \"inline\": false }
              ],
-             \"footer\": { \"text\": \"Session: 5 Hours | No Security Bypass Needed\" }
+             \"footer\": { \"text\": \"Session: 5 Hours | WireGuard Optimized\" }
            }]
          }" \
      "https://discord.com/api/webhooks/1485309593742475438/YTuVxDuv8WqXN6gwJARR_ZroTmPl8JEju7AQit_2gmVpMTmS75l2i6xm7VuewBmSzYeA"
@@ -79,6 +96,7 @@ echo "🚀 Eaglercraft Server starting..."
 ( tail -f server_input & ) | bash ./run.sh
 
 # --- 6. CLEANUP & SAVE ---
+sudo wg-quick down serveo
 pkill -P $$ 
 git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
