@@ -49,6 +49,7 @@ const localtunnel = require('localtunnel');
 const http = require('http');
 
 const server = http.createServer((req, res) => {
+    res.setHeader("bypass-tunnel-reminder", "true");
     res.writeHead(301, { "Location": "$CF_URL" });
     res.end();
 });
