@@ -13,21 +13,18 @@ if [ -f "$CONFIG_PATH" ]; then
 else
     echo "⚠️ Warning: EssentialsDiscord config not found at $CONFIG_PATH"
 fi
-# Install Cloudflared (for the high-speed tunnel)
+
+# Install Cloudflared
 if ! command -v cloudflared &> /dev/null; then
     echo "📦 Installing Cloudflared..."
     wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
     sudo dpkg -i cloudflared-linux-amd64.deb
 fi
 
-# ... (Keep your Discord Token injection code here) ...
-
 # --- 2. START CLOUDFLARE (THE ENGINE) ---
 echo "🌐 Starting Cloudflare Ephemeral Tunnel on Port 25565..."
-# Start CF and log it to a file so we can scrape the random URL
 cloudflared tunnel --url http://127.0.0.1:25565 > cf.log 2>&1 &
 
-# Wait for the URL to generate (usually takes 5-10 seconds)
 sleep 10
 CF_URL=$(grep -o 'https://[-a-z0-9.]*\.trycloudflare\.com' cf.log | head -n 1)
 
@@ -35,32 +32,42 @@ if [ -z "$CF_URL" ]; then
     echo "❌ Error: Cloudflare URL not found. Check cf.log."
     exit 1
 fi
-
 echo "✅ Cloudflare Link: $CF_URL"
 
-# --- 3. START LOCALTUNNEL (THE SIGNPOST) ---
+# --- 3. START LOCALTUNNEL (THE BYPASS PROXY) ---
 SUBDOMAIN="zx-survival"
-npm install localtunnel --silent
+# Install the proxy library needed to handle WebSockets and Headers
+npm install localtunnel http-proxy --silent
 
-# This script creates a Redirect Server on Port 3000
-# It sends anyone who visits your LT link directly to the new CF link
 cat <<EOF > lt-booster.js
 const localtunnel = require('localtunnel');
 const http = require('http');
+const httpProxy = require('http-proxy');
+
+// Create the proxy pointing to your Cloudflare URL
+const proxy = httpProxy.createProxyServer({
+    target: '$CF_URL',
+    changeOrigin: true,
+    ws: true // Crucial for Eaglercraft WebSockets
+});
 
 const server = http.createServer((req, res) => {
-    res.setHeader("bypass-tunnel-reminder", "true");
-    res.writeHead(301, { "Location": "$CF_URL" });
-    res.end();
+    // Inject the bypass header into the request before it hits Localtunnel's server
+    req.headers['bypass-tunnel-reminder'] = 'true';
+    proxy.web(req, res);
 });
+
+// Handle WebSocket upgrades with the same bypass header
+server.on('upgrade', (req, socket, head) => {
+    req.headers['bypass-tunnel-reminder'] = 'true';
+    proxy.ws(req, socket, head);
+});
+
 server.listen(3000);
 
 (async () => {
-    const tunnel = await localtunnel({ 
-        port: 3000, 
-        subdomain: '$SUBDOMAIN' 
-    });
-    console.log('✅ Entry Point Live: ' + tunnel.url);
+    const tunnel = await localtunnel({ port: 3000, subdomain: '$SUBDOMAIN' });
+    console.log('✅ Permanent Link Active: ' + tunnel.url);
 })();
 EOF
 
@@ -70,11 +77,9 @@ LT_PID=$!
 # --- 4. BYPASS & WATCHDOG ---
 echo "-----------------------------------------------------"
 echo "🎮 SERVER READY!"
-echo "🔗 JOIN LINK (Permanent): https://$SUBDOMAIN.loca.lt"
-echo "🔑 BYPASS PASSWORD (IP): $(curl -s https://loca.lt/mytunnelpassword)"
+echo "🔗 JOIN LINK: https://$SUBDOMAIN.loca.lt"
+echo "✅ BYPASS ACTIVE: You should no longer need a password."
 echo "-----------------------------------------------------"
-
-# ... (Keep your Watchdog, Timer, and Start Server code here) ...
 
 # --- 4. 5-HOUR AUTO-STOP TIMER ---
 (
@@ -101,7 +106,6 @@ git config --global user.name "github-actions[bot]"
 git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
 git add .
-# Don't save the secret token back to the repo
 git reset "$CONFIG_PATH"
 
 git commit -m "Automated backup: $(date)" || echo "No changes to commit"
