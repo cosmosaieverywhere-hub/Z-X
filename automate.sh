@@ -31,7 +31,7 @@ if [ -z "$CF_URL" ]; then
 fi
 
 # --- 3. START SERVEO (THE NO-PASSWORD SIGNPOST) ---
-SUBDOMAIN="zx-survival"
+SUBDOMAIN="zx-2025"
 # This SSH tunnel is the "Permanent Link" - No password page, no NPM needed!
 ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 -R $SUBDOMAIN.serveo.net:80:localhost:3000 serveo.net &
 
