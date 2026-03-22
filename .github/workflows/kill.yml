@@ -1,4 +1,4 @@
-name: Convert LFS to Normal File
+name: Convert Paper JAR to Normal File
 
 on:
   workflow_dispatch:
@@ -6,6 +6,8 @@ on:
 jobs:
   unlfs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Essential for the bot to push changes back
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -18,29 +20,24 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Remove LFS Tracking
+      - name: Force Convert paper-1.12.2.jar
         run: |
-          # 1. Stop tracking JARs in LFS
-          git lfs untrack "*.jar"
+          # 1. Remove LFS tracking for this specific file
+          git lfs untrack "paper-1.12.2.jar"
           
-          # 2. Only run sed if .gitattributes exists to avoid the crash
+          # 2. Clean up .gitattributes if it exists
           if [ -f .gitattributes ]; then
+            sed -i '/paper-1.12.2.jar/d' .gitattributes
             sed -i '/\.jar/d' .gitattributes
-            # If the file is now empty, just remove it
             [ -s .gitattributes ] || rm .gitattributes
           fi
-          
-          # 3. Force Git to treat JARs as normal binaries
-          # This moves them out of the LFS storage and into the git index
-          git add --renormalize "**/*.jar"
+
+          # 3. THE FORCE MOVE: Remove from index, then add back as a real binary
+          git rm --cached "paper-1.12.2.jar"
+          git add "paper-1.12.2.jar"
           if [ -f .gitattributes ]; then git add .gitattributes; fi
 
       - name: Commit and Push
         run: |
-          # Only commit if there are actually changes to avoid "nothing to commit" errors
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: convert LFS jar to normal file"
-            git push origin main
-          else
-            echo "No LFS files were found to convert."
-          fi
+          git commit -m "fix: convert paper-1.12.2.jar from LFS to normal file" || echo "No changes"
+          git push origin main
