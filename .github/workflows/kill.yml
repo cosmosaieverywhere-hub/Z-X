@@ -1,54 +1,36 @@
-name: Kill LFS Forever
+name: Convert LFS to Normal File
 
 on:
-  workflow_dispatch: # This allows you to run it manually with a button
-
-permissions:
-  contents: write
+  workflow_dispatch: # Allows you to run this manually from the Actions tab
 
 jobs:
-  exorcise-lfs:
+  unlfs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          lfs: false          # Don't crash on the initial 404
-          fetch-depth: 0      # Get history so we can rewrite it
+          lfs: true # Crucial: This pulls the actual JAR data, not just the pointer
+          fetch-depth: 0 # Pulls history to ensure a clean rewrite
 
-      - name: Install Git LFS
-        run: sudo apt-get install git-lfs
-
-      - name: The Exorcism
+      - name: Configure Git
         run: |
-          # 1. Configure Git identity
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # 2. Try to pull the real data from the original source
-          # Replace 'ORIGINAL_OWNER/REPO' with the actual source if known
-          echo "Attempting to fetch real data..."
-          git lfs fetch --all || echo "⚠️ Bandwidth limit might still be active."
-
-          # 3. Pull the files into the workspace
-          git lfs checkout
-
-          # 4. EXORCISE: Strip LFS tracking
-          # This converts pointers into real files in the git index
-          git lfs uninstall
+      - name: Remove LFS Tracking for JARs
+        run: |
+          # 1. Stop tracking .jar files in LFS
+          git lfs untrack "*.jar"
           
-          # Delete the 'Contract' (LFS rules)
-          if [ -f ".gitattributes" ]; then
-            rm .gitattributes
-          fi
+          # 2. Remove .jar entries from .gitattributes
+          sed -i '/\.jar/d' .gitattributes
+          
+          # 3. Force Git to see the JAR as a normal file again
+          git add --renormalize .
+          git add .gitattributes
 
-          # 5. Safety Check: Is level.dat real binary or a text pointer?
-          if grep -q "oid sha256" world/level.dat; then
-            echo "❌ ERROR: level.dat is still a text pointer. Data is still locked."
-            exit 1
-          fi
-
-          # 6. Push the 'Real' files back to your repo
-          git add .
-          git commit -m "Exorcism Complete: LFS removed, world is now standard."
-          git push origin main --force
+      - name: Commit and Push
+        run: |
+          git commit -m "chore: convert LFS jar to normal file"
+          git push origin main
