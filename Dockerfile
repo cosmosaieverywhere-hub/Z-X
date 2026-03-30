@@ -1,28 +1,31 @@
-# Stage 1: Use a Java base image (Minecraft servers require Java)
-FROM openjdk:17-jdk-slim
+# 1. Use a stable, supported Java 17 image (Standard for Eaglercraft/1.12.2)
+FROM eclipse-temurin:17-jdk-focal
 
-# Set the working directory inside the container
+# Install necessary tools for downloading and running
+RUN apt-get update && apt-get install -y curl ca-certificates && rm -rf /var/lib/apt/lists/*
+
+# Set working directory
 WORKDIR /server
 
-# Copy all files from your GitHub repository root into the container's /server directory
-# This includes your run.sh, server JAR, eula.txt, server.properties, etc.
+# 2. Copy your repo files (This gets your config, run.sh, and plugins)
 COPY . .
 
-# Grant execution permissions to your startup script
+# 3. MANUALLY DOWNLOAD THE MISSING LFS JAR
+# Since the GitHub LFS budget is hit, we download the 1.12.2 server jar directly
+RUN mkdir -p cache && \
+    curl -L -o cache/mojang_1.12.2.jar https://piston-data.mojang.com/v1/objects/1b557e529340f12959882f0e651db501375d8471/server.jar
+
+# 4. Setup permissions and EULA
 RUN chmod +x ./run.sh
-
-# The Eaglercraft server requires exposing two ports:
-# 25565: Standard Minecraft port (often used by the server JAR itself)
-# 8081: Common port for the Eaglercraft WebSocket connection
-EXPOSE 25565
-EXPOSE 8081
-EXPOSE 8080 # Some setups use 8080 for web-serving the client
-
-# Ensure EULA is accepted to prevent the server from failing to start
-# This step assumes your server.properties and eula.txt are in the root directory
-# If eula.txt doesn't exist, this creates it.
 RUN echo "eula=true" > eula.txt
 
-# Command to run the server. This uses your existing run.sh script.
-# The 'exec' command ensures signals (like SIGTERM from Render) are properly handled.
+# 5. Eaglercraft Ports
+# 8081: Default for Eaglercraft WebSocket
+# 25565: Internal Minecraft traffic
+# 8080: Web server (if applicable)
+EXPOSE 8081
+EXPOSE 25565
+EXPOSE 8080
+
+# Use exec to handle Render's termination signals properly
 CMD ["/bin/bash", "./run.sh"]
