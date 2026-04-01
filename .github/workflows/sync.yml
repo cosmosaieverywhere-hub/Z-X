@@ -1,7 +1,7 @@
-name: Sync to Hugging Face Hub
+name: Sync to Hugging Face hub
 on:
   push:
-    branches: [main] # Change to 'master' if your branch is named that
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -16,5 +16,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # We use force push to ensure HF always matches your GitHub exactly
-          git push -f https://NodeX-AR:$HF_TOKEN@huggingface.co/spaces/Aswanth/z-x-25-x main
+          # 1. We use the 'force' flag (-f) so your GitHub always overwrites the Space.
+          # 2. Make sure you've added the HF_TOKEN to your GitHub Repo Secrets!
+          # 3. Swap 'Aswanth' if your Hugging Face username is different.
+          git push -f https://Aswanth:$HF_TOKEN@huggingface.co/spaces/z-x-25/x main
