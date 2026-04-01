@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Define the port (HF uses 7860)
-RUN_PORT=${PORT:-7860}
+# 1. Hugging Face needs port 7860
+export PORT=7860
 
-echo "Starting Z-X Server on port $RUN_PORT..."
+# 2. Automatically agree to EULA so the server doesn't hang
+echo "eula=true" > eula.txt
 
-# If you have specific config files that need the port changed, 
-# you can use 'sed' here to inject the port before starting.
-# Example: sed -i "s/25577/$RUN_PORT/g" config.yml
-
-# Start the Java process
-java -Xmx2G -jar BungeeCord.jar
+# 3. Start the server (It will create the 'world' folder automatically)
+# We use -Xmx2G because Hugging Face free tier has about 2-16GB RAM
+java -Xmx2G -jar paper-1.12.2.jar --port 7860
