@@ -1,4 +1,4 @@
-name: Sync to Hugging Face hub
+name: Sync to Hugging Face Hub
 on:
   push:
     branches: [main]
@@ -16,5 +16,11 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # We use the ${{ secrets.HF_TOKEN }} syntax directly in the URL to ensure bash reads it correctly
-          git push -f https://z-x-25:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/z-x-25/X main
+          # 1. Clear any existing origin to avoid conflicts
+          git remote rm hf || true
+          
+          # 2. Add the HF Space as a remote
+          git remote add hf https://z-x-25:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/z-x-25/X
+          
+          # 3. Force push the 'main' branch to the remote 'main'
+          git push hf main --force
