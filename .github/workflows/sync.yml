@@ -16,7 +16,5 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # 1. We use the 'force' flag (-f) so your GitHub always overwrites the Space.
-          # 2. Make sure you've added the HF_TOKEN to your GitHub Repo Secrets!
-          # 3. Swap 'Aswanth' if your Hugging Face username is different.
-          git push -f https://Aswanth:$HF_TOKEN@huggingface.co/spaces/z-x-25/x main
+          # Replace 'Aswanth' with your HF username
+          git push -f https://z-x-25:$HF_TOKEN@huggingface.co/spaces/z-x-25/x main
