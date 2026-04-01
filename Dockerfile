@@ -1,21 +1,21 @@
 FROM eclipse-temurin:17-jre-focal
 
-# Install basic tools
+# 1. Install necessary Linux tools
 RUN apt-get update && apt-get install -y bash curl wget git python3 && rm -rf /var/lib/apt/lists/*
 
-# Hugging Face User Setup
+# 2. Setup Hugging Face User (User 1000 is required)
 RUN useradd -m -u 1000 user
 USER user
 ENV HOME=/home/user
-WORKDIR /home/user/app
+WORKDIR $HOME/app
 
-# Copy your repo files into the container
+# 3. Copy all files from GitHub into the container
 COPY --chown=user:user . .
 
-# Set execution permissions
-RUN chmod +x main.sh || true
+# 4. Make scripts executable
+RUN chmod +x main.sh
 
-# IMPORTANT: HF only allows 7860
+# 5. Open the Hugging Face Port
 EXPOSE 7860
 ENV PORT=7860
 
