@@ -1,8 +1,8 @@
 ---
 title: Z-X
 emoji: ⚡
-colorFrom: blue
-colorTo: black
+colorFrom: gray
+colorTo: green
 sdk: docker
 app_port: 7860
 ---
