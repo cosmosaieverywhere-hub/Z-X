@@ -1,5 +1,0 @@
-&6Welcome, {PLAYER}&6 &6to &cZ &9X &0Server!
-&6Type &c/help&6 for a list of commands.
-&6Type &c/list&6 to see who else is online.
-&9Type &4/rules&9 to see all rules.
-&6Players online:&c {ONLINE} &6- World time:&c {WORLDTIME12}
